@@ -1,0 +1,242 @@
+---
+title: Human Skin Detection in Color Images
+description: Skin detection is the process of discriminating skin and non-skin pixels in an arbitrary image and represents an intermediate step in several image processing tasks, such as facial analysis and biomedical segmentation. Different approaches have been presented in the literature, but a comparison is diffcult to perform due to multiple datasets and varying performance measurements. In this work, the datasets and the state-of-the-art approaches are reviewed and categorized using a new proposed taxonomy. Three different representative skin detector methods of the state of the art are selected and thoroughly analyzed. This approaches are then evaluated on three different state of the art datasets and skin tones sub-datasets using multiple metrics. The evaluation is performed on single and cross dataset scenario to highlight key differences between methods, reporting also the inference time. Finally, the results are organized into multiple tables, using the related figures as an assistance tool to support the discussion. Experimental results demonstrate the strength and weaknesses of each approach, and the need to involve multiple metrics for a fair assessment of the method’s aspects.
+---
+<!-- hide_table_of_contents: true -->
+
+
+import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+
+export const Center = ({children}) => (
+  <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+  }}>
+    {children}
+  </div>
+)
+
+export const TwoItems = ({one, two}) => (
+  <div class="container margin-bottom--xl">
+    <div class="row">
+      <div class="col col--6">
+        {one}
+      </div>
+      <div class="col col--6">
+        {two}
+      </div>
+    </div>
+  </div>
+)
+
+export const Caption = ({children}) => (
+  <p class="text--center" style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
+)
+
+
+
+
+<div class="container">
+
+<div class="container margin-bottom--xl">
+  <h1 class="text--center">Human Skin Detection in Color Images</h1>
+  <p class="text--center margin-top--lg">
+  The purpose of the thesis is to present a review of the <b>human
+  skin detection</b> datasets and approaches of the state of the
+  art, and then perform a comparative in-depth analysis of the
+  most relevant methods on different databases.
+  </p>
+</div>
+
+
+<!--dic class="text--center"
+<div class="text--center">
+  <p style={{color: 'var(--ifm-color-gray-600)'}}>
+  The purpose of the thesis is to present a review of the <b>human
+  skin detection</b> datasets and approaches of the state of the
+  art, and then perform a comparative in-depth analysis of the
+  most relevant methods on different databases.
+  </p>
+</div>
+-->
+
+<!-- TODO: change page title!!>
+
+<!--div class="margin-vert--lg" style={{margin: '0 0 var(--ifm-paragraph-margin-bottom)'}}-->
+<div class="margin-vert--lg">
+  <Center>
+    <ReactCompareSlider
+      itemOne={<ReactCompareSliderImage src="/img/skin_det_ori3.jpg" alt="Original image" />}
+      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels" />}
+      style={{
+      display: "flex",
+      width: "450px",
+      maxWidth: "90vw",
+      height: "auto"
+      }}
+    />
+  </Center>
+</div>
+
+
+Skin detection is the process of **discriminating skin and non-skin pixels**. It is
+quite a challenging process because of the large color diversity that objects and
+human skin can assume and the scene properties, such as lighting and background.
+
+
+<!-- TODO: refactor code (follow a react quick tutorial)
+<TwoItems
+  one={<p>asdasd</p>}
+  two={<p>asdasd</p>} >
+</TwoItems>
+-->
+
+
+<!-- TODO: INSTEAD of tooltip / details, just display some images in background!! OR carousel at the bottom-->
+<div class="container margin-bottom--xl">
+  <div class="row">
+    <div class="col col--6">
+      <h3>Applications</h3>
+      <ul>
+        <li><b>Facial Analysis</b></li>
+        <li>Gesture Analysis</li>
+        <li><b>Biomedical</b></li>
+        <li>Video Surveillance</li>
+        <li>Content Filter</li>
+        <li>Advertisement</li>
+      </ul>
+    </div>
+    <div class="col col--6">
+      <h3>Limitations</h3>
+      <ul>
+        <li>
+        <details>
+          <summary>Materials with <b>skin-like colors</b></summary>
+          <div>
+            <div class="row">
+              <div class="col col--4">
+                <img src="/img/im00060x.jpg" />
+              </div>
+              <div class="col col--4">
+                <img src="/img/im00060y.png" />
+              </div>
+              <div class="col col--4">
+                <img src="/img/im00060p.png" />
+              </div>
+            </div>
+          </div>
+        </details>
+        </li>
+        <li>Materials with <b>skin-like colors</b></li>
+        <li>Wide range of <b>skin tones</b></li>
+        <li><b>Illumination</b></li>
+        <li>Cameras color science</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+## Methodological Approach
+
+<div class="container margin-bottom--xl">
+  (static flow chart)
+</div>
+
+
+## Taxonomy
+
+<div class="container margin-bottom--xl">
+  <img src="/img/taxonomy.png" />
+</div>
+
+
+<!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
+<div class="container margin-bottom--xl">
+
+  ## Dynamic Thresholding
+
+  <div class="row margin-top--lg">
+    <div class="col col--6">
+        <h4>Algorithm Overview</h4>
+        <ol class="spacing">
+          <li>Input image RGB to YCbCr</li>
+          <li>Cr<sub>max</sub> Cb<sub>min</sub> computation</li>
+          <li>Pixel-wise computation of the correlation rules parameters</li>
+          <li>Pixel-wise correlation rules check</li>
+        </ol>
+    </div>
+    <div class="col col--6">
+      <img src="/img/trapezia_params.png" />
+      <Caption>Brancati et al. 2017 [3]</Caption>
+    </div>
+  </div>
+  <p>
+  The skin pixels clusters assume a trapezoidal shape in the YCb and YCr color subspaces. Moreover, the shape and size of the trapezium vary according to many factors, such as the illumination conditions. In high illumination conditions, the base of the trapezium results larger.
+  </p>
+  <p>
+  Besides, the chrominance components of a skin pixel P with coordinates (P<sub>Y</sub>, P<sub>Cb</sub>, P<sub>Cr</sub>) in the YCbCr space exhibit the following behavior: the further is the (P<sub>Y</sub>, P<sub>Cr</sub>) point from the longer base of the trapezium in the YCr subspace, the further is the (P<sub>Y</sub>, P<sub>Cb</sub>) point from the longer base of the trapezium in the YCb subspace, and vice versa.
+  </p>
+  <p>
+  The aforementioned observations are the base of the method: it tries to define image-specific trapeziums in the YCb and YCr color subspaces and then verifies that the correlation rules between the two subspaces reflect the inversely proportional behavior of the chrominance components.
+  </p>
+</div>
+
+
+
+<div class="container margin-bottom--xl">
+
+  ## U-Net
+
+  <div class="row margin-top--lg">
+    <div class="col col--6">
+        <h2 class="text--center slight-bold">Workflow</h2>
+        <ol class="spacing">
+          <li>Pre-process input image: resize (512×512)px, padding</li>
+          <li>Extract features in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
+          <li>Try to retrieve spatial information through up-sampling in the <b>expansive pathway</b> and direct concatenations of dense blocks coming from the contracting pathway</li>
+          <li>Provide a final classification map</li>
+        </ol>
+    </div>
+    <div class="col col--6">
+      <img src="/img/skinny_arch.png" />
+      <Caption>Tarasiewicz et al. 2020 [5]</Caption>
+    </div>
+  </div>
+  <p>
+  The skin pixels clusters assume a trapezoidal shape in the YCb and YCr color subspaces. Moreover, the shape and size of the trapezium vary according to many factors, such as the illumination conditions. In high illumination conditions, the base of the trapezium results larger.
+  </p>
+  <p>
+  Besides, the chrominance components of a skin pixel P with coordinates (P<sub>Y</sub>, P<sub>Cb</sub>, P<sub>Cr</sub>) in the YCbCr space exhibit the following behavior: the further is the (P<sub>Y</sub>, P<sub>Cr</sub>) point from the longer base of the trapezium in the YCr subspace, the further is the (P<sub>Y</sub>, P<sub>Cb</sub>) point from the longer base of the trapezium in the YCb subspace, and vice versa.
+  </p>
+  <p>
+  The aforementioned observations are the base of the method: it tries to define image-specific trapeziums in the YCb and YCr color subspaces and then verifies that the correlation rules between the two subspaces reflect the inversely proportional behavior of the chrominance components.
+  </p>
+</div>
+
+
+
+
+<!-- Bibliography?? TODO-->
+<!--
+<ol>
+   <li id="#nbrancati">N. Brancati, G. De Pietro,M. Frucci, and L. Gallo. “Human skin detection through correlation rules between the YCb and YCr subspaces based on dynamic color clustering”. Computer Vision and Image Understanding 155, 2017, pp. 33–42. <a href="https://doi.org/10.1016/j.cviu.2016.12.001">https://doi.org/10.1016/j.cviu.2016.12.001</a></li>
+</ol>
+
+<q cite='#nbrancati'>who would not groan at hearing that Roman knights and senators grovel 
+before her (Cleopatra) like eunuchs?</q>
+<script>
+   var quotes = document.getElementsByTagName('q');
+   for (var i in quotes) {
+      quotes[i].addEventListener('click', function() { 
+         window.location = this.getAttribute('cite'); },
+      false);
+   }
+</script>
+-->
+
+</div>

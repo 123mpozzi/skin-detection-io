@@ -80,9 +80,11 @@ export const Caption = ({children}) => (
 </div>
 
 
-Skin detection is the process of **discriminating skin and non-skin pixels**. It is
+<p>
+Skin detection is the process of <b>discriminating skin and non-skin pixels</b>. It is
 quite a challenging process because of the large color diversity that objects and
 human skin can assume and the scene properties, such as lighting and background.
+</p>
 
 
 <!-- TODO: refactor code (follow a react quick tutorial)
@@ -156,23 +158,32 @@ human skin can assume and the scene properties, such as lighting and background.
 
 
 <!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
+<!-- TODO: refactor as React component -->
 <div class="container margin-bottom--xl">
 
   ## Dynamic Thresholding
 
   <div class="row margin-top--lg">
     <div class="col col--6">
-        <h4>Algorithm Overview</h4>
-        <ol class="spacing">
-          <li>Input image RGB to YCbCr</li>
-          <li>Cr<sub>max</sub> Cb<sub>min</sub> computation</li>
-          <li>Pixel-wise computation of the correlation rules parameters</li>
-          <li>Pixel-wise correlation rules check</li>
-        </ol>
+      <Center>
+        <div>
+          <h3 class="no-bold margin-left--md">Algorithm Overview</h3>
+          <ol class="spacing">
+            <li>Input image RGB to YCbCr</li>
+            <li>Cr<sub>max</sub> Cb<sub>min</sub> computation</li>
+            <li>Pixel-wise computation of the correlation rules parameters</li>
+            <li>Pixel-wise correlation rules check</li>
+          </ol>
+        </div>
+      </Center>
     </div>
     <div class="col col--6">
-      <img src="/img/trapezia_params.png" />
-      <Caption>Brancati et al. 2017 [3]</Caption>
+      <Center>
+        <div>
+          <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} />
+          <Caption>Brancati et al. 2017 [3]</Caption>
+        </div>
+      </Center>
     </div>
   </div>
   <p>
@@ -194,28 +205,62 @@ human skin can assume and the scene properties, such as lighting and background.
 
   <div class="row margin-top--lg">
     <div class="col col--6">
-        <h2 class="text--center slight-bold">Workflow</h2>
-        <ol class="spacing">
-          <li>Pre-process input image: resize (512×512)px, padding</li>
-          <li>Extract features in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
-          <li>Try to retrieve spatial information through up-sampling in the <b>expansive pathway</b> and direct concatenations of dense blocks coming from the contracting pathway</li>
-          <li>Provide a final classification map</li>
-        </ol>
+      <Center>
+        <div>
+          <h3 class="no-bold margin-left--md">Workflow</h3>
+          <ol class="spacing">
+            <li>Pre-process input image: resize (512×512)px, padding</li>
+            <li>Extract features in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
+            <li>Try to retrieve spatial information through up-sampling in the <b>expansive pathway</b> and direct concatenations of dense blocks coming from the contracting pathway</li>
+            <li>Provide a final classification map</li>
+          </ol>
+        </div>
+      </Center>
     </div>
     <div class="col col--6">
-      <img src="/img/skinny_arch.png" />
-      <Caption>Tarasiewicz et al. 2020 [5]</Caption>
+      <Center>
+        <div>
+          <img src="/img/skinny_arch.png" style={{width: "100%", maxWidth: "450px"}} />
+          <Caption>Tarasiewicz et al. 2020 [5]</Caption>
+        </div>
+      </Center>
     </div>
   </div>
   <p>
-  The skin pixels clusters assume a trapezoidal shape in the YCb and YCr color subspaces. Moreover, the shape and size of the trapezium vary according to many factors, such as the illumination conditions. In high illumination conditions, the base of the trapezium results larger.
+  The Skinny network consists of a modified U-Net incorporating dense blocks and inception modules to benefit from a wider spatial context.
   </p>
   <p>
-  Besides, the chrominance components of a skin pixel P with coordinates (P<sub>Y</sub>, P<sub>Cb</sub>, P<sub>Cr</sub>) in the YCbCr space exhibit the following behavior: the further is the (P<sub>Y</sub>, P<sub>Cr</sub>) point from the longer base of the trapezium in the YCr subspace, the further is the (P<sub>Y</sub>, P<sub>Cb</sub>) point from the longer base of the trapezium in the YCb subspace, and vice versa.
+  An additional deep level is appended to the original U-Net model, to better capture large-scale contextual features in the deepest part of the network.
+  The features extracted in the contracting path propagate to the corresponding expansive levels through the dense blocks.
   </p>
   <p>
-  The aforementioned observations are the base of the method: it tries to define image-specific trapeziums in the YCb and YCr color subspaces and then verifies that the correlation rules between the two subspaces reflect the inversely proportional behavior of the chrominance components.
+  The original U-Net convolutional layers are replaced with the inception modules: before each max-pooling layer, in the contracting path, and after concatenating features, in the expanding path.
+  Thanks to these architectural choices, Skinny benefits from a wider pixel context.
   </p>
+  <div class="container margin-top--lg">
+    <div class="row">
+      <div class="col col--6">
+        <div style={{minHeight: "100px"}}>
+          <div class="im-container padding-small" >
+            <img class="im-itemt" src="/img/inception1.png" class="three-cols" />
+            <img class="im-itemt" src="/img/inception2.png" class="three-cols" />
+            <img class="im-itemt" src="/img/inception3.png" class="three-cols" />
+          </div>
+        </div>
+        <p>
+        The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
+        </p>
+      </div>
+      <div class="col col--6">
+        <Center>
+          <img src="/img/dense.png" style={{height: "100px", padding: "0 0 0.4rem 0"}} />
+        </Center>
+        <p>
+        The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 

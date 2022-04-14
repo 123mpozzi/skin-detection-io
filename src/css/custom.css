@@ -45,10 +45,38 @@ ul.spacing > li {
   margin: 10px 0
 }
 
+p {
+  text-align:justify
+}
+
 .justify > li {
   text-align:justify
 }
 
-.slight-bold {
-  font-weight: var(--ifm-font-weight-semibold);
+.no-bold {
+  font-weight: normal
+}
+
+/* TODO: make it work and refactor */
+img.std-width {
+  width: 100%;
+  max-width: 450px
+}
+
+.padding-small * {
+  padding: 0 0.2rem 0.4rem 0.2rem
+}
+
+
+.im-container {
+  width: 100%;
+  /*height: 80px; /* height given for illustration */
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  justify-content: space-between;
+}
+
+.im-container > * {
+  max-width: 33%;
 }

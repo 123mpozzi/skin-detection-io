@@ -41,6 +41,10 @@ export const Caption = ({children}) => (
 
 <div class="container margin-bottom--xl">
   <h1 class="text--center">Human Skin Detection in Color Images</h1>
+  <div class="msubtitle">
+    <p class="hero__subtitle text--center" style={{color: 'var(--ifm-color-gray-600)'}}>Thesis Overview</p>
+    <a class="button button--primary" href="#url">See full thesis</a>
+  </div>
   <p class="text--center margin-top--lg">
   The purpose of the thesis is to present a review of the <b>human
   skin detection</b> datasets and approaches of the state of the
@@ -83,7 +87,7 @@ export const Caption = ({children}) => (
 <p>
 Skin detection is the process of <b>discriminating skin and non-skin pixels</b>. It is
 quite a challenging process because of the large color diversity that objects and
-human skin can assume and the scene properties, such as lighting and background.
+human skin can assume, and scene properties such as lighting and background.
 </p>
 
 
@@ -152,7 +156,7 @@ human skin can assume and the scene properties, such as lighting and background.
 
 ## Taxonomy
 
-<div class="container margin-bottom--xl">
+<div class="container invert margin-bottom--xl">
   <img src="/img/taxonomy.png" />
 </div>
 
@@ -179,7 +183,7 @@ human skin can assume and the scene properties, such as lighting and background.
     </div>
     <div class="col col--6">
       <Center>
-        <div>
+        <div class="invert">
           <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} />
           <Caption>Brancati et al. 2017 [3]</Caption>
         </div>
@@ -198,7 +202,76 @@ human skin can assume and the scene properties, such as lighting and background.
 </div>
 
 
+<div class="container margin-bottom--xl">
 
+  ## Statistical
+
+  <div class="row">
+    <div class="col col-12">
+      <div>
+        <div class="im-container50 margin-vert--md">
+          <img src="/img/3d-hist-orig.jpg" />
+          <img src="/img/3d-hist-plug.png" />
+        </div>
+        <Center>
+          <Caption>Example of a 3D Histogram</Caption>
+        </Center>
+      </div>
+    </div>
+  </div>
+  <div class="row margin-top--md">
+    <div class="col col--6">
+      <Center>
+        <div>
+          <h3 class="no-bold margin-left--md">Train</h3>
+          <ol class="spacing margin-bottom--lg">
+            <li>Initialize the skin and non-skin 3D histograms</li>
+            <li>Pick (image, mask) from the training set</li>
+            <li>Loop every RGB pixel from image</li>
+            <li>By checking its mask, the pixel its either skin or non-skin. Add +1 to the relative histogram count at coordinates [r,g,b]</li>
+            <li>Return to step 2 until there are images</li>
+          </ol>
+        </div>
+      </Center>
+    </div>
+    <div class="col col--6">
+      <Center>
+        <div>
+          <h3 class="no-bold margin-left--md">Predict</h3>
+          <ol class="spacing margin-bottom--lg">
+            <li>Define classifying threshold Θ</li>
+            <li>Loop every RGB pixel from input image</li>
+            <li>Calculate RGB probability of being skin</li>
+            <li>If skin probability > Θ, it is classified as skin</li>
+          </ol>
+        </div>
+      </Center>
+    </div>
+  </div>
+  <p>
+  The data is modeled with two 3D histograms representing the probabilities of skin and non-skin classes, and classification is performed via probability calculus by measuring the probability <i>P</i> of each <i>rgb</i> pixel to belong to the <i>skin</i> class:
+  </p>
+  <Center>
+    <div class="invert">
+      <img class="svg" src="/img/probability.svg" alt="Probability function" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} />
+    </div>
+  </Center>
+  <p>
+  where <i>s[rgb]</i> is the pixel count contained in bin <i>rgb</i> of the skin histogram and <i>n[rgb]</i> is the equivalent count from the non-skin histogram. <br />
+  A particular <i>rgb</i> value is labeled skin if:
+  </p>
+  <Center>
+    <div class="invert">
+      <img class="svg" src="/img/probability_thresh.svg" alt="Probability function" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} />
+    </div>
+  </Center>
+  <p>
+  where 0 ≤ Θ ≤ 1 is a threshold value that can be adjusted to trade-off between true positives and false positives.
+  </p>
+</div>
+
+
+<!--TODO: srcset with only 3 layers on cell for SVG dense -->
 <div class="container margin-bottom--xl">
 
   ## U-Net
@@ -242,9 +315,9 @@ human skin can assume and the scene properties, such as lighting and background.
       <div class="col col--6">
         <div style={{minHeight: "100px"}}>
           <div class="im-container padding-small" >
-            <img class="im-itemt" src="/img/inception1.png" class="three-cols" />
-            <img class="im-itemt" src="/img/inception2.png" class="three-cols" />
-            <img class="im-itemt" src="/img/inception3.png" class="three-cols" />
+            <img src="/img/inception1.png" class="three-cols" />
+            <img src="/img/inception2.png" class="three-cols" />
+            <img src="/img/inception3.png" class="three-cols" />
           </div>
         </div>
         <p>
@@ -253,7 +326,9 @@ human skin can assume and the scene properties, such as lighting and background.
       </div>
       <div class="col col--6">
         <Center>
-          <img src="/img/dense.png" style={{height: "100px", padding: "0 0 0.4rem 0"}} />
+          <div class="invert">
+            <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} />
+          </div>
         </Center>
         <p>
         The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
@@ -262,7 +337,6 @@ human skin can assume and the scene properties, such as lighting and background.
     </div>
   </div>
 </div>
-
 
 
 

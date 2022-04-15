@@ -38,6 +38,19 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+/*
+.svg {
+  fill: white;
+  filter: invert(100%);
+}*/
+/*
+.invert > img {
+  filter: invert(0%);
+}*/
+[data-theme='dark'] .invert > img {
+  filter: invert(100%);
+}
+
 ol.spacing > li {
   margin: 10px 0
 }
@@ -67,7 +80,6 @@ img.std-width {
   padding: 0 0.2rem 0.4rem 0.2rem
 }
 
-
 .im-container {
   width: 100%;
   /*height: 80px; /* height given for illustration */
@@ -79,4 +91,27 @@ img.std-width {
 
 .im-container > * {
   max-width: 33%;
+}
+
+.im-container50 {
+  width: 100%;
+  /*height: 80px; /* height given for illustration */
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  justify-content: center;
+}
+
+.im-container50 > * {
+  max-width: 50%;
+  padding: 0 0.5rem 0 0.5rem;
+  max-height: 200px;
+}
+
+.msubtitle {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-evenly;
 }

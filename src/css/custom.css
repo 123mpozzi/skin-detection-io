@@ -115,3 +115,106 @@ img.std-width {
   align-items: baseline;
   justify-content: space-evenly;
 }
+
+.taxonomy-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.taxonomy-col {
+  /*min-width: 33%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 20%;
+}
+
+/*
+.taxonomy-col > * {
+  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
+}*/
+
+/*
+.taxonomy-col > div > a {
+  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
+}*/
+
+.taxonomy-pad {
+  z-index: 0;
+  background-color: #FFF;
+}
+
+.taxonomy-pad > * {
+  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
+}
+
+[data-theme='dark'] .taxonomy-pad {
+  background-color: #000;
+}
+
+.taxonomy-group {
+  display: flex;
+  flex-direction: column;
+  /**/
+  justify-content: space-between;
+} 
+
+.taxonomy-link {
+  border-color: var(--ifm-button-border-color);
+  text-decoration: none;
+  text-align: center;
+  transition-property: color, background, border-color;
+  transition-duration: var(--ifm-button-transition-duration);
+  transition-timing-function: var(--ifm-transition-timing-default);
+  /**/
+  display: flex;
+}
+
+/* inverse text color */
+.taxonomy-link:hover {
+  text-decoration: none;
+  border-style: solid;
+}
+
+.taxonomy-on {
+  border-style: solid;
+}
+
+.taxonomy-off {
+  border-style: none;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.scrolling-section {
+  overflow-y: scroll;
+  height: 100vh;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+/*.scrolling-section::-webkit-scrollbar {
+    display: none;
+}*/
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrolling-section {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide {
+  opacity: 0;
+  left: -100%;
+}
+.show {
+  opacity: 1;
+  left: 0;
+}
+
+/*
+.taxonomy-desc-container {
+
+}*/

@@ -7,8 +7,6 @@ description: Skin detection is the process of discriminating skin and non-skin p
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import { ArcherContainer, ArcherElement } from 'react-archer';
-import '/src/scripts/index.js'
-
 
 export const Center = ({children}) => (
   <div style={{
@@ -38,177 +36,57 @@ export const Caption = ({children}) => (
 )
 
 
-export const rowStyle = { margin: '50px 0', display: 'flex', justifyContent: 'space-between', }
+export const rootStyle = { display: 'flex', justifyContent: 'center' };
+export const rowStyle = { margin: '200px 0', display: 'flex', justifyContent: 'space-between', }
+export const boxStyle = { padding: '10px', border: '1px solid black', };
 
 export const Taxonomy = () => {
   return (
     <div>
  
       <ArcherContainer strokeColor='red' >
-        <div style={rowStyle}>
-          <div class="taxonomy-col" />
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx2-rulebased"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx3-thresholding',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-fuzzylogic',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Rule-based <br />classifier</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col taxonomy-group">
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-thresholding">
-                  <ArcherElement id="tx3-thresholding">
-                    <div>
-                      <p class="text--center no-margin">Thresholding</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-fuzzylogic">
-                  <ArcherElement id="tx3-fuzzylogic">
-                    <div>
-                      <p class="text--center no-margin">Fuzzy Logic</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-          </div>
+        <div style={rootStyle}>
+          <ArcherElement
+            id="root"
+            relations={[{
+              targetId: 'element2',
+              targetAnchor: 'top',
+              sourceAnchor: 'bottom',
+            }]}
+          >
+            <div style={boxStyle}>Root</div>
+          </ArcherElement>
         </div>
+ 
         <div style={rowStyle}>
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx1-skindetector"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx2-machinelearning',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx2-rulebased',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx2-hybrid',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Skin Detector</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx2-machinelearning"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx3-deeplearning',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-statistical',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-ensemble',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Machine Learning <br />classifier</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col taxonomy-group">
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-deeplearning">
-                  <ArcherElement id="tx3-deeplearning">
-                    <div>
-                      <p class="text--center no-margin">Deep Learning</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-statistical">
-                  <ArcherElement id="tx3-statistical">
-                    <div>
-                      <p class="text--center no-margin">Statistical</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-ensemble">
-                  <ArcherElement id="tx3-ensemble">
-                    <div>
-                      <p class="text--center no-margin">Ensemble</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-          </div>
-        </div>
-        <div style={rowStyle}>
-          <div class="taxonomy-col" />
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <a class="taxonomy-link" href="#taxonomy-hybrid">
-                <ArcherElement id="tx2-hybrid">
-                  <div>
-                    <p class="text--center no-margin">Hybrid classifier</p>
-                  </div>
-                </ArcherElement>
-              </a>
-            </div>
-          </div>
-          <div class="taxonomy-col" />
+          <ArcherElement
+            id="element2"
+            relations={[{
+              targetId: 'element3',
+              targetAnchor: 'left',
+              sourceAnchor: 'right',
+              style: { strokeColor: 'blue', strokeWidth: 1 },
+              label: <div style={{ marginTop: '-20px' }}>Arrow 2</div>,
+            }]}
+          >
+            <div style={boxStyle}>Element 2</div>
+          </ArcherElement>
+ 
+          <ArcherElement id="element3">
+            <div style={boxStyle}>Element 3</div>
+          </ArcherElement>
+ 
+          <ArcherElement
+            id="element4"
+            relations={[{
+              targetId: 'root',
+              targetAnchor: 'right',
+              sourceAnchor: 'left',
+              label: 'Arrow 3',
+            }]}
+          >
+            <div style={boxStyle}>Element 4</div>
+          </ArcherElement>
         </div>
       </ArcherContainer>
  
@@ -335,50 +213,48 @@ Skin detection is a <b>binary classification problem</b>: the pixels of an image
 One of several ways to categorize methods is to group them according to how the pixel classification is done.
 </p>
 
-<!-- TODO: cite thresholding approach ? -->
-<div id="taxonomy-container" class="container scrolling-section margin-bottom--xl" style={{position: "relative"}}>
-  <div>
-    <Taxonomy />
-  </div>
+<div class="container invert margin-bottom--xl" style={{position: "relative"}}>
+  <img src="/img/taxonomy.png" />
+  <a class="button button--outline button--primary" style={{position:"absolute", right:"0px", top:"0px"}} href="#dynamic-thresholding">Some link</a>
+</div>
 
-  <div class="row">
-    <div class="col col--8 col--offset-2">
-      <div id="taxonomy-thresholding">
-        <p>
-        <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
-        A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
-        </p>
-      </div>
-      <div id="taxonomy-fuzzylogic">
-        <p>
-        <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
-        </p>
-      </div>
-      <div id="taxonomy-deeplearning">
-        <p>
-        <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-statistical">
-        <p>
-        <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-ensemble">
-        <p>
-        <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
-        classification.
-        </p>
-      </div>
-      <div id="taxonomy-hybrid">
-        <p>
-        <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
-        </p>
-      </div>
+<img src="/img/taxonomy.svg" />
+
+<div>
+  <div class="taxonomy-row margin-vert--lg">
+    <div class="taxonomy-col" />
+    <div class="taxonomy-col">
+      <p class="text--center">Rule-based <br />classifier</p>
     </div>
+    <div class="taxonomy-col taxonomy-group">
+      <a class="taxonomy-link" href="#taxonomy-1">Thresholding</a>
+      <a class="taxonomy-link" href="#taxonomy-1">Fuzzy Logic</a>
+    </div>
+  </div>
+  <div class="taxonomy-row margin-vert--lg">
+    <div class="taxonomy-col">
+      <p class="text--center">Skin Detector</p>
+    </div>
+    <div class="taxonomy-col">
+      <p class="text--center">Machine Learning <br />classifier</p>
+    </div>
+    <div class="taxonomy-col taxonomy-group">
+      <a class="taxonomy-link" href="#taxonomy-1">Deep Learning</a>
+      <a class="taxonomy-link" href="#taxonomy-1">Statistical</a>
+      <a class="taxonomy-link" href="#taxonomy-1">Ensemble</a>
+    </div>
+  </div>
+  <div class="taxonomy-row margin-vert--lg">
+    <div class="taxonomy-col" />
+    <div class="taxonomy-col" style={{display: "flex", flexDirection: "column"}}>
+      <a class="taxonomy-link" href="#taxonomy-1">Hybrid classifier</a>
+    </div>
+    <div class="taxonomy-col" />
   </div>
 </div>
 
+
+<Taxonomy />
 
 
 <!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
@@ -503,8 +379,8 @@ One of several ways to categorize methods is to group them according to how the 
           <h3 class="no-bold margin-left--md">Workflow</h3>
           <ol class="spacing">
             <li>Pre-process input image: resize (512×512)px, padding</li>
-            <li><em>Extract features</em> in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
-            <li>Try to <em>retrieve spatial information</em> through up-sampling in the <b>expansive pathway</b> and direct concatenations of <em>dense blocks</em> coming from the contracting pathway</li>
+            <li>Extract features in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
+            <li>Try to retrieve spatial information through up-sampling in the <b>expansive pathway</b> and direct concatenations of dense blocks coming from the contracting pathway</li>
             <li>Provide a final classification map</li>
           </ol>
         </div>

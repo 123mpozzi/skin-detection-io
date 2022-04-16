@@ -116,44 +116,30 @@ img.std-width {
   justify-content: space-evenly;
 }
 
-.no-margin {
-  margin: 0;
-}
-
-.scrolling-section {
-  overflow-y: scroll;
-  height: 100vh;
-}
-/* Hide scrollbar for Chrome, Safari and Opera */
-/*.scrolling-section::-webkit-scrollbar {
-    display: none;
-}*/
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrolling-section {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
 .hide {
   opacity: 0;
   left: -100%;
+  height: 0;
+  margin: 0;
 }
 .show {
   opacity: 1;
   left: 0;
 }
 
+/* MD Chapters Manipulation */
 #introduction {
   opacity: 0;
   left: -100%;
   height: 0;
   margin: 0;
 }
-
-/*
-.taxonomy-desc-container {
-
-}*/
+#methodological-approach {
+  text-align: center;
+}
+#dynamic-thresholding, #statistical, #u-net, #methodological-approach {
+  font-size: var(--ifm-h2-font-size);
+}
 
 
 .list-wrap {

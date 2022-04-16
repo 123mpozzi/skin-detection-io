@@ -123,12 +123,12 @@ human skin can assume, and scene properties such as lighting and background.
   <div class="row margin-top--xl reverse-row" >
     <div class="col col--6">
       <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
-        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem'}} />
-        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
+        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
       </div>
       <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}}>
-        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem'}} />
-        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
+        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
       </div>
     </div>
     <div class="col col--6">
@@ -150,7 +150,7 @@ human skin can assume, and scene properties such as lighting and background.
 
 <div class={section} >
 
-  ## Methodological Approach
+  ### Methodological Approach
 
   <Center>
     <div class="invert margin-top--lg">
@@ -161,7 +161,7 @@ human skin can assume, and scene properties such as lighting and background.
 
 
 <!-- TODO: cite thresholding approach ? -->
-<div class={section} >
+<div class="margin-bottom--md" >
 
   ## Taxonomy
 
@@ -172,56 +172,64 @@ human skin can assume, and scene properties such as lighting and background.
   One of several ways to categorize methods is to group them according to how the pixel classification is done.
   </p>
 
-  <div id="taxonomy-container" class="container scrolling-section" >
-    <div>
-      <Taxonomy />
-    </div>
-    <div class="row">
-      <div class="col col--8 col--offset-2">
-        <div id="taxonomy-thresholding">
-          <p>
-          <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
-          A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
-          </p>
-        </div>
-        <div id="taxonomy-fuzzylogic">
-          <p>
-          <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
-          </p>
-        </div>
-        <div id="taxonomy-deeplearning">
-          <p>
-          <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
-          </p>
-        </div>
-        <div id="taxonomy-statistical">
-          <p>
-          <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
-          </p>
-        </div>
-        <div id="taxonomy-ensemble">
-          <p>
-          <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
-          classification.
-          </p>
-        </div>
-        <div id="taxonomy-hybrid">
-          <p>
-          <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
-          </p>
-        </div>
+  <div>
+    <Taxonomy />
+  </div>
+  <div class="row">
+    <div class="col col--8 col--offset-2">
+      <div id="taxonomy-thresholding" class="hide" >
+        <p>
+        <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
+        A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
+        </p>
+      </div>
+      <div id="taxonomy-fuzzylogic" class="hide" >
+        <p>
+        <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
+        </p>
+      </div>
+      <div id="taxonomy-deeplearning" class="hide" >
+        <p>
+        <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
+        </p>
+      </div>
+      <div id="taxonomy-statistical" class="hide" >
+        <p>
+        <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
+        </p>
+      </div>
+      <div id="taxonomy-ensemble" class="hide" >
+        <p>
+        <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
+        classification.
+        </p>
+      </div>
+      <div id="taxonomy-hybrid" class="hide" >
+        <p>
+        <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
 
+<div class={section} >
+
+  ## Methods Selection
+
+  <p>
+  <em>Thresholding</em>, <em>Statistical</em>, and <em>Deep Learning</em> have been the chosen approaches.<br />
+  The first to demonstrate whether <em>simple rules</em> can achieve powerful results; and the latter two to compare how differently the models behave and generalize, and whether the capabilities of a CNN to <em>extract semantic features</em> can give an advantage.
+  </p>
+</div>
+
 
 <!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
 <!-- TODO: refactor as React component -->
 <div class={section} >
 
-  ## Dynamic Thresholding
+  ### Dynamic Thresholding
 
   <div class="row margin-top--lg">
     <div class="col col--6">
@@ -260,7 +268,7 @@ human skin can assume, and scene properties such as lighting and background.
 
 <div class={section} >
 
-  ## Statistical
+  ### Statistical
 
   <div class="row">
     <div class="col col-12">
@@ -330,7 +338,7 @@ human skin can assume, and scene properties such as lighting and background.
 <!--TODO: srcset with only 3 layers on cell for SVG dense -->
 <div class={section}>
 
-  ## U-Net
+  ### U-Net
 
   <div class="row margin-top--lg">
     <div class="col col--6">

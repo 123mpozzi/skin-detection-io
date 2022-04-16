@@ -47,7 +47,7 @@
 .invert > img {
   filter: invert(0%);
 }*/
-[data-theme='dark'] .invert > img {
+[data-theme='dark'] .invert > img, [data-theme='dark'] .invert > * > img {
   filter: invert(100%);
 }
 
@@ -116,6 +116,17 @@ img.std-width {
   justify-content: space-evenly;
 }
 
+.octocat-title {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.octocat > a > img {
+  max-height: calc(var(--ifm-h2-font-size) *2);
+}
+
 .hide {
   opacity: 0;
   left: -100%;
@@ -128,7 +139,7 @@ img.std-width {
 }
 
 /* MD Chapters Manipulation */
-#introduction {
+#introduction, #dynamic-thresholding, #statistical, #u-net {
   opacity: 0;
   left: -100%;
   height: 0;

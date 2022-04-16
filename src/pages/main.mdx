@@ -20,19 +20,6 @@ export const Center = ({children}) => (
   </div>
 )
 
-export const TwoItems = ({one, two}) => (
-  <div class="container margin-bottom--xl">
-    <div class="row">
-      <div class="col col--6">
-        {one}
-      </div>
-      <div class="col col--6">
-        {two}
-      </div>
-    </div>
-  </div>
-)
-
 export const Caption = ({children}) => (
   <p class="text--center" style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
 )
@@ -49,7 +36,7 @@ export const section = "container margin-bottom--xl"
   <h1 class="text--center">Human Skin Detection in Color Images</h1>
   <div class="msubtitle">
     <p class="hero__subtitle text--center" style={{color: 'var(--ifm-color-gray-600)'}}>Thesis Overview</p>
-    <a class="button button--primary" href="#url">See full thesis</a>
+    <a class="button button--primary" href="/doc/human-skin-detection-in-color-images.pdf"  target="_blank">See full thesis</a>
   </div>
   <p class="text--center margin-top--lg">
   The purpose of the thesis is to present a review of the <b>human
@@ -67,8 +54,8 @@ export const section = "container margin-bottom--xl"
 <div class="margin-vert--lg">
   <Center>
     <ReactCompareSlider
-      itemOne={<ReactCompareSliderImage src="/img/skin_det_ori3.jpg" alt="Original image" />}
-      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels" />}
+      itemOne={<ReactCompareSliderImage src="/img/skin_det_ori3.jpg" alt="The original image: a three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background." title='Girl from Pratheepan dataset' />}
+      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels: the skin regions are now completely red as the groundtruth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." title='Skin pixels overlayed onto the original image' />}
       style={{
       display: "flex",
       width: "450px",
@@ -86,13 +73,6 @@ quite a challenging process because of the large color diversity that objects an
 human skin can assume, and scene properties such as lighting and background.
 </p>
 
-
-<!-- TODO: refactor code (follow a react quick tutorial)
-<TwoItems
-  one={<p>asdasd</p>}
-  two={<p>asdasd</p>} >
-</TwoItems>
--->
 
 
 <div class={section} >
@@ -112,23 +92,32 @@ human skin can assume, and scene properties such as lighting and background.
     </div>
     <div class="col col--8">
       <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <div style={{zIndex: '-1', display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
-          <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} />
-          <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} />
+        <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
+          <div>
+            <Caption>Ramirez et al. 2014 [1]</Caption>
+            <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} alt='Skin detection is often an important step to analyze faces.' title='Facial analysis' />
+          </div>
+          <div>
+            <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' title='Infer audience properties in DOOH ads' />
+            <Caption>Low et al. 2020 [3]</Caption>
+          </div>
         </div>
-        <img src="/img/applications_biomedical.png" style={{maxWidth: '50%', maxHeight: '40vh'}} />
+        <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}}>
+          <img src="/img/applications_biomedical.png" style={{maxHeight: '40vh'}} alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' title='Skin cancer detection' />
+          <Caption>Do et al. 2014 [2]</Caption>
+        </div>
       </div>
     </div>
   </div>
   <div class="row margin-top--xl reverse-row" >
     <div class="col col--6">
       <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
-        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
-        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
+        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Clay color is really similar to some skin tones.' title='Clay' />
+        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Wood can assume similar color to some skin tones.' title='Wood' />
       </div>
       <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}}>
-        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
-        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} />
+        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' title='Tricky lighting 1' />
+        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' title='Tricky lighting 2' />
       </div>
     </div>
     <div class="col col--6">
@@ -154,7 +143,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <Center>
     <div class="invert margin-top--lg">
-      <img class="svg" src="/img/methodological-approach-vert.svg" alt="Methodological approach flowchart" style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}} />
+      <img class="svg" src="/img/methodological-approach-vert.svg" style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}} alt="In this thesis the significance and limitations of skin detection have been addressed. A review of public datasets available in the domain and an analysis of state-of-the-art approaches has been presented, including a new proposed taxonomy. Three different state-of-the-art methods have been thoroughly examined implemented and validated in respect to the original papers, when possible. An evaluation of the chosen approaches in different settings has been presented, alongside a discussion on the metrics used in the domain.Finally, the results have been thoroughly discussed through data and figures." title='Approach taken at exploring the topic' />
     </div>
   </Center>
 </div>
@@ -225,11 +214,18 @@ human skin can assume, and scene properties such as lighting and background.
 </div>
 
 
-<!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
-<!-- TODO: refactor as React component -->
 <div class={section} >
 
   ### Dynamic Thresholding
+
+  <div class="octocat-title">
+    <h2>Dynamic Thresholding</h2>
+    <div class="invert octocat">
+      <a href="https://github.com/123mpozzi/nbrancati">
+        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
+      </a>
+    </div>
+  </div>
 
   <div class="row margin-top--lg">
     <div class="col col--6">
@@ -248,8 +244,8 @@ human skin can assume, and scene properties such as lighting and background.
     <div class="col col--6">
       <Center>
         <div class="invert">
-          <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} />
-          <Caption>Brancati et al. 2017 [3]</Caption>
+          <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} alt='Visualization of how some parameters are computed with the trapezia to provide a better context to the following paragraphs.' title='Computation of the correlation rules parameters' />
+          <Caption>Brancati et al. 2017 [4]</Caption>
         </div>
       </Center>
     </div>
@@ -270,12 +266,21 @@ human skin can assume, and scene properties such as lighting and background.
 
   ### Statistical
 
+  <div class="octocat-title">
+    <h2>Statistical</h2>
+    <div class="invert octocat">
+      <a href="https://github.com/123mpozzi/skin-statistical">
+        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
+      </a>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col col-12">
       <div>
         <div class="im-container50 margin-vert--md">
-          <img src="/img/skin_det_ori3.jpg" />
-          <img src="/img/3d_hist.png" />
+          <img src="/img/skin_det_ori3.jpg" alt='A three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background.' title='Girl from Pratheepan dataset' />
+          <img src="/img/3d_hist.png" alt='The resulting 3D histogram from the image featuring the girl with the orange background: each pixel is taken from the original image and stored at the coordinates [R,G,B] of the histogram. The visualization of the resulting three-dimensional histogram features some accumulation points which may indicate some interesting features to extract from the image. For example the plain orange background can easily be identified as it represents lot of pixels with low variance.' title='The accumulation points may indicate a feature to extract' />
         </div>
         <Center>
           <Caption>Example of an image's 3D Histogram</Caption>
@@ -317,7 +322,7 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
   <Center>
     <div class="invert">
-      <img class="svg" src="/img/probability.svg" alt="Probability function" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} />
+      <img class="svg" src="/img/probability.svg" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} alt="Probability function; The probability of each RGB pixel to belong to the SKIN class is: the pixel count contained in bin RGB of the SKIN histogram divided by parenthesis the pixel count contained in bin RGB of the SKIN histogram plus the equivalent count from the non-skin histogram closed parenthesis." title='Probability of "rgb" to be a skin pixel' />
     </div>
   </Center>
   <p>
@@ -326,7 +331,7 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
   <Center>
     <div class="invert">
-      <img class="svg" src="/img/probability_thresh.svg" alt="Probability function" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} />
+      <img class="svg" src="/img/probability_thresh.svg" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} alt="Having computed the probability, a threshold (represented by Theta) must be surpassed to be classified as a skin pixel." title='"rgb" is a skin pixel if its probability exceeds the threshold' />
     </div>
   </Center>
   <p>
@@ -339,6 +344,15 @@ human skin can assume, and scene properties such as lighting and background.
 <div class={section}>
 
   ### U-Net
+
+  <div class="octocat-title">
+    <h2>U-Net</h2>
+    <div class="invert octocat">
+      <a href="https://github.com/123mpozzi/skinny">
+        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
+      </a>
+    </div>
+  </div>
 
   <div class="row margin-top--lg">
     <div class="col col--6">
@@ -357,7 +371,7 @@ human skin can assume, and scene properties such as lighting and background.
     <div class="col col--6">
       <Center>
         <div>
-          <img src="/img/skinny_arch.png" style={{width: "100%", maxWidth: "450px"}} />
+          <img src="/img/skinny_arch.png" style={{width: "100%", maxWidth: "450px"}} alt='Context image to the paragraphs describing the architecture of Skinny. The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction.' title='Architecture of the "Skinny" network' />
           <Caption>Tarasiewicz et al. 2020 [5]</Caption>
         </div>
       </Center>
@@ -376,16 +390,16 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
   <div class="container margin-top--lg">
     <div class="im-container padding-small" >
-      <img src="/img/inception1.png" class="three-cols" />
-      <img src="/img/inception2.png" class="three-cols" />
-      <img src="/img/inception3.png" class="three-cols" />
+      <img src="/img/inception1.png" class="three-cols" alt='A face shot of a man. The face covers almost all of the image, hence it may need bigger convolution sizes to extract complex features.' title='The saliency content is big' />
+      <img src="/img/inception2.png" class="three-cols" alt='A half body shot of a person. Depending on the dataset, an image like this may be common, hence convolution sizes may be already good for it.' title='The saliency content is medium sized' />
+      <img src="/img/inception3.png" class="three-cols" alt='An image featuring two people fully. The skin pixel regions are small, hence convolution sizes can be reduced.' title='The saliency content is small' />
     </div>
     <p>
     The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
     </p>
     <Center>
       <div class="invert">
-        <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} />
+        <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
       </div>
     </Center>
     <p>

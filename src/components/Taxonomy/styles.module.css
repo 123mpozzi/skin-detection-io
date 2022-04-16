@@ -1,0 +1,60 @@
+.taxonomyRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.taxonomyCol {
+  /*min-width: 33%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 20%;
+}
+
+.taxonomyPad {
+  z-index: 0;
+  background-color: #FFF;
+}
+
+.taxonomyPad > * {
+  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
+}
+
+[data-theme='dark'] .taxonomyPad {
+  background-color: #000;
+}
+
+.taxonomyGroup {
+  display: flex;
+  flex-direction: column;
+  /**/
+  justify-content: space-between;
+} 
+
+.taxonomyLink {
+  border-color: var(--ifm-button-border-color);
+  text-decoration: none;
+  text-align: center;
+  transition-property: color, background, border-color;
+  transition-duration: var(--ifm-button-transition-duration);
+  transition-timing-function: var(--ifm-transition-timing-default);
+  /**/
+  display: flex;
+}
+
+/* inverse text color */
+.taxonomyLink:hover {
+  text-decoration: none;
+  border-style: solid;
+}
+
+.taxonomyOn {
+  border-style: solid;
+}
+
+.taxonomyOff {
+  border-style: none;
+}

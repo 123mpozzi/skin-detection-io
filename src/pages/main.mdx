@@ -6,7 +6,7 @@ description: Skin detection is the process of discriminating skin and non-skin p
 
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
-import { ArcherContainer, ArcherElement } from 'react-archer';
+import Taxonomy from '@site/src/components/Taxonomy';;
 import '/src/scripts/index.js'
 
 
@@ -38,185 +38,6 @@ export const Caption = ({children}) => (
 )
 
 
-export const rowStyle = { margin: '50px 0', display: 'flex', justifyContent: 'space-between', }
-
-export const Taxonomy = () => {
-  return (
-    <div>
- 
-      <ArcherContainer strokeColor='red' >
-        <div style={rowStyle}>
-          <div class="taxonomy-col" />
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx2-rulebased"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx3-thresholding',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-fuzzylogic',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Rule-based <br />classifier</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col taxonomy-group">
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-thresholding">
-                  <ArcherElement id="tx3-thresholding">
-                    <div>
-                      <p class="text--center no-margin">Thresholding</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-fuzzylogic">
-                  <ArcherElement id="tx3-fuzzylogic">
-                    <div>
-                      <p class="text--center no-margin">Fuzzy Logic</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-          </div>
-        </div>
-        <div style={rowStyle}>
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx1-skindetector"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx2-machinelearning',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx2-rulebased',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx2-hybrid',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Skin Detector</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <div>
-                <ArcherElement
-                  id="tx2-machinelearning"
-                  relations={
-                    [
-                      {
-                        targetId: 'tx3-deeplearning',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-statistical',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                      {
-                        targetId: 'tx3-ensemble',
-                        targetAnchor: 'left',
-                        sourceAnchor: 'right',
-                        style: { strokeColor: 'black', strokeWidth: 2, noCurves: 'true', svgContainerStyle: 'z-index: -1'},
-                      },
-                    ]}
-                >
-                  <div>
-                    <p class="text--center no-margin">Machine Learning <br />classifier</p>
-                  </div>
-                </ArcherElement>
-              </div>
-            </div>
-          </div>
-          <div class="taxonomy-col taxonomy-group">
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-deeplearning">
-                  <ArcherElement id="tx3-deeplearning">
-                    <div>
-                      <p class="text--center no-margin">Deep Learning</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-statistical">
-                  <ArcherElement id="tx3-statistical">
-                    <div>
-                      <p class="text--center no-margin">Statistical</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-              <div class="taxonomy-pad">
-                <a class="taxonomy-link" href="#taxonomy-ensemble">
-                  <ArcherElement id="tx3-ensemble">
-                    <div>
-                      <p class="text--center no-margin">Ensemble</p>
-                    </div>
-                  </ArcherElement>
-                </a>
-              </div>
-          </div>
-        </div>
-        <div style={rowStyle}>
-          <div class="taxonomy-col" />
-          <div class="taxonomy-col">
-            <div class="taxonomy-pad">
-              <a class="taxonomy-link" href="#taxonomy-hybrid">
-                <ArcherElement id="tx2-hybrid">
-                  <div>
-                    <p class="text--center no-margin">Hybrid classifier</p>
-                  </div>
-                </ArcherElement>
-              </a>
-            </div>
-          </div>
-          <div class="taxonomy-col" />
-        </div>
-      </ArcherContainer>
- 
-    </div>
-  );
-}
-
-
 
 <div class="container">
 
@@ -235,16 +56,6 @@ export const Taxonomy = () => {
 </div>
 
 
-<!--dic class="text--center"
-<div class="text--center">
-  <p style={{color: 'var(--ifm-color-gray-600)'}}>
-  The purpose of the thesis is to present a review of the <b>human
-  skin detection</b> datasets and approaches of the state of the
-  art, and then perform a comparative in-depth analysis of the
-  most relevant methods on different databases.
-  </p>
-</div>
--->
 
 <!-- TODO: change page title!!>
 
@@ -430,11 +241,11 @@ One of several ways to categorize methods is to group them according to how the 
     <div class="col col-12">
       <div>
         <div class="im-container50 margin-vert--md">
-          <img src="/img/3d-hist-orig.jpg" />
-          <img src="/img/3d-hist-plug.png" />
+          <img src="/img/skin_det_ori3.jpg" />
+          <img src="/img/3d_hist.png" />
         </div>
         <Center>
-          <Caption>Example of a 3D Histogram</Caption>
+          <Caption>Example of an image's 3D Histogram</Caption>
         </Center>
       </div>
     </div>

@@ -105,7 +105,7 @@ img.std-width {
 .im-container50 > * {
   max-width: 50%;
   padding: 0 0.5rem 0 0.5rem;
-  max-height: 200px;
+  max-height: 250px;
 }
 
 .msubtitle {
@@ -114,77 +114,6 @@ img.std-width {
   flex-direction: row;
   align-items: baseline;
   justify-content: space-evenly;
-}
-
-.taxonomy-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.taxonomy-col {
-  /*min-width: 33%;*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 20%;
-}
-
-/*
-.taxonomy-col > * {
-  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
-}*/
-
-/*
-.taxonomy-col > div > a {
-  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
-}*/
-
-.taxonomy-pad {
-  z-index: 0;
-  background-color: #FFF;
-}
-
-.taxonomy-pad > * {
-  padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
-}
-
-[data-theme='dark'] .taxonomy-pad {
-  background-color: #000;
-}
-
-.taxonomy-group {
-  display: flex;
-  flex-direction: column;
-  /**/
-  justify-content: space-between;
-} 
-
-.taxonomy-link {
-  border-color: var(--ifm-button-border-color);
-  text-decoration: none;
-  text-align: center;
-  transition-property: color, background, border-color;
-  transition-duration: var(--ifm-button-transition-duration);
-  transition-timing-function: var(--ifm-transition-timing-default);
-  /**/
-  display: flex;
-}
-
-/* inverse text color */
-.taxonomy-link:hover {
-  text-decoration: none;
-  border-style: solid;
-}
-
-.taxonomy-on {
-  border-style: solid;
-}
-
-.taxonomy-off {
-  border-style: none;
 }
 
 .no-margin {

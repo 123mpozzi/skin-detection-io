@@ -37,11 +37,15 @@ export const Caption = ({children}) => (
   <p class="text--center" style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
 )
 
+export const section = "container margin-bottom--xl"
 
 
 <div class="container">
 
-<div class="container margin-bottom--xl">
+<div class={section} >
+
+## Introduction 
+
   <h1 class="text--center">Human Skin Detection in Color Images</h1>
   <div class="msubtitle">
     <p class="hero__subtitle text--center" style={{color: 'var(--ifm-color-gray-600)'}}>Thesis Overview</p>
@@ -91,34 +95,52 @@ human skin can assume, and scene properties such as lighting and background.
 -->
 
 
-<!-- TODO: INSTEAD of tooltip / details, just display some images in background!! OR carousel at the bottom-->
-<div class="container margin-bottom--xl">
+<div class={section} >
   <div class="row">
-    <div class="col col--6 margin-top--md">
-      <h3>Applications</h3>
-      <ul>
-        <li><b>Facial Analysis</b></li>
-        <li>Gesture Analysis</li>
-        <li><b>Biomedical</b></li>
-        <li>Video Surveillance</li>
-        <li>Content Filter</li>
-        <li>Advertisement</li>
-      </ul>
+    <div class="col col--4 margin-top--md">
+      <h3 style={{textAlign: 'center'}} >Applications</h3>
+      <div class="list-wrap" >
+        <ul >
+          <li><b>Facial Analysis</b></li>
+          <li>Gesture Analysis</li>
+          <li><b>Biomedical</b></li>
+          <li>Video Surveillance</li>
+          <li>Content Filter</li>
+          <li><b>Advertisement</b></li>
+        </ul>
+      </div>
     </div>
-    <div class="col col--6">
+    <div class="col col--8">
+      <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', alignItems: 'center'}}>
+        <div style={{zIndex: '-1', display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
+          <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} />
+          <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} />
+        </div>
+        <img src="/img/applications_biomedical.png" style={{maxWidth: '50%', maxHeight: '40vh'}} />
+      </div>
     </div>
   </div>
-  <div class="row margin-top--md">
+  <div class="row margin-top--xl reverse-row" >
     <div class="col col--6">
-      <h3>Limitations</h3>
-      <ul>
-        <li>Materials with <b>skin-like colors</b></li>
-        <li>Wide range of <b>skin tones</b></li>
-        <li><b>Illumination</b></li>
-        <li>Cameras color science</li>
-      </ul>
+      <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
+        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+      </div>
+      <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}}>
+        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem'}} />
+      </div>
     </div>
     <div class="col col--6">
+      <h3 style={{textAlign: 'center'}}>Limitations</h3>
+      <div class="list-wrap">
+        <ul>
+          <li>Materials with <b>skin-like colors</b></li>
+          <li>Wide range of <b>skin tones</b></li>
+          <li><b>Illumination</b></li>
+          <li>Cameras color science</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -126,65 +148,68 @@ human skin can assume, and scene properties such as lighting and background.
 
 
 
+<div class={section} >
 
-## Methodological Approach
+  ## Methodological Approach
 
-<div class="container margin-top--lg margin-bottom--lg">
-  <div class="invert">
-    <img class="svg" src="/img/methodological-approach.svg" alt="Methodological approach flowchart" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} />
-  </div>
+  <Center>
+    <div class="invert margin-top--lg">
+      <img class="svg" src="/img/methodological-approach-vert.svg" alt="Methodological approach flowchart" style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}} />
+    </div>
+  </Center>
 </div>
 
-
-## Taxonomy
-
-
-<p>
-Skin detection is a <b>binary classification problem</b>: the pixels of an image must be divided between skin and non-skin classes.
-</p>
-<p>
-One of several ways to categorize methods is to group them according to how the pixel classification is done.
-</p>
 
 <!-- TODO: cite thresholding approach ? -->
-<div id="taxonomy-container" class="container scrolling-section margin-bottom--xl" style={{position: "relative"}}>
-  <div>
-    <Taxonomy />
-  </div>
+<div class={section} >
 
-  <div class="row">
-    <div class="col col--8 col--offset-2">
-      <div id="taxonomy-thresholding">
-        <p>
-        <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
-        A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
-        </p>
-      </div>
-      <div id="taxonomy-fuzzylogic">
-        <p>
-        <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
-        </p>
-      </div>
-      <div id="taxonomy-deeplearning">
-        <p>
-        <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-statistical">
-        <p>
-        <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-ensemble">
-        <p>
-        <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
-        classification.
-        </p>
-      </div>
-      <div id="taxonomy-hybrid">
-        <p>
-        <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
-        </p>
+  ## Taxonomy
+
+  <p>
+  Skin detection is a <b>binary classification problem</b>: the pixels of an image must be divided between skin and non-skin classes.
+  </p>
+  <p>
+  One of several ways to categorize methods is to group them according to how the pixel classification is done.
+  </p>
+
+  <div id="taxonomy-container" class="container scrolling-section" >
+    <div>
+      <Taxonomy />
+    </div>
+    <div class="row">
+      <div class="col col--8 col--offset-2">
+        <div id="taxonomy-thresholding">
+          <p>
+          <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
+          A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
+          </p>
+        </div>
+        <div id="taxonomy-fuzzylogic">
+          <p>
+          <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
+          </p>
+        </div>
+        <div id="taxonomy-deeplearning">
+          <p>
+          <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
+          </p>
+        </div>
+        <div id="taxonomy-statistical">
+          <p>
+          <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
+          </p>
+        </div>
+        <div id="taxonomy-ensemble">
+          <p>
+          <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
+          classification.
+          </p>
+        </div>
+        <div id="taxonomy-hybrid">
+          <p>
+          <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -194,7 +219,7 @@ One of several ways to categorize methods is to group them according to how the 
 
 <!-- h3 class="margin-bottom--lg">Dynamic Thresholding</h3 -->
 <!-- TODO: refactor as React component -->
-<div class="container margin-bottom--xl">
+<div class={section} >
 
   ## Dynamic Thresholding
 
@@ -233,7 +258,7 @@ One of several ways to categorize methods is to group them according to how the 
 </div>
 
 
-<div class="container margin-bottom--xl">
+<div class={section} >
 
   ## Statistical
 
@@ -303,7 +328,7 @@ One of several ways to categorize methods is to group them according to how the 
 
 
 <!--TODO: srcset with only 3 layers on cell for SVG dense -->
-<div class="container margin-bottom--xl">
+<div class={section}>
 
   ## U-Net
 

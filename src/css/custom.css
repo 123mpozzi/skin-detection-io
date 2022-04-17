@@ -139,7 +139,7 @@ img.std-width {
 }
 
 /* MD Chapters Manipulation */
-#introduction, #dynamic-thresholding, #statistical, #u-net {
+#introduction, #dynamic-thresholding, #statistical, #u-net, #conclusion {
   opacity: 0;
   left: -100%;
   height: 0;

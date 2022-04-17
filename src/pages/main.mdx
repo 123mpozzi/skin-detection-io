@@ -27,6 +27,7 @@ export const Caption = ({children}) => (
 
 export const section = "container margin-bottom--xl"
 
+<!-- TODO: try taps/tapping on cell -->
 export const Tooltip = ({children, id}) => (
   <ReactTooltip id={id} place="top" effect="solid" border borderColor="var(--ifm-color-primary)" >
     <div style={{maxWidth: 'min(70vw, 500px)'}} >
@@ -553,7 +554,80 @@ human skin can assume, and scene properties such as lighting and background.
   </div>
 </div>
 
+(highligts chosen datasets (different color in table? Asterisks?))
 
+
+<div class={section} >
+
+  ## Results
+
+  <p>
+  <em>Thresholding</em>, <em>Statistical</em>, and <em>Deep Learning</em> have been the chosen approaches.<br />
+  The first to demonstrate whether <em>simple rules</em> can achieve powerful results; and the latter two to compare how differently the models behave and generalize, and whether the capabilities of a CNN to <em>extract semantic features</em> can give an advantage.
+  </p>
+</div>
+
+
+<div class={section} >
+
+  ### Single Dataset
+
+  <div>
+  </div>
+
+  ### Cross Dataset
+
+  <div>
+  </div>
+
+  ### Single Skin Tones
+
+  <div>
+  </div>
+
+  ### Cross Skin Tones
+
+  <div>
+  </div>
+
+  ### Inference Times
+
+  <div>
+  </div>
+</div>
+
+
+<div class={section} >
+
+  ## Conclusion
+
+  <div class="row">
+    <div class="col col--6">
+      <h2>Conclusion</h2>
+      <ul>
+        <li><em>Semantic features</em> extraction got <b>CNN</b> an edge</li>
+        <li><b>Rule-based</b> method proved to be <em>really fast</em></li>
+        <li><b>Statistical</b> method was prone to <em>false positives</em></li>
+        <li>Involving <b>multiple metrics</b> debunked <em>over-optimistic results</em></li>
+      </ul>
+    </div>
+    <div class="col col--6">
+      <h2>Future Work</h2>
+      <ul>
+        <li>Better datasets</li>
+        <li>Vision transformers</li>
+        <li>U-Nets on mobile devices [11]</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class={section} >
+
+  ## Bibliography
+
+</div>
 
 
 <!-- Bibliography?? TODO-->

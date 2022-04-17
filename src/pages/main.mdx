@@ -6,6 +6,7 @@ description: Skin detection is the process of discriminating skin and non-skin p
 
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import ReactTooltip from 'react-tooltip';
 import Taxonomy from '@site/src/components/Taxonomy';;
 import '/src/scripts/index.js'
 
@@ -55,7 +56,7 @@ export const section = "container margin-bottom--xl"
   <Center>
     <ReactCompareSlider
       itemOne={<ReactCompareSliderImage src="/img/skin_det_ori3.jpg" alt="The original image: a three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background." title='Girl from Pratheepan dataset' />}
-      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels: the skin regions are now completely red as the groundtruth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." title='Skin pixels overlayed onto the original image' />}
+      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels: the skin regions are now completely red as the ground truth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." title='Skin pixels overlayed onto the original image' />}
       style={{
       display: "flex",
       width: "450px",
@@ -407,6 +408,130 @@ human skin can assume, and scene properties such as lighting and background.
     </p>
   </div>
 </div>
+
+
+<div class={section} >
+
+  ## Datasets
+
+  <p>
+  Image databases are essential for developing skin detectors. Over the years, new databases keep getting published, but there are still some <b>limitations</b> on their reliability:
+  </p>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <ul>
+      <li>
+        <div class="question-mark">
+          Unbalanced classes
+          <img src='/img/question_mark.svg' data-tip="Unbalanced data" data-for="tip-unbalance" alt='Question mark logo that makes a tooltip popup: classes in datasets are often unbalanced, with one being much larger than the other, which may cause some metrics to give overoptimistic estimations [36].' />
+          <ReactTooltip id="tip-unbalance" place="top" effect="solid">
+            May cause some metrics to give overoptimistic estimations [36]
+          </ReactTooltip>
+        </div>
+      </li>
+      <li>Number of images</li>
+      <li>Image quality</li>
+      <li>Ground truth quality</li>
+      <li>
+        <div class="question-mark">
+          Lack of additional data
+          <img src='/img/question_mark.svg' data-tip="Additional data" data-for="tip-datalack" alt='Question mark logo that makes a tooltip popup: data about the lighting conditions, background complexity, number of subjects, skin tones, indoor or outdoor scenery of an image may be extremely useful in some applications.' />
+          <ReactTooltip id="tip-datalack" place="top" effect="solid">
+            This kind of data may be extremely useful in some applications:
+            <ul>
+              <li>Lighting conditions</li>
+              <li>Background complexity</li>
+              <li>Number of subjects</li>
+              <li>Featured skin tones</li>
+              <li>Indoor or outdoor scenery</li>
+            </ul>
+          </ReactTooltip>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <p>
+  Here are the <b>common datasets</b> used in Skin Detection. <br />
+  (Only public datasets featuring images and including ground truths are considered)
+  </p>
+
+  <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Images</th>
+        <th>Shot Type</th>
+        <th>Skin Tones</th>
+      </tr>
+      <tr>
+        <td><a href="">abd-skin</a></td>
+        <td>MariaAnders</td>
+        <td>Germany</td>
+        <td>Germany</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>HGR</td>
+        <td>FranciscoChang</td>
+        <td>Mexico</td>
+        <td>Germany</td>
+        <td>Germany</td>
+      </tr>
+    </table>
+    <div id="dataset-desc" class='col col--8 col--offset-2' style={{minHeight: '320px'}} >
+      <p>
+      <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col--8 col--offset-2">
+      <div id="dataset-tdsd" class="" >
+        <p>
+        <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
+        </p>
+      </div>
+      <div id="dataset-ecu" class="" >
+        <p>
+        <b>ECU</b> [26] is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
+        </p>
+      </div>
+      <div id="dataset-schmugge" class="" >
+        <p>
+        <b>Schmugge</b> [27] is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
+        </p>
+      </div>
+      <div id="dataset-pratheepan" class="" >
+        <p>
+        <b>Pratheepan</b> [16] is composed of 78 pictures randomly sampled from the web, precisely annotated [28]. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
+        </p>
+      </div>
+      <div id="dataset-vpu" class="" >
+        <p>
+        <b>VPU</b> [29], as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
+        </p>
+      </div>
+      <div id="dataset-sfa" class="" >
+        <p>
+        <b>SFA</b> [30] is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
+        </p>
+      </div>
+      <div id="dataset-hgr" class="" >
+        <p>
+        <b>HGR</b> [23] is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
+        </p>
+      </div>
+      <div id="dataset-abd" class="" >
+        <p>
+        <b>abd-skin</b> [31] is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <!-- Bibliography?? TODO-->

@@ -22,7 +22,8 @@
     "react": "^17.0.2",
     "react-archer": "^3.3.0",
     "react-compare-slider": "^2.2.0",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-tooltip": "^4.2.21"
   },
   "browserslist": {
     "production": [

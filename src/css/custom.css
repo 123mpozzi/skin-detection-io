@@ -127,17 +127,6 @@ img.std-width {
   max-height: calc(var(--ifm-h2-font-size) *2);
 }
 
-.question-mark {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.question-mark > img {
-  max-height: var(--ifm-h2-font-size);
-  margin-left: 1rem;
-  min-width: 0;
-}
-
 .hide {
   opacity: 0;
   left: -100%;
@@ -171,6 +160,14 @@ img.std-width {
 
 .list-padding {
   padding-left: var(--ifm-list-left-padding);
+}
+
+.underline-dots {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 0.23rem;
+  text-underline-position: under;
 }
 
 @media only screen and (max-width: 450px) and (min-width: 375px) {

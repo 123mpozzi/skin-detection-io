@@ -27,6 +27,14 @@ export const Caption = ({children}) => (
 
 export const section = "container margin-bottom--xl"
 
+export const Tooltip = ({children, id}) => (
+  <ReactTooltip id={id} place="top" effect="solid" border borderColor="var(--ifm-color-primary)" >
+    <div style={{maxWidth: 'min(70vw, 500px)'}} >
+      {children}
+    </div>
+  </ReactTooltip>
+)
+
 
 <div class="container">
 
@@ -81,13 +89,24 @@ human skin can assume, and scene properties such as lighting and background.
     <div class="col col--4 margin-top--md">
       <h3 style={{textAlign: 'center'}} >Applications</h3>
       <div class="list-wrap" >
-        <ul >
+        <ul>
           <li><b>Facial Analysis</b></li>
           <li>Gesture Analysis</li>
           <li><b>Biomedical</b></li>
-          <li>Video Surveillance</li>
+          <li>
+          <b class='underline-dots' data-tip="Infer audience demographics" data-for="tip-ads">Advertisement</b>
+          <Tooltip id="tip-ads">
+            Infer audience demographics
+          </Tooltip>
+          </li>
           <li>Content Filter</li>
-          <li><b>Advertisement</b></li>
+          <li>Video Surveillance</li>
+          <li class='underline-dots' data-tip="Encrypt people identity in smart cities" data-for="tip-privacy">
+          Privacy Protection
+          <Tooltip id="tip-privacy">
+            Encrypt people identity in smart cities
+          </Tooltip>
+          </li>
         </ul>
       </div>
     </div>
@@ -99,7 +118,7 @@ human skin can assume, and scene properties such as lighting and background.
             <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} alt='Skin detection is often an important step to analyze faces.' title='Facial analysis' />
           </div>
           <div>
-            <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' title='Infer audience properties in DOOH ads' />
+            <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' title='Infer audience demographics in DOOH ads' />
             <Caption>Low et al. 2020 [3]</Caption>
           </div>
         </div>
@@ -379,8 +398,13 @@ human skin can assume, and scene properties such as lighting and background.
     </div>
   </div>
   <p>
-  The Skinny network consists of a modified U-Net incorporating dense blocks and inception modules to benefit from a wider spatial context.
+  The Skinny network consists of a modified <span class='underline-dots' data-tip='The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction' data-for="tip-unet">U-Net</span> incorporating dense blocks and inception modules to benefit from a wider spatial context.
   </p>
+  <Tooltip id="tip-unet">
+    <div style={{textAlign: 'justify'}}>
+    The network is called "U-Net" because of its shape: there is a <b>contracting path</b> which tries to extract increasingly complex features as it goes deeper, and an <b>expanding path</b> which tries to retreive the lost spatial information during the feature extraction
+    </div>
+  </Tooltip>
   <p>
   An additional deep level is appended to the original U-Net model, to better capture large-scale contextual features in the deepest part of the network.
   The features extracted in the contracting path propagate to the corresponding expansive levels through the dense blocks.
@@ -419,65 +443,63 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <ul>
-      <li>
-        <div class="question-mark">
-          Unbalanced classes
-          <img src='/img/question_mark.svg' data-tip="Unbalanced data" data-for="tip-unbalance" alt='Question mark logo that makes a tooltip popup: classes in datasets are often unbalanced, with one being much larger than the other, which may cause some metrics to give overoptimistic estimations [36].' />
-          <ReactTooltip id="tip-unbalance" place="top" effect="solid">
-            May cause some metrics to give overoptimistic estimations [36]
-          </ReactTooltip>
-        </div>
+      <li class="underline-dots" data-tip="May cause some metrics to give overoptimistic estimations [36]" data-for="tip-unbalance" >
+      Unbalanced classes
+      <Tooltip id="tip-unbalance">
+        May cause some metrics to give overoptimistic estimations [36]
+      </Tooltip>
       </li>
       <li>Number of images</li>
       <li>Image quality</li>
       <li>Ground truth quality</li>
-      <li>
-        <div class="question-mark">
-          Lack of additional data
-          <img src='/img/question_mark.svg' data-tip="Additional data" data-for="tip-datalack" alt='Question mark logo that makes a tooltip popup: data about the lighting conditions, background complexity, number of subjects, skin tones, indoor or outdoor scenery of an image may be extremely useful in some applications.' />
-          <ReactTooltip id="tip-datalack" place="top" effect="solid">
-            This kind of data may be extremely useful in some applications:
-            <ul>
-              <li>Lighting conditions</li>
-              <li>Background complexity</li>
-              <li>Number of subjects</li>
-              <li>Featured skin tones</li>
-              <li>Indoor or outdoor scenery</li>
-            </ul>
-          </ReactTooltip>
-        </div>
+      <li class="underline-dots" data-tip="The following data may be extremely useful in some applications: lighting conditions, background complexity, number of subjects, featured skin tones, indoor or outdoor scenery" data-for="tip-datalack" >
+      Lack of additional data
+      <Tooltip id="tip-datalack" >
+        This kind of data may be extremely useful in some applications:
+        <ul>
+          <li>Lighting conditions</li>
+          <li>Background complexity</li>
+          <li>Number of subjects</li>
+          <li>Featured skin tones</li>
+          <li>Indoor or outdoor scenery</li>
+        </ul>
+      </Tooltip>
       </li>
     </ul>
   </div>
-  <p>
-  Here are the <b>common datasets</b> used in Skin Detection. <br />
-  (Only public datasets featuring images and including ground truths are considered)
+  <p class='margin-top--md' style={{textAlign: 'center'}} >
+  Here are the <b class='underline-dots' data-tip="Only public datasets featuring images and including ground truths are considered" data-for="tip-datasets">common datasets</b> used in Skin Detection.
+  <Tooltip id="tip-datasets" >
+    Only public datasets featuring images and including ground truths are considered
+  </Tooltip>
   </p>
 
   <div>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Year</th>
-        <th>Images</th>
-        <th>Shot Type</th>
-        <th>Skin Tones</th>
-      </tr>
-      <tr>
-        <td><a href="">abd-skin</a></td>
-        <td>MariaAnders</td>
-        <td>Germany</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
-      <tr>
-        <td>HGR</td>
-        <td>FranciscoChang</td>
-        <td>Mexico</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
-    </table>
+    <Center>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Year</th>
+          <th>Images</th>
+          <th>Shot Type</th>
+          <th>Skin Tones</th>
+        </tr>
+        <tr>
+          <td><a href="">abd-skin</a></td>
+          <td>MariaAnders</td>
+          <td>Germany</td>
+          <td>Germany</td>
+          <td>Germany</td>
+        </tr>
+        <tr>
+          <td>HGR</td>
+          <td>FranciscoChang</td>
+          <td>Mexico</td>
+          <td>Germany</td>
+          <td>Germany</td>
+        </tr>
+      </table>
+    </Center>
     <div id="dataset-desc" class='col col--8 col--offset-2' style={{minHeight: '320px'}} >
       <p>
       <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
@@ -487,42 +509,42 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div class="row">
     <div class="col col--8 col--offset-2">
-      <div id="dataset-tdsd" class="" >
+      <div id="dataset-tdsd" class="hide" >
         <p>
         <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
         </p>
       </div>
-      <div id="dataset-ecu" class="" >
+      <div id="dataset-ecu" class="hide" >
         <p>
         <b>ECU</b> [26] is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
         </p>
       </div>
-      <div id="dataset-schmugge" class="" >
+      <div id="dataset-schmugge" class="hide" >
         <p>
         <b>Schmugge</b> [27] is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
         </p>
       </div>
-      <div id="dataset-pratheepan" class="" >
+      <div id="dataset-pratheepan" class="hide" >
         <p>
         <b>Pratheepan</b> [16] is composed of 78 pictures randomly sampled from the web, precisely annotated [28]. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
         </p>
       </div>
-      <div id="dataset-vpu" class="" >
+      <div id="dataset-vpu" class="hide" >
         <p>
         <b>VPU</b> [29], as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
         </p>
       </div>
-      <div id="dataset-sfa" class="" >
+      <div id="dataset-sfa" class="hide" >
         <p>
         <b>SFA</b> [30] is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
         </p>
       </div>
-      <div id="dataset-hgr" class="" >
+      <div id="dataset-hgr" class="hide" >
         <p>
         <b>HGR</b> [23] is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
         </p>
       </div>
-      <div id="dataset-abd" class="" >
+      <div id="dataset-abd" class="hide" >
         <p>
         <b>abd-skin</b> [31] is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
         </p>

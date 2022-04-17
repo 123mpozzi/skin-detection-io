@@ -4,11 +4,12 @@ description: Skin detection is the process of discriminating skin and non-skin p
 ---
 <!-- hide_table_of_contents: true -->
 
-
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import ReactTooltip from 'react-tooltip';
-import Taxonomy from '@site/src/components/Taxonomy';;
-import '/src/scripts/index.js'
+import Taxonomy from '@site/src/components/Taxonomy';
+import DatasetTable from '@site/src/components/DatasetTable';
+import '/src/scripts/index.js';
+
 
 
 export const Center = ({children}) => (
@@ -35,6 +36,18 @@ export const Tooltip = ({children, id}) => (
     </div>
   </ReactTooltip>
 )
+
+/**
+ * Swap the content of '#taxonomy-desc' with the content referenced by href.
+ * Change selected item in Taxonomy.
+ */
+export function handleClickDb(href, e) {
+  e.preventDefault();
+  href = href.substring(1);
+  var newContent = document.getElementById(href).innerHTML;
+  document.getElementById("dataset-desc").innerHTML = newContent;
+}
+
 
 
 <div class="container">
@@ -115,17 +128,17 @@ human skin can assume, and scene properties such as lighting and background.
       <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', alignItems: 'center'}}>
         <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
           <div>
-            <Caption>Ramirez et al. 2014 [1]</Caption>
+            <Caption>Ramirez et al. 2014 <a href="#ramirez">[1]</a></Caption>
             <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} alt='Skin detection is often an important step to analyze faces.' title='Facial analysis' />
           </div>
           <div>
             <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' title='Infer audience demographics in DOOH ads' />
-            <Caption>Low et al. 2020 [3]</Caption>
+            <Caption>Low et al. 2020 <a href="#low">[3]</a></Caption>
           </div>
         </div>
         <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}}>
           <img src="/img/applications_biomedical.png" style={{maxHeight: '40vh'}} alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' title='Skin cancer detection' />
-          <Caption>Do et al. 2014 [2]</Caption>
+          <Caption>Do et al. 2014 <a href="#do">[2]</a></Caption>
         </div>
       </div>
     </div>
@@ -266,7 +279,7 @@ human skin can assume, and scene properties such as lighting and background.
       <Center>
         <div class="invert">
           <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} alt='Visualization of how some parameters are computed with the trapezia to provide a better context to the following paragraphs.' title='Computation of the correlation rules parameters' />
-          <Caption>Brancati et al. 2017 [4]</Caption>
+          <Caption>Brancati et al. 2017 <a href="#nbrancati">[4]</a></Caption>
         </div>
       </Center>
     </div>
@@ -393,7 +406,7 @@ human skin can assume, and scene properties such as lighting and background.
       <Center>
         <div>
           <img src="/img/skinny_arch.png" style={{width: "100%", maxWidth: "450px"}} alt='Context image to the paragraphs describing the architecture of Skinny. The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction.' title='Architecture of the "Skinny" network' />
-          <Caption>Tarasiewicz et al. 2020 [5]</Caption>
+          <Caption>Tarasiewicz et al. 2020 <a href="#skinny">[5]</a></Caption>
         </div>
       </Center>
     </div>
@@ -435,7 +448,7 @@ human skin can assume, and scene properties such as lighting and background.
 </div>
 
 
-<div class={section} >
+<div class='container' >
 
   ## Datasets
 
@@ -447,7 +460,7 @@ human skin can assume, and scene properties such as lighting and background.
       <li class="underline-dots" data-tip="May cause some metrics to give overoptimistic estimations [36]" data-for="tip-unbalance" >
       Unbalanced classes
       <Tooltip id="tip-unbalance">
-        May cause some metrics to give overoptimistic estimations [36]
+        May cause some metrics to give overoptimistic estimations <a href="#mcc">[6]</a>
       </Tooltip>
       </li>
       <li>Number of images</li>
@@ -477,33 +490,11 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <Center>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Year</th>
-          <th>Images</th>
-          <th>Shot Type</th>
-          <th>Skin Tones</th>
-        </tr>
-        <tr>
-          <td><a href="">abd-skin</a></td>
-          <td>MariaAnders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>HGR</td>
-          <td>FranciscoChang</td>
-          <td>Mexico</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-      </table>
+      <DatasetTable />
     </Center>
-    <div id="dataset-desc" class='col col--8 col--offset-2' style={{minHeight: '320px'}} >
+    <div id="dataset-desc" class='col col--8 col--offset-2' >
       <p>
-      <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
+      <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
       </p>
     </div>
   </div>
@@ -512,58 +503,76 @@ human skin can assume, and scene properties such as lighting and background.
     <div class="col col--8 col--offset-2">
       <div id="dataset-tdsd" class="hide" >
         <p>
-        <b>TDSD</b> [10] is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
+        <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
         </p>
       </div>
       <div id="dataset-ecu" class="hide" >
         <p>
-        <b>ECU</b> [26] is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
+        <b>ECU</b> <a href="#ecu">[8]</a> is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
         </p>
       </div>
       <div id="dataset-schmugge" class="hide" >
         <p>
-        <b>Schmugge</b> [27] is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
+        <b>Schmugge</b> <a href="#schmugge">[9]</a> is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
         </p>
       </div>
       <div id="dataset-pratheepan" class="hide" >
         <p>
-        <b>Pratheepan</b> [16] is composed of 78 pictures randomly sampled from the web, precisely annotated [28]. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
+        <b>Pratheepan</b> <a href="#pratheepan">[10]</a> is composed of 78 pictures randomly sampled from the web, precisely annotated. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
         </p>
       </div>
       <div id="dataset-vpu" class="hide" >
         <p>
-        <b>VPU</b> [29], as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
+        <b>VPU</b> <a href="#vpu">[11]</a>, as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
         </p>
       </div>
       <div id="dataset-sfa" class="hide" >
         <p>
-        <b>SFA</b> [30] is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
+        <b>SFA</b> <a href="#sfa">[12]</a> is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
         </p>
       </div>
       <div id="dataset-hgr" class="hide" >
         <p>
-        <b>HGR</b> [23] is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
+        <b>HGR</b> <a href="#hgr">[13]</a> is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
         </p>
       </div>
       <div id="dataset-abd" class="hide" >
         <p>
-        <b>abd-skin</b> [31] is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
+        <b>abd-skin</b> <a href="#abd">[14]</a> is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
         </p>
       </div>
     </div>
   </div>
 </div>
 
-(highligts chosen datasets (different color in table? Asterisks?))
+
+<!-- (highligts chosen datasets (different color in table? Asterisks?)) -->
 
 
 <div class={section} >
 
   ## Results
 
+
+
+  <p>In <b class='underline-dots' data-tip="For example, with ECU as the dataset, it means that the skin detector is trained using the training set of ECU, and then tested on the test set of ECU" data-for="tip-single">single evaluations</b>
+  <Tooltip id="tip-single">
+    For example, with ECU as the dataset, it means that the skin detector is eventually trained using the training set of ECU, and then tested on the test set of ECU.
+  </Tooltip>
+  , methods are eventually trained on the training set (in the case of trainable methods), and then predictions are performed on the test set.
+  </p>
+
+  <p>In <b class='underline-dots' data-tip="For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset." data-for="tip-cross">cross evaluations</b>
+  <Tooltip id="tip-cross">
+    For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset.
+  </Tooltip>
+  , only trainable approaches are analyzed.
+  Detectors are trained on the training set, and then predictions are performed on all the images of every other datasets.<br />
+  The expression <em>HGR on ECU</em> describes the situation in which the evaluation is performed by using HGR as the training set and ECU as the test set.
+  </p>
+
   <p>
-  <em>Thresholding</em>, <em>Statistical</em>, and <em>Deep Learning</em> have been the chosen approaches.<br />
-  The first to demonstrate whether <em>simple rules</em> can achieve powerful results; and the latter two to compare how differently the models behave and generalize, and whether the capabilities of a CNN to <em>extract semantic features</em> can give an advantage.
+  Initially, the metrics are measured for all the instances, then the average and population standard deviation for each metric are computed.
   </p>
 </div>
 
@@ -592,7 +601,49 @@ human skin can assume, and scene properties such as lighting and background.
 
   ### Inference Times
 
+  <p>
+  Inference times were measured on a <em>i7-4770k CPU</em> for each algorithm on the same set of images, with multiple observations performed.
+  </p>
   <div>
+    <Center>
+      <table>
+        <tr>
+          <th />
+          <th>Inference time<br />(seconds)</th>
+          <th>
+          <span class='underline-dots' data-tip="Extracted from the original papers or eventual labels" data-for="tip-infer">Improved</span> inference time<br />(seconds)
+          </th>
+        </tr>
+        <tr>
+          <td>Deep Learning</td>
+          <td>0.826581 ± 0.043</td>
+          <td><u>0.242685 ± 0.016</u></td>
+        </tr>
+        <tr>
+          <td>Statistical</td>
+          <td><u>0.457534 ± 0.002</u></td>
+          <td>0.371515 ± 0.002</td>
+        </tr>
+        <tr>
+          <td>Thresholding</td>
+          <td><b>0.007717 <span class='underline-dots' data-tip="Extracted from the original papers or eventual labels" data-for="tip-inferthresh">± 0.000</span></b></td>
+          <td><b>0.007717 ± 0.000</b></td>
+        </tr>
+      </table>
+    </Center>
+    <Tooltip id="tip-infer">
+      <p>
+      <b>Deep learning</b>: assume one prediction is already performed before starting the observations.
+      </p>
+      <p>
+      <b>Statistical</b>: create the prediction image looping on a sequence object  instead of every pixel.
+      </p>
+    </Tooltip>
+    <Tooltip id="tip-inferthresh">
+      <p>
+      Inference times independent of image content
+      </p>
+    </Tooltip>
   </div>
 </div>
 
@@ -616,36 +667,36 @@ human skin can assume, and scene properties such as lighting and background.
       <ul>
         <li>Better datasets</li>
         <li>Vision transformers</li>
-        <li>U-Nets on mobile devices [11]</li>
+        <li>U-Nets on mobile devices <a href="#ignatov">[15]</a></li>
       </ul>
     </div>
   </div>
 </div>
 
 
+
 <div class={section} >
 
   ## Bibliography
 
+  <ol style={{textAlign: 'justify'}}>
+    <li id="ramirez">Ramirez, G. A., Fuentes, O., Crites Jr, S. L., Jimenez, M., &amp; Ordonez, J. (2014). Color analysis of facial skin: Detection of emotional state. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (pp. 468-473).</li>
+    <li id="do">Do, T. T., Zhou, Y., Zheng, H., Cheung, N. M., &amp; Koh, D. (2014, August). Early melanoma diagnosis with mobile imaging. In 2014 36th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (pp. 6752-6757). IEEE.</li>
+    <li id="low">Low, C. C., Ong, L. Y., Koo, V. C., &amp; Leow, M. C. (2020). Multi-audience tracking with RGB-D camera on digital signage. Heliyon, 6(9), e05107.</li>
+    <li id="nbrancati">Brancati, N., De Pietro, G., Frucci, M., &amp; Gallo, L. (2017). Human skin detection through correlation rules between the YCb and YCr subspaces based on dynamic color clustering. Computer Vision and Image Understanding, 155, 33-42.</li>
+    <li id="skinny">Tarasiewicz, T., Nalepa, J., &amp; Kawulok, M. (2020, October). Skinny: A lightweight U-net for skin detection and segmentation. In 2020 IEEE International Conference on Image Processing (ICIP) (pp. 2386-2390). IEEE.</li>
+    <li id="mcc">Chicco, D., &amp; Jurman, G. (2020). The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. BMC genomics, 21(1), 1-13.</li>
+    <li id="tdsd">Zhu, Q., Wu, C. T., Cheng, K. T., &amp; Wu, Y. L. (2004, October). An adaptive skin model and its application to objectionable image filtering. In Proceedings of the 12th annual ACM international conference on Multimedia (pp. 56-63).</li>
+    <li id="ecu">Phung, S. L., Bouzerdoum, A., &amp; Chai, D. (2005). Skin segmentation using color pixel classification: analysis and comparison. IEEE transactions on pattern analysis and machine intelligence, 27(1), 148-154.</li>
+    <li id="schmugge">Schmugge, S. J., Jayaram, S., Shin, M. C., &amp; Tsap, L. V. (2007). Objective evaluation of approaches of skin detection using ROC analysis. Computer vision and image understanding, 108(1-2), 41-51.</li>
+    <li id="pratheepan">Tan, W. R., Chan, C. S., Yogarajah, P., &amp; Condell, J. (2011). A fusion approach for efficient human skin detection. IEEE Transactions on Industrial Informatics, 8(1), 138-147.</li>
+    <li id="vpu">Sanmiguel, J. C., &amp; Suja, S. (2013). Skin detection by dual maximization of detectors agreement for video monitoring. Pattern Recognition Letters, 34(16), 2102-2109.</li>
+    <li id="sfa">Casati, J. P. B., Moraes, D. R., &amp; Rodrigues, E. L. L. (2013, June). SFA: A human skin image database based on FERET and AR facial images. In IX workshop de Visao Computational, Rio de Janeiro.</li>
+    <li id="hgr">Kawulok, M., Kawulok, J., Nalepa, J., &amp; Smolka, B. (2014). Self-adaptive algorithm for segmenting skin regions. EURASIP Journal on Advances in Signal Processing, 2014(1), 1-22.</li>
+    <li id="abd">Topiwala, A., Al-Zogbi, L., Fleiter, T., &amp; Krieger, A. (2019, October). Adaptation and evaluation of deep learning techniques for skin segmentation on novel abdominal dataset. In 2019 IEEE 19th International Conference on Bioinformatics and Bioengineering (BIBE) (pp. 752-759). IEEE.</li>
+    <li id="ignatov">Ignatov, A., Byeoung-Su, K., Timofte, R., &amp; Pouget, A. (2021). Fast camera image denoising on mobile gpus with deep learning, mobile ai 2021 challenge: Report. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 2515-2524).</li>
+  </ol>
 </div>
 
-
-<!-- Bibliography?? TODO-->
-<!--
-<ol>
-   <li id="#nbrancati">N. Brancati, G. De Pietro,M. Frucci, and L. Gallo. “Human skin detection through correlation rules between the YCb and YCr subspaces based on dynamic color clustering”. Computer Vision and Image Understanding 155, 2017, pp. 33–42. <a href="https://doi.org/10.1016/j.cviu.2016.12.001">https://doi.org/10.1016/j.cviu.2016.12.001</a></li>
-</ol>
-
-<q cite='#nbrancati'>who would not groan at hearing that Roman knights and senators grovel 
-before her (Cleopatra) like eunuchs?</q>
-<script>
-   var quotes = document.getElementsByTagName('q');
-   for (var i in quotes) {
-      quotes[i].addEventListener('click', function() { 
-         window.location = this.getAttribute('cite'); },
-      false);
-   }
-</script>
--->
 
 </div>

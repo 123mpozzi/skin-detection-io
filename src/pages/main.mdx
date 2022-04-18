@@ -8,7 +8,6 @@ import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slide
 import ReactTooltip from 'react-tooltip';
 import Taxonomy from '@site/src/components/Taxonomy';
 import DatasetTable from '@site/src/components/DatasetTable';
-import '/src/scripts/index.js';
 
 
 
@@ -91,7 +90,7 @@ human skin can assume, and scene properties such as lighting and background.
 
 <div class={section} >
   <div class="row">
-    <div class="col col--4 margin-top--md">
+    <div class="col col--4 col--offset-1 margin-top--md">
       <h3 style={{textAlign: 'center'}} >Applications</h3>
       <div class="list-wrap" >
         <ul>
@@ -115,7 +114,7 @@ human skin can assume, and scene properties such as lighting and background.
         </ul>
       </div>
     </div>
-    <div class="col col--8">
+    <div class="col col--6">
       <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', alignItems: 'center'}}>
         <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
           <div>
@@ -128,14 +127,14 @@ human skin can assume, and scene properties such as lighting and background.
           </div>
         </div>
         <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}}>
-          <img src="/img/applications_biomedical.png" style={{maxHeight: '40vh'}} alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' title='Skin cancer detection' />
+          <img src="/img/applications_biomedical.png" style={{maxHeight: '100%'}} alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' title='Skin cancer detection' />
           <Caption>Do et al. 2014 <a href="#do">[2]</a></Caption>
         </div>
       </div>
     </div>
   </div>
   <div class="row margin-top--xl reverse-row" >
-    <div class="col col--6">
+    <div class="col col--4 col--offset-2">
       <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
         <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Clay color is really similar to some skin tones.' title='Clay' />
         <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Wood can assume similar color to some skin tones.' title='Wood' />
@@ -145,7 +144,7 @@ human skin can assume, and scene properties such as lighting and background.
         <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' title='Tricky lighting 2' />
       </div>
     </div>
-    <div class="col col--6">
+    <div class="col col--4">
       <h3 style={{textAlign: 'center'}}>Limitations</h3>
       <div class="list-wrap">
         <ul>
@@ -418,20 +417,20 @@ human skin can assume, and scene properties such as lighting and background.
   The original U-Net convolutional layers are replaced with the inception modules: before each max-pooling layer, in the contracting path, and after concatenating features, in the expanding path.
   Thanks to these architectural choices, Skinny benefits from a wider pixel context.
   </p>
-  <div class="container margin-top--lg">
-    <div class="im-container padding-small" >
-      <img src="/img/inception1.png" class="three-cols" alt='A face shot of a man. The face covers almost all of the image, hence it may need bigger convolution sizes to extract complex features.' title='The saliency content is big' />
-      <img src="/img/inception2.png" class="three-cols" alt='A half body shot of a person. Depending on the dataset, an image like this may be common, hence convolution sizes may be already good for it.' title='The saliency content is medium sized' />
-      <img src="/img/inception3.png" class="three-cols" alt='An image featuring two people fully. The skin pixel regions are small, hence convolution sizes can be reduced.' title='The saliency content is small' />
-    </div>
-    <p>
-    The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
-    </p>
-    <Center>
-      <div class="invert">
-        <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
+  <div class="col col--10 col--offset-1 margin-top--lg">
+    <div>
+      <div class="im-container padding-small" >
+        <img src="/img/inception1.png" class="three-cols" alt='A face shot of a man. The face covers almost all of the image, hence it may need bigger convolution sizes to extract complex features.' title='The saliency content is big' />
+        <img src="/img/inception2.png" class="three-cols" alt='A half body shot of a person. Depending on the dataset, an image like this may be common, hence convolution sizes may be already good for it.' title='The saliency content is medium sized' />
+        <img src="/img/inception3.png" class="three-cols" alt='An image featuring two people fully. The skin pixel regions are small, hence convolution sizes can be reduced.' title='The saliency content is small' />
       </div>
-    </Center>
+      <p>
+      The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
+      </p>
+    </div>
+    <div class="invert">
+      <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
+    </div>
     <p>
     <b>Dense block</b> layers are connected in a way that each one receives feature maps from all preceding layers and passes its feature maps to all subsequent layers.
     </p>
@@ -480,9 +479,9 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
 
   <div>
-    <Center>
+    <div class="table-wrapper">
       <DatasetTable />
-    </Center>
+    </div>
     <div id="dataset-desc" class='col col--8 col--offset-2' >
       <p>
       <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
@@ -573,12 +572,12 @@ human skin can assume, and scene properties such as lighting and background.
   ### Single Dataset
 
   <div>
-    <Center>
+    <div class="table-wrapper">
       <table class="results singles">
         <thead>
           <tr>
             <td />
-            <th scope="col">Method \ Database</th>
+            <th scope="col" class="table-label">Method \ Database</th>
             <th scope="col">ECU</th>
             <th scope="col">HGR</th>
             <th scope="col">SCHMUGGE</th>
@@ -644,13 +643,13 @@ human skin can assume, and scene properties such as lighting and background.
           </tr>
         </tbody>
       </table>
-    </Center>
+    </div>
   </div>
 
   ### Cross Dataset
 
   <div>
-    <div style={{overflow: 'auto', display: 'flex', justifyContent: 'flex-start'}}>
+    <div class="table-wrapper">
       <table class="results cross">
         <thead>
           <tr>
@@ -755,11 +754,183 @@ human skin can assume, and scene properties such as lighting and background.
   ### Single Skin Tones
 
   <div>
+    <div class="table-wrapper">
+      <table class="results singletones">
+        <thead>
+          <tr>
+            <td />
+            <th scope="col" class="table-label">Method \ Database</th>
+            <th scope="col">DARK</th>
+            <th scope="col">MEDIUM</th>
+            <th scope="col">LIGHT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th rowspan="3" scope="rowgroup" class='th-metric-up' style={{paddingRight: '0.3rem !important'}}>F<sub>1</sub></th>
+            <th scope="row">U-Net</th>
+            <td><b>0.9529 ± 0.00</b></td>
+            <td><b>0.9260 ± 0.15</b></td>
+            <td><b>0.9387 ± 0.12</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><u>0.8123 ± 0.02</u></td>
+            <td><u>0.7634 ± 0.19</u></td>
+            <td><u>0.8001 ± 0.15</u></td>
+          </tr>
+          <tr>
+            <th scope="row">Thresholding</th>
+            <td>0.2620 ± 0.14</td>
+            <td>0.6316 ± 0.20</td>
+            <td>0.6705 ± 0.14</td>
+          </tr>
+          <tr>
+            <th rowspan="3" scope="rowgroup" class='th-metric-up'>IoU</th>
+            <th scope="row">U-Net</th>
+            <td><b>0.9100 ± 0.01</b></td>
+            <td><b>0.8883 ± 0.18</b></td>
+            <td><b>0.9006 ± 0.14</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><u>0.6844 ± 0.03</u></td>
+            <td><u>0.6432 ± 0.17</u></td>
+            <td><u>0.6870 ± 0.16</u></td>
+          </tr>
+          <tr>
+            <th scope="row">Thresholding</th>
+            <td>0.1587 ± 0.10</td>
+            <td>0.4889 ± 0.19</td>
+            <td>0.5190 ± 0.14</td>
+          </tr>
+          <tr>
+            <th rowspan="3" scope="rowgroup" class='th-metric-down'>D<sub>prs</sub></th>
+            <th scope="row">U-Net</th>
+            <td><b>0.0720 ± 0.01</b></td>
+            <td><b>0.1078 ± 0.21</b></td>
+            <td><b>0.0926 ± 0.15</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><u>0.3406 ± 0.05</u></td>
+            <td><u>0.3452 ± 0.23</u></td>
+            <td><u>0.3054 ± 0.20</u></td>
+          </tr>
+          <tr>
+            <th scope="row">Thresholding</th>
+            <td>0.8548 ± 0.12</td>
+            <td>0.5155 ± 0.24</td>
+            <td>0.4787 ± 0.17</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   ### Cross Skin Tones
 
   <div>
+    <div class="table-wrapper">
+      <table class="results crosstones">
+        <thead>
+          <tr>
+            <td rowspan="2" scope="rowgroup" />
+            <th scope="col" class="point-right">Training</th>
+            <th colspan="2" scope="colgroup">DARK</th>
+            <th colspan="2" scope="colgroup">MEDIUM</th>
+            <th colspan="2" scope="colgroup">LIGHT</th>
+          </tr>
+          <tr>
+            <th scope="col" class="point-right">Testing</th>
+            <th scope="col">MEDIUM</th>
+            <th scope="col">LIGHT</th>
+            <th scope="col">DARK</th>
+            <th scope="col">LIGHT</th>
+            <th scope="col">DARK</th>
+            <th scope="col">MEDIUM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='rowspan'>
+            <th rowspan="2" scope="rowgroup" class='th-metric-up'>F<sub>1</sub></th>
+            <th scope="row">U-Net</th>
+            <td>0.7300 ± 0.25</td>
+            <td>0.7262 ± 0.26</td>
+            <td><b>0.8447 ± 0.13</b></td>
+            <td><b>0.8904 ± 0.14</b></td>
+            <td><b>0.7660 ± 0.17</b></td>
+            <td><b>0.9229 ± 0.11</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><b>0.7928 ± 0.11</b></td>
+            <td><b>0.7577 ± 0.12</b></td>
+            <td>0.5628 ± 0.14</td>
+            <td>0.7032 ± 0.14</td>
+            <td>0.5293 ± 0.20</td>
+            <td>0.7853 ± 0.11</td>
+          </tr>
+          <tr class='rowspan'>
+            <th rowspan="2" scope="rowgroup" class='th-metric-up'>IoU</th>
+            <th scope="row">U-Net</th>
+            <td>0.6279 ± 0.27</td>
+            <td><b>0.6276 ± 0.28</b></td>
+            <td><b>0.7486 ± 0.15</b></td>
+            <td><b>0.8214 ± 0.16</b></td>
+            <td><b>0.6496 ± 0.21</b></td>
+            <td><b>0.8705 ± 0.13</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><b>0.6668 ± 0.11</b></td>
+            <td>0.6229 ± 0.13</td>
+            <td>0.4042 ± 0.13</td>
+            <td>0.5571 ± 0.14</td>
+            <td>0.3852 ± 0.19</td>
+            <td>0.6574 ± 0.12</td>
+          </tr>
+          <tr class='rowspan'>
+            <th rowspan="2" scope="rowgroup" class='th-metric-down'>D<sub>prs</sub></th>
+            <th scope="row">U-Net</th>
+            <td>0.3805 ± 0.33</td>
+            <td><b>0.3934 ± 0.34</b></td>
+            <td><b>0.2326 ± 0.17</b></td>
+            <td><b>0.1692 ± 0.18</b></td>
+            <td><b>0.3402 ± 0.21</b></td>
+            <td><b>0.1192 ± 0.16</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td><b>0.3481 ± 0.16</b></td>
+            <td>0.4679 ± 0.18</td>
+            <td>0.6802 ± 0.20</td>
+            <td>0.5376 ± 0.23</td>
+            <td>0.6361 ± 0.22</td>
+            <td>0.3199 ± 0.16</td>
+          </tr>
+          <tr class='rowspan'>
+            <th rowspan="2" scope="rowgroup" class='th-metric-down'>F<sub>1</sub> - IoU</th>
+            <th scope="row">U-Net</th>
+            <td><b>0.1021</b></td>
+            <td><b>0.0986</b></td>
+            <td><b>0.0961</b></td>
+            <td><b>0.0690</b></td>
+            <td><b>0.1164</b></td>
+            <td><b>0.0524</b></td>
+          </tr>
+          <tr>
+            <th scope="row">Statistical</th>
+            <td>0.1260</td>
+            <td>0.1348</td>
+            <td>0.1586</td>
+            <td>0.1461</td>
+            <td>0.1441</td>
+            <td>0.1279</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   ### Inference Times
@@ -768,7 +939,7 @@ human skin can assume, and scene properties such as lighting and background.
   Inference times were measured on a <em>i7-4770k CPU</em> for each algorithm on the same set of images, with multiple observations performed.
   </p>
   <div>
-    <Center>
+    <div class="table-wrapper">
       <table class="results">
         <tr>
           <th />
@@ -793,7 +964,7 @@ human skin can assume, and scene properties such as lighting and background.
           <td><b>0.007717 ± 0.000</b></td>
         </tr>
       </table>
-    </Center>
+    </div>
     <Tooltip id="tip-infer">
       <p>
       <b>Deep learning</b>: assume one prediction is already performed before starting the observations.
@@ -803,9 +974,7 @@ human skin can assume, and scene properties such as lighting and background.
       </p>
     </Tooltip>
     <Tooltip id="tip-inferthresh">
-      <p>
       Inference times independent of image content
-      </p>
     </Tooltip>
   </div>
 </div>

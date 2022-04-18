@@ -14,6 +14,8 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  /* Easier text color on eyes */
+  --ifm-color-gray-100: #D4D4D4;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -34,6 +36,14 @@
   --ifm-col-width: calc(10 / 12 * 100%);
 }
 
+/* Dark theme icon always persistent on top right */
+@media (max-width: 996px) {
+  .navbar__items--right > div {
+    display: flex !important;
+  }
+}
+
+
 /*
 @media (min-resolution: 120dpi) {
   .table-of-contents__link {
@@ -41,53 +51,26 @@
   }
 }*/
 
-.docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
-}
 
-[data-theme='dark'] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-/*
-.svg {
-  fill: white;
-  filter: invert(100%);
-}*/
-/*
-.invert > img {
-  filter: invert(0%);
-}*/
 [data-theme='dark'] .invert > img, [data-theme='dark'] .invert > * > img {
   filter: invert(100%);
 }
 
-ol.spacing > li {
-  margin: 10px 0
+[data-theme='dark'] table tr th, [data-theme='dark'] table tr td {
+  background: var(--ifm-background-color) !important;
+  color: #D4D4D4;
 }
-ul.spacing > li {
+
+ol.spacing > li, ul.spacing > li {
   margin: 10px 0
 }
 
 p {
-  text-align:justify
-}
-
-.justify > li {
-  text-align:justify
+  text-align: justify
 }
 
 .no-bold {
   font-weight: normal
-}
-
-/* TODO: make it work and refactor */
-img.std-width {
-  width: 100%;
-  max-width: 450px
 }
 
 .padding-small * {
@@ -152,20 +135,6 @@ img.std-width {
   left: 0;
 }
 
-/* MD Chapters Manipulation */
-#introduction, #dynamic-thresholding, #statistical, #u-net, #conclusion {
-  opacity: 0;
-  left: -100%;
-  height: 0;
-  margin: 0;
-}
-#methodological-approach {
-  text-align: center;
-}
-#dynamic-thresholding, #statistical, #u-net, #methodological-approach {
-  font-size: var(--ifm-h2-font-size);
-}
-
 
 .list-wrap {
   display: flex;
@@ -184,8 +153,45 @@ img.std-width {
   text-underline-position: under;
 }
 
+
+/* MD Chapters Manipulation */
+#introduction, #dynamic-thresholding, #statistical, #u-net, #conclusion {
+  opacity: 0;
+  left: -100%;
+  height: 0;
+  margin: 0;
+}
+#methodological-approach {
+  text-align: center;
+}
+#dynamic-thresholding, #statistical, #u-net, #methodological-approach {
+  font-size: var(--ifm-h2-font-size);
+}
+
+
+/* Table Style */
+.table-wrapper {
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
 table.results th {
   font-weight: normal !important;
+}
+
+.table-label {
+  text-align: center;
+}
+.table-label:after {
+  content: "\002192";
+  vertical-align: top;
+  font-size: 1rem;
+}
+.table-label:before {
+  content: "\002193";
+  vertical-align: center;
+  font-size: 1rem;
 }
 
 .point-right {
@@ -211,66 +217,39 @@ table.results th {
   vertical-align: sub;
 }
 
-table.cross {
+table {
   display: table;
   width: 100%;
 }
-table.cross thead {
-  border-top: solid;
-  border-bottom: solid;
-}
-table.cross thead tr:first-child th {
-  padding-top: 0.4rem;
-}
-table.cross thead tr:last-child th {
-  padding-bottom: 0.4rem;
-}
-table.cross tbody {
-  border-bottom: solid;
-}
-table.cross tbody:last-child tr > * {
+table tbody:last-child tr > * {
   padding-bottom: 5px;
 }
-table.cross tbody tr > * {
+table tbody tr > * {
   text-align: start;
 }
-table.cross tr td,
-table.cross tr th {
+table tr td,
+table tr th {
   background: #FFF !important;
 }
-table.cross th, table.cross td {
-  padding: 0;
-  border: none;
+table th, table td {
+  border: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+  padding: var(--ifm-table-cell-padding);
   white-space: nowrap;
 }
-table.cross td {
-  padding-left: 2rem !important;
+table td {
   font-size: 0.85rem;
   font-family: monospace;
   white-space: nowrap;
 }
-table.cross th {
+table th {
   font-size: 0.85rem;
 }
-table.cross tr {
+table tr {
   border: none;
 }
-.rowspan td {
-  padding: var(--ifm-table-cell-padding) 0 0 0 !important;
-}
-.rowspan th:first-child {
-  padding: var(--ifm-table-cell-padding) 1rem 0 0 !important;
-}
-.rowspan th {
-  padding: var(--ifm-table-cell-padding) 0 0 0 !important;
-}
 
-/*
-.singles {
 
-}
-*/
-
+/* Swappable Div in Dataset Section */
 #dataset-desc {
   min-height: 430px;
 }
@@ -286,6 +265,7 @@ table.cross tr {
 }
 
 
+/* Media Queries */
 @media only screen and (max-width: 450px) and (min-width: 375px) {
   div.list-wrap {
     display: block;

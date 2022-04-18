@@ -1,3 +1,18 @@
+:root {
+  --greenT: var(--ifm-color-success-lightest);
+}
+
+.underlineDashed {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 0.23rem;
+  text-underline-position: under;
+}
+
+
+
+
 .table-label {
   text-align: center;
 }
@@ -34,3 +49,4 @@
   font-size: 2rem;
   vertical-align: sub;
 }
+

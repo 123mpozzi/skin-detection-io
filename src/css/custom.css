@@ -27,6 +27,20 @@
   --ifm-color-primary-lightest: #4fddbf;
 }
 
+.main-wrapper main {
+  max-width: 90% !important;
+}
+.main-wrapper > main > div > div.col.col--8 {
+  --ifm-col-width: calc(10 / 12 * 100%);
+}
+
+/*
+@media (min-resolution: 120dpi) {
+  .table-of-contents__link {
+    font-size: 0.7rem;
+  }
+}*/
+
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
@@ -169,6 +183,93 @@ img.std-width {
   text-decoration-thickness: 0.23rem;
   text-underline-position: under;
 }
+
+table.results th {
+  font-weight: normal !important;
+}
+
+.point-right {
+  text-align: end;
+}
+.point-right:after {
+  content: "\002192";
+  vertical-align: top;
+}
+
+.th-metric-up, .th-metric-down {
+  font-style: italic;
+  font-size: large;
+}
+.th-metric-up:before {
+  content: "\002191";
+  font-size: 2rem;
+  vertical-align: sub;
+}
+.th-metric-down:before {
+  content: "\002193";
+  font-size: 2rem;
+  vertical-align: sub;
+}
+
+table.cross {
+  display: table;
+  width: 100%;
+}
+table.cross thead {
+  border-top: solid;
+  border-bottom: solid;
+}
+table.cross thead tr:first-child th {
+  padding-top: 0.4rem;
+}
+table.cross thead tr:last-child th {
+  padding-bottom: 0.4rem;
+}
+table.cross tbody {
+  border-bottom: solid;
+}
+table.cross tbody:last-child tr > * {
+  padding-bottom: 5px;
+}
+table.cross tbody tr > * {
+  text-align: start;
+}
+table.cross tr td,
+table.cross tr th {
+  background: #FFF !important;
+}
+table.cross th, table.cross td {
+  padding: 0;
+  border: none;
+  white-space: nowrap;
+}
+table.cross td {
+  padding-left: 2rem !important;
+  font-size: 0.85rem;
+  font-family: monospace;
+  white-space: nowrap;
+}
+table.cross th {
+  font-size: 0.85rem;
+}
+table.cross tr {
+  border: none;
+}
+.rowspan td {
+  padding: var(--ifm-table-cell-padding) 0 0 0 !important;
+}
+.rowspan th:first-child {
+  padding: var(--ifm-table-cell-padding) 1rem 0 0 !important;
+}
+.rowspan th {
+  padding: var(--ifm-table-cell-padding) 0 0 0 !important;
+}
+
+/*
+.singles {
+
+}
+*/
 
 #dataset-desc {
   min-height: 430px;

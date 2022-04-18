@@ -1,0 +1,36 @@
+.table-label {
+  text-align: center;
+}
+.table-label:after {
+  content: "\002192";
+  vertical-align: top;
+  font-size: 1rem;
+}
+.table-label:before {
+  content: "\002193";
+  vertical-align: center;
+  font-size: 1rem;
+}
+
+.point-right {
+  text-align: end;
+}
+.point-right:after {
+  content: "\002192";
+  vertical-align: top;
+}
+
+.th-metric-up, .th-metric-down {
+  font-style: italic;
+  font-size: large;
+}
+.th-metric-up:before {
+  content: "\002191";
+  font-size: 2rem;
+  vertical-align: sub;
+}
+.th-metric-down:before {
+  content: "\002193";
+  font-size: 2rem;
+  vertical-align: sub;
+}

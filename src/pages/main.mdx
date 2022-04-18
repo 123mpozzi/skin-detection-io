@@ -7,8 +7,7 @@ description: Skin detection is the process of discriminating skin and non-skin p
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import ReactTooltip from 'react-tooltip';
 import Taxonomy from '@site/src/components/Taxonomy';
-import DatasetTable from '@site/src/components/DatasetTable';
-
+import { DatasetOverview, SingleDatasets, CrossDatasets } from '@site/src/components/Tables';
 
 
 export const Center = ({children}) => (
@@ -480,7 +479,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <div class="table-wrapper">
-      <DatasetTable />
+      <DatasetOverview />
     </div>
     <div id="dataset-desc" class='col col--8 col--offset-2' >
       <p>
@@ -573,76 +572,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <div class="table-wrapper">
-      <table class="results singles">
-        <thead>
-          <tr>
-            <td />
-            <th scope="col" class="table-label">Method \ Database</th>
-            <th scope="col">ECU</th>
-            <th scope="col">HGR</th>
-            <th scope="col">SCHMUGGE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th rowspan="3" scope="rowgroup" class='th-metric-up' style={{paddingRight: '0.3rem !important'}}>F<sub>1</sub></th>
-            <th scope="row">U-Net</th>
-            <td><b>0.9133 ± 0.08</b></td>
-            <td><b>0.9848 ± 0.02</b></td>
-            <td><b>0.6121 ± 0.45</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td><u>0.6980 ± 0.22</u></td>
-            <td><u>0.9000 ± 0.15</u></td>
-            <td><u>0.5098 ± 0.39</u></td>
-          </tr>
-          <tr>
-            <th scope="row">Thresholding</th>
-            <td>0.6356 ± 0.24</td>
-            <td>0.7362 ± 0.27</td>
-            <td>0.4280 ± 0.34</td>
-          </tr>
-          <tr>
-            <th rowspan="3" scope="rowgroup" class='th-metric-up'>IoU</th>
-            <th scope="row">U-Net</th>
-            <td><b>0.8489 ± 0.12</b></td>
-            <td><b>0.9705 ± 0.03</b></td>
-            <td><b>0.5850 ± 0.44</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td><u>0.5751 ± 0.23</u></td>
-            <td><u>0.8434 ± 0.19</u></td>
-            <td><u>0.4303 ± 0.34</u></td>
-          </tr>
-          <tr>
-            <th scope="row">Thresholding</th>
-            <td>0.5088 ± 0.25</td>
-            <td>0.6467 ± 0.30</td>
-            <td>0.3323 ± 0.28</td>
-          </tr>
-          <tr>
-            <th rowspan="3" scope="rowgroup" class='th-metric-down'>D<sub>prs</sub></th>
-            <th scope="row">U-Net</th>
-            <td><b>0.1333 ± 0.12</b></td>
-            <td><b>0.0251 ± 0.03</b></td>
-            <td><b>0.5520 ± 0.64</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td><u>0.4226 ± 0.27</u></td>
-            <td><u>0.1524 ± 0.19</u></td>
-            <td><u>0.7120 ± 0.54</u></td>
-          </tr>
-          <tr>
-            <th scope="row">Thresholding</th>
-            <td>0.5340 ± 0.32</td>
-            <td>0.3936 ± 0.36</td>
-            <td>0.8148 ± 0.48</td>
-          </tr>
-        </tbody>
-      </table>
+      <SingleDatasets />
     </div>
   </div>
 
@@ -650,104 +580,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <div class="table-wrapper">
-      <table class="results cross">
-        <thead>
-          <tr>
-            <td rowspan="2" scope="rowgroup" />
-            <th scope="col" class="point-right">Training</th>
-            <th colspan="2" scope="colgroup">ECU</th>
-            <th colspan="2" scope="colgroup">HGR</th>
-            <th colspan="2" scope="colgroup">SCHMUGGE</th>
-          </tr>
-          <tr>
-            <th scope="col" class="point-right">Testing</th>
-            <th scope="col">HGR</th>
-            <th scope="col">SCHMUGGE</th>
-            <th scope="col">ECU</th>
-            <th scope="col">SCHMUGGE</th>
-            <th scope="col">ECU</th>
-            <th scope="col">HGR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class='rowspan'>
-            <th rowspan="2" scope="rowgroup" class='th-metric-up'>F<sub>1</sub></th>
-            <th scope="row">U-Net</th>
-            <td><b>0.9308 ± 0.11</b></td>
-            <td><b>0.4625 ± 0.41</b></td>
-            <td><b>0.7252 ± 0.20</b></td>
-            <td>0.2918 ± 0.31</td>
-            <td><b>0.6133 ± 0.21</b></td>
-            <td><b>0.8106 ± 0.19</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td>0.5577 ± 0.29</td>
-            <td>0.3319 ± 0.28</td>
-            <td>0.4279 ± 0.19</td>
-            <td><b>0.4000 ± 0.32</b></td>
-            <td>0.4638 ± 0.23</td>
-            <td>0.5060 ± 0.25</td>
-          </tr>
-          <tr class='rowspan'>
-            <th rowspan="2" scope="rowgroup" class='th-metric-up'>IoU</th>
-            <th scope="row">U-Net</th>
-            <td><b>0.8851 ± 0.15</b></td>
-            <td><b>0.3986 ± 0.37</b></td>
-            <td><b>0.6038 ± 0.22</b></td>
-            <td>0.2168 ± 0.25</td>
-            <td><b>0.4754 ± 0.22</b></td>
-            <td><b>0.7191 ± 0.23</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td>0.4393 ± 0.27</td>
-            <td>0.2346 ± 0.21</td>
-            <td>0.2929 ± 0.17</td>
-            <td><b>0.2981 ± 0.24</b></td>
-            <td>0.3318 ± 0.20</td>
-            <td>0.3752 ± 0.22</td>
-          </tr>
-          <tr class='rowspan'>
-            <th rowspan="2" scope="rowgroup" class='th-metric-down'>D<sub>prs</sub></th>
-            <th scope="row">U-Net</th>
-            <td><b>0.1098 ± 0.15</b></td>
-            <td><b>0.7570 ± 0.56</b></td>
-            <td><b>0.3913 ± 0.26</b></td>
-            <td><b>0.9695 ± 0.44</b></td>
-            <td><b>0.5537 ± 0.27</b></td>
-            <td><b>0.2846 ± 0.27</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td>0.5701 ± 0.29</td>
-            <td>1.0477 ± 0.35</td>
-            <td>0.8830 ± 0.23</td>
-            <td>1.0219 ± 0.42</td>
-            <td>0.7542 ± 0.30</td>
-            <td>0.6523 ± 0.27</td>
-          </tr>
-          <tr class='rowspan'>
-            <th rowspan="2" scope="rowgroup" class='th-metric-down'>F<sub>1</sub> - IoU</th>
-            <th scope="row">U-Net</th>
-            <td><b>0.0457</b></td>
-            <td><b>0.0639</b></td>
-            <td><b>0.1214</b></td>
-            <td><b>0.0750</b></td>
-            <td>0.1379</td>
-            <td><b>0.0915</b></td>
-          </tr>
-          <tr>
-            <th scope="row">Statistical</th>
-            <td>0.1184</td>
-            <td>0.0973</td>
-            <td>0.1350</td>
-            <td>0.1019</td>
-            <td><b>0.1320</b></td>
-            <td>0.1308</td>
-          </tr>
-        </tbody>
-      </table>
+      <CrossDatasets />
     </div>
   </div>
 
@@ -755,7 +588,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <div class="table-wrapper">
-      <table class="results singletones">
+      <table class="results">
         <thead>
           <tr>
             <td />
@@ -832,7 +665,7 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div>
     <div class="table-wrapper">
-      <table class="results crosstones">
+      <table class="results">
         <thead>
           <tr>
             <td rowspan="2" scope="rowgroup" />
@@ -945,7 +778,7 @@ human skin can assume, and scene properties such as lighting and background.
           <th />
           <th>Inference time<br />(seconds)</th>
           <th>
-          <span class='underline-dots' data-tip="Extracted from the original papers or eventual labels" data-for="tip-infer">Improved</span> inference time<br />(seconds)
+          <span class='underline-dots' data-tip="Deep learning: assume one prediction is already performed before starting the observations. Statistical: create the prediction image looping on a sequence object instead of every pixel." data-for="tip-infer">Improved</span> inference time<br />(seconds)
           </th>
         </tr>
         <tr>
@@ -960,7 +793,7 @@ human skin can assume, and scene properties such as lighting and background.
         </tr>
         <tr>
           <td>Thresholding</td>
-          <td><b>0.007717 <span class='underline-dots' data-tip="Extracted from the original papers or eventual labels" data-for="tip-inferthresh">± 0.000</span></b></td>
+          <td><b>0.007717 <span class='underline-dots' data-tip="Inference times independent of image content" data-for="tip-inferthresh">± 0.000</span></b></td>
           <td><b>0.007717 ± 0.000</b></td>
         </tr>
       </table>

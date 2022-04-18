@@ -9,44 +9,101 @@
   text-decoration-thickness: 0.23rem;
   text-underline-position: under;
 }
+.underlineDotted {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 0.23rem;
+  text-underline-position: under;
+}
 
 
-
-
-.table-label {
+/* Unicode labeling and Metrics */
+.tableLabel {
   text-align: center;
 }
-.table-label:after {
+.tableLabel:after {
   content: "\002192";
   vertical-align: top;
   font-size: 1rem;
 }
-.table-label:before {
+
+.tableLabel:before {
   content: "\002193";
   vertical-align: center;
   font-size: 1rem;
 }
-
-.point-right {
+.pointRight {
   text-align: end;
 }
-.point-right:after {
+.pointRight:after {
   content: "\002192";
   vertical-align: top;
 }
-
-.th-metric-up, .th-metric-down {
+.metricUp,
+.metricDown {
   font-style: italic;
-  font-size: large;
+  font-size: large !important;
 }
-.th-metric-up:before {
+.metricUp:before {
   content: "\002191";
   font-size: 2rem;
   vertical-align: sub;
 }
-.th-metric-down:before {
+.metricDown:before {
   content: "\002193";
   font-size: 2rem;
   vertical-align: sub;
+}
+
+
+
+/* Styled Table (stable) */
+.tableWrapper {
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+table.stable.noBoldHeaders th {
+  font-weight: normal !important;
+}
+
+table.stable {
+  display: table;
+  width: 100%;
+}
+table.stable tbody:last-child tr > * {
+  padding-bottom: 5px;
+}
+table.stable tbody tr > * {
+  text-align: start;
+}
+table.stable tr td,
+table.stable tr th {
+  background: #FFF !important;
+}
+table.stable th,
+table.stable td {
+  border: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+  padding: var(--ifm-table-cell-padding);
+  white-space: nowrap;
+}
+table.stable td {
+  font-size: 0.85rem;
+  font-family: monospace;
+  white-space: nowrap;
+}
+table.stable th {
+  font-size: 0.85rem;
+}
+table.stable tr {
+  border: none;
+}
+
+[data-theme='dark'] table.stable tr th,
+[data-theme='dark'] table.stable tr td {
+  background: var(--ifm-background-color) !important;
+  color: #D4D4D4;
 }
 

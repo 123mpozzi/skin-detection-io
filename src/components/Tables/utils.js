@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
+import styles from './styles.module.css';
 
 let prevBg;
 let flag = false;
 
+export const notesWrapperStyle = 'col col--12'
+
+
+export const red = {
+  bg: "#c21c1c50",
+  text: '#c21c1cFF',
+};
+export const green = {
+  bg: "#73eb7a50",
+  text: '#73eb7aFF',
+};
+export const blue = {
+  bg: "#4853fc50",
+  text: '#4853fcFF',
+};
+
 export const Tooltip = ({children, id}) => (
   <ReactTooltip id={id} place="top" effect="solid" border borderColor="var(--ifm-color-primary)" >
-    <div style={{maxWidth: 'min(70vw, 200px)'}} >
+    <div style={{maxWidth: 'min(70vw, 400px)'}} >
       {children}
     </div>
   </ReactTooltip>
@@ -15,7 +32,7 @@ export const Tooltip = ({children, id}) => (
 /**
  * Change background color of the cells matching the given class
  */
-export function handleOver(matchClass, color, e) {
+function handleOver(matchClass, color, e) {
   e.preventDefault();
   const cells = document.getElementsByClassName(matchClass);
   // Change background
@@ -38,13 +55,23 @@ export function handleOver(matchClass, color, e) {
 /**
  * Revert back to the initial background
  */
-export function handleOut(matchClass, e) {
+function handleOut(matchClass, e) {
   e.preventDefault();
+  const msDelay = 2000; // delay in milliseconds
   const cells = document.getElementsByClassName(matchClass);
   // Revert back to previous background
   setTimeout(function() { 
     for (var i = 0; i < cells.length; i++) {
       cells[i].style.setProperty('background', prevBg, 'important');
     }
-  }, 500);
+  }, msDelay);
 }
+
+export const Dashed = ({color, children}) => (
+  <span className={styles.underlineDashed} style={{textDecorationColor: color}}>{children}</span>
+)
+
+export const HandledItem = ({dict, children}) => (
+  <li onMouseOver={(e) => handleOver(dict.cls, dict.col.bg, e)} onMouseOut={(e) => handleOut(dict.cls, e)}>{children}
+  </li>
+)

@@ -7,7 +7,7 @@ description: Skin detection is the process of discriminating skin and non-skin p
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import ReactTooltip from 'react-tooltip';
 import Taxonomy from '@site/src/components/Taxonomy';
-import { DatasetOverview, SingleDatasets, CrossDatasets } from '@site/src/components/Tables';
+import { DatasetOverview, SingleDatasets, CrossDatasets, InferenceTimes } from '@site/src/components/Tables';
 
 
 export const Center = ({children}) => (
@@ -478,9 +478,7 @@ human skin can assume, and scene properties such as lighting and background.
   </p>
 
   <div>
-    <div class="table-wrapper">
-      <DatasetOverview />
-    </div>
+    <DatasetOverview />
     <div id="dataset-desc" class='col col--8 col--offset-2' >
       <p>
       <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
@@ -573,12 +571,8 @@ human skin can assume, and scene properties such as lighting and background.
   <SingleDatasets />
 
   ### Cross Dataset
-
-  <div>
-    <div class="table-wrapper">
-      <CrossDatasets />
-    </div>
-  </div>
+  
+  <CrossDatasets />
 
   ### Single Skin Tones
 
@@ -767,45 +761,7 @@ human skin can assume, and scene properties such as lighting and background.
   <p>
   Inference times were measured on a <em>i7-4770k CPU</em> for each algorithm on the same set of images, with multiple observations performed.
   </p>
-  <div>
-    <div class="table-wrapper">
-      <table class="results">
-        <tr>
-          <th />
-          <th>Inference time<br />(seconds)</th>
-          <th>
-          <span class='underline-dots' data-tip="Deep learning: assume one prediction is already performed before starting the observations. Statistical: create the prediction image looping on a sequence object instead of every pixel." data-for="tip-infer">Improved</span> inference time<br />(seconds)
-          </th>
-        </tr>
-        <tr>
-          <td>Deep Learning</td>
-          <td>0.826581 ± 0.043</td>
-          <td><u>0.242685 ± 0.016</u></td>
-        </tr>
-        <tr>
-          <td>Statistical</td>
-          <td><u>0.457534 ± 0.002</u></td>
-          <td>0.371515 ± 0.002</td>
-        </tr>
-        <tr>
-          <td>Thresholding</td>
-          <td><b>0.007717 <span class='underline-dots' data-tip="Inference times independent of image content" data-for="tip-inferthresh">± 0.000</span></b></td>
-          <td><b>0.007717 ± 0.000</b></td>
-        </tr>
-      </table>
-    </div>
-    <Tooltip id="tip-infer">
-      <p>
-      <b>Deep learning</b>: assume one prediction is already performed before starting the observations.
-      </p>
-      <p>
-      <b>Statistical</b>: create the prediction image looping on a sequence object  instead of every pixel.
-      </p>
-    </Tooltip>
-    <Tooltip id="tip-inferthresh">
-      Inference times independent of image content
-    </Tooltip>
-  </div>
+  <InferenceTimes />
 </div>
 
 

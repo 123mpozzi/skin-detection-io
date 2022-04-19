@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tooltip} from './utils'
+import { Tooltip } from './utils'
 import styles from './styles.module.css';
 
 

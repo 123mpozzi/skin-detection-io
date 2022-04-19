@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tooltip,notesWrapperStyle,Dashed,red,green,blue,HandledItem} from './utils'
+import { Tooltip, notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
 
 const ntUnetBad = {
@@ -49,7 +49,7 @@ export const CrossDatasets = () => {
           </thead>
           <tbody>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>F<sub>1</sub></th>
+              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.f1}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.9308 ± 0.11</b></td>
               <td><b>0.4625 ± 0.41</b></td>
@@ -68,7 +68,7 @@ export const CrossDatasets = () => {
               <td>0.5060 ± 0.25</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>IoU</th>
+              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.8851 ± 0.15</b></td>
               <td><b>0.3986 ± 0.37</b></td>
@@ -87,7 +87,7 @@ export const CrossDatasets = () => {
               <td>0.3752 ± 0.22</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown}>D<sub>prs</sub></th>
+              <th rowspan="2" scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.1098 ± 0.15</b></td>
               <td><b>0.7570 ± 0.56</b></td>
@@ -106,7 +106,7 @@ export const CrossDatasets = () => {
               <td>0.6523 ± 0.27</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown} >F<sub>1</sub><span className={styles.underlineDotted} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span>
+              <th rowspan="2" scope="rowgroup" className={styles.metricDown} ><em>F<sub>1</sub><span className={styles.underlineDotted} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span></em>
               </th>
               <th scope="row">{method_1}</th>
               <td><b>0.0457</b></td>
@@ -126,23 +126,30 @@ export const CrossDatasets = () => {
               <td>0.1308</td>
             </tr>
           </tbody>
-          </table>
+        </table>
       </div>
       <div className={notesWrapperStyle}>
         <ul>
           <HandledItem dict={ntUnetBad}>
             <p>
-            Using HGR as the training set and predicting over Schmugge, <Dashed color={ntUnetBad.col.text}>Statistical outperforms U-Net</Dashed>, especially in the <em>F<sub>1</sub></em> score. While Statistical generally performs better than U-Net, it also includes a lot of False Positives, as the <em>F<sub>1</sub> - IoU</em> and the <em>D<sub>prs</sub></em> metrics indicate. The latter is particularly bad in both cases, evidencing a big distance between the ideal ground truths and the predictions.
+              Using HGR as the training set and predicting over Schmugge, <Dashed color={ntUnetBad.col.text}>{method_2} outperforms {method_1}</Dashed>, especially in the {metrics.f1} score. While {method_2} generally performs better than {method_1}, it also includes a lot of False Positives, as the {metrics.f1iou} and the {metrics.dprs} metrics indicate. The latter is particularly bad in both cases, evidencing a big distance between the ideal ground truths and the predictions.
             </p>
           </HandledItem>
           <HandledItem dict={ntF1IOU}>
             <p>
-            Training on Schmugge and predicting on ECU has the U-Net describing a slightly worse <em>F<sub>1</sub> - IoU</em>, suggesting the <Dashed color={ntF1IOU.col.text}>presence of False Positives and False Negatives</Dashed>.
+              Training on Schmugge and predicting on ECU has the {method_1} describing a slightly worse {metrics.f1iou}, suggesting the <Dashed color={ntF1IOU.col.text}>presence of False Positives and False Negatives</Dashed>.
             </p>
           </HandledItem>
           <HandledItem dict={ntNiceF1}>
-            The U-Net exceeds an <Dashed color={ntNiceF1.col.text}><em>F<sub>1</sub></em> score of 80</Dashed> in the case of Schmugge as the training set and HGR as the prediction set despite the size of the training set, which is not huge.
+            <p>
+              {method_1} exceeds an <Dashed color={ntNiceF1.col.text}>{metrics.f1} score of 80</Dashed> in the case of Schmugge as the training set and HGR as the prediction set despite the size of the training set, which is not huge.
+            </p>
           </HandledItem>
+          <li>
+            <p>
+              Apart from a few expections, {method_1} still dominates.
+            </p>
+          </li>
         </ul>
       </div>
     </div>

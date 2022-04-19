@@ -13,12 +13,19 @@ export const red = {
   text: '#c21c1cFF',
 };
 export const green = {
-  bg: "#73eb7a50",
-  text: '#73eb7aFF',
+  bg: "#2E855550",
+  text: '#2E8555FF;',
 };
 export const blue = {
   bg: "#4853fc50",
   text: '#4853fcFF',
+};
+
+export const metrics = {
+  f1: <em>F<sub>1</sub></em>,
+  iou: <em>IoU</em>,
+  f1iou: <em>F<sub>1</sub> - IoU</em>,
+  dprs: <em>D<sub>prs</sub></em>,
 };
 
 export const Tooltip = ({children, id}) => (
@@ -57,7 +64,7 @@ function handleOver(matchClass, color, e) {
  */
 function handleOut(matchClass, e) {
   e.preventDefault();
-  const msDelay = 2000; // delay in milliseconds
+  const msDelay = 2500; // delay in milliseconds
   const cells = document.getElementsByClassName(matchClass);
   // Revert back to previous background
   setTimeout(function() { 

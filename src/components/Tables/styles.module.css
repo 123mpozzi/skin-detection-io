@@ -1,7 +1,3 @@
-:root {
-  --greenT: var(--ifm-color-success-lightest);
-}
-
 .underlineDashed {
   text-decoration: underline;
   text-decoration-style: dashed;

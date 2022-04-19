@@ -121,6 +121,16 @@ p {
 }
 
 
+/* Bibliography */
+.bibWrapper {
+  padding-right: 1rem !important;
+  padding-left: 0 !important;
+}
+.bibWrapper > ol {
+  padding-left: 1.2rem !important;
+}
+
+
 /* Theming */
 [data-theme='dark'] .invert > img,
 [data-theme='dark'] .invert > * > img {

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 
 // todo package? Read .bibtex file
@@ -103,9 +104,11 @@ export const Bibliography = () => {
   let bibMap = Array.from(bib).map( ( item, i ) => <li id={item} key={i}> { citations[item] } </li>);
 
   return (
-    <ol style={{ textAlign: 'justify' }}>
-      {bibMap}
-    </ol>
+    <div className={styles.bibWrapper}>
+      <ol style={{ textAlign: 'justify' }}>
+        {bibMap}
+      </ol>
+    </div>
   );
 }
 

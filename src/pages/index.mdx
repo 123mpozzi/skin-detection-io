@@ -3,30 +3,29 @@ title: Human Skin Detection in Color Images
 description: Skin detection is the process of discriminating skin and non-skin pixels in an arbitrary image and represents an intermediate step in several image processing tasks, such as facial analysis and biomedical segmentation. Different approaches have been presented in the literature, but a comparison is diffcult to perform due to multiple datasets and varying performance measurements. In this work, the datasets and the state-of-the-art approaches are reviewed and categorized using a new proposed taxonomy. Three different representative skin detector methods of the state of the art are selected and thoroughly analyzed. This approaches are then evaluated on three different state of the art datasets and skin tones sub-datasets using multiple metrics. The evaluation is performed on single and cross dataset scenario to highlight key differences between methods, reporting also the inference time. Finally, the results are organized into multiple tables, using the related figures as an assistance tool to support the discussion. Experimental results demonstrate the strength and weaknesses of each approach, and the need to involve multiple metrics for a fair assessment of the method’s aspects.
 ---
 
-import { Tooltip, Introduction, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
-import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
+import { Section, Introduction, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
+import { SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
 import clsx from 'clsx';
-
-
-
-export const section = "margin-bottom--xl"
-
-
+import { DatasetsOverview } from '@site/src/components/Swappable';
 
 <div className={clsx("container")}>
 
 ## Introduction 
 
-<div className={section} >
+<Section >
   <Introduction />
-</div>
+</Section>
 
 ### Methodological Approach
 
-<div className={section} >
+<Section >
   <MethodologicalApproach />
-</div>
+</Section>
 
+
+<Section >
+  <DatasetsOverview />
+</Section>
 
 
 <!-- TODO: change page title!! TODO: container better layout -->
@@ -34,41 +33,41 @@ export const section = "margin-bottom--xl"
 ## Taxonomy
 
 <!-- TODO: cite thresholding approach ? -->
-<div class="margin-bottom--md" >
+<Section size='md' >
   <Taxonomy />
-</div>
+</Section>
 
 
 ## Investigated Methods
 
-<div class={section} >
+<Section >
   <Approaches />
-</div>
+</Section>
 
 ### Dynamic Thresholding
 
-<div class={section} >
+<Section >
   <Thresholding />
-</div>
+</Section>
 
 ### Statistical
 
-<div class={section} >
+<Section >
   <Statistical />
-</div>
+</Section>
 
 ### U-Net
 
-<div class={section} >
+<Section >
   <UNet />
-</div>
+</Section>
 
 
 ## Datasets
 
-<div class={section} >
+<Section >
   <Datasets />
-</div>
+</Section>
 
 
 
@@ -77,11 +76,11 @@ export const section = "margin-bottom--xl"
 
 ## Results
 
-<div class={section} >
+<Section >
   <Results />
-</div>
+</Section>
 
-<div class={section} >
+<Section >
 
   ### Single Dataset
   
@@ -105,19 +104,19 @@ export const section = "margin-bottom--xl"
   Inference times were measured on a <em>i7-4770k CPU</em> for each algorithm on the same set of images, with multiple observations performed.
   </p>
   <InferenceTimes />
-</div>
+</Section>
 
 
-<div class={section} >
+<Section >
   <Conclusion />
-</div>
+</Section>
 
 
 ## Bibliography
 
-<div class={section} >
+<Section >
   <Bibliography />
-</div>
+</Section>
 
 
 </div>

@@ -6,8 +6,6 @@ import { DatasetOverview } from '../Tables';
 import clsx from 'clsx';
 
 
-const descStyle = {}
-
 const Intro = () => {
   return (
     <div>
@@ -27,7 +25,7 @@ const Intro = () => {
           <li>Number of images</li>
           <li>Image quality</li>
           <li>Ground truth quality</li>
-          <li class="underline-dots" 
+          <li className={styles.dottedUnderline}
           data-tip="The following data may be extremely useful in some applications: lighting conditions, background complexity, number of subjects, featured skin tones, indoor or outdoor scenery" 
           data-for="tip-datalack" >
           Lack of additional data

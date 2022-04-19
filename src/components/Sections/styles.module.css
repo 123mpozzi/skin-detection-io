@@ -75,6 +75,91 @@ p {
 }
 
 
+/* Taxonomy Graph */
+.taxonomyRow {
+  margin: 50px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.taxonomyCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 25%;
+}
+.taxonomyPad {
+  z-index: 0;
+  background-color: #FFF;
+}
+/* Pad blocks only on big screens */
+@media only screen and (min-width: 600px) {
+  .taxonomyPad > * {
+    padding: calc( var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier) ) calc( var(--ifm-button-padding-horizontal) * var(--ifm-button-size-multiplier) );
+  }
+}
+.blockText {
+  text-align: center;
+  margin: 0;
+  word-break: break-word;
+}
+/* Small screens adjustements */
+@media only screen and (max-width: 600px) {
+  .taxonomyRow {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .blockText {
+    font-size: 0.8rem;
+  }
+  .taxonomyPad > * {
+    padding: 0.6rem 0;
+    border-left-width: 10px;
+    border-style: solid;
+    z-index: 1;
+    background-color: #FFF;
+  }
+  [data-theme='dark'] .taxonomyPad > * {
+    background-color: var(--ifm-background-color);
+  }
+  .taxonomyPad > div {
+    border-color: transparent;
+  }
+  .taxonomyCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+  }
+}
+[data-theme='dark'] .taxonomyPad {
+  background-color: var(--ifm-background-color);
+}
+.taxonomyGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} 
+.taxonomyLink {
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  border-style: solid;
+  border-color: transparent;
+}
+/* inverse text color */
+.taxonomyLink:hover {
+  text-decoration: none;
+  border-color: var(--ifm-button-border-color);
+}
+.taxonomyOn {
+  border-color: var(--ifm-button-border-color);
+}
+.taxonomyOff {
+  border-color: transparent;
+}
+
+
 /* Approaches */
 .octocatTitle {
   display: flex;

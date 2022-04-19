@@ -6,7 +6,9 @@ description: Skin detection is the process of discriminating skin and non-skin p
 import { Section, Introduction, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
 import { SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
 import clsx from 'clsx';
-import { DatasetsOverview } from '@site/src/components/Swappable';
+
+<!-- TODO: layout: TOC skips approaches subsections -->
+
 
 <div className={clsx("container")}>
 
@@ -23,16 +25,11 @@ import { DatasetsOverview } from '@site/src/components/Swappable';
 </Section>
 
 
-<Section >
-  <DatasetsOverview />
-</Section>
-
-
 <!-- TODO: change page title!! TODO: container better layout -->
 
 ## Taxonomy
 
-<!-- TODO: cite thresholding approach ? -->
+
 <Section size='md' >
   <Taxonomy />
 </Section>
@@ -70,8 +67,6 @@ import { DatasetsOverview } from '@site/src/components/Swappable';
 </Section>
 
 
-
-<!-- (highligts chosen datasets (different color in table? Asterisks?)) -->
 
 
 ## Results

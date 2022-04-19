@@ -1,32 +1,96 @@
-import React from 'react';
-import { Tooltip } from '../Sections';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
+import { Tooltip } from '../Sections/utils'
+import { Cite } from '../Sections/Bibliography_js'
 import clsx from 'clsx';
-import { Cite } from '../Sections'
-
 
 /**
- * Swap the content of '#dataset-desc' with the content referenced by href.
- * Change selected item in Taxonomy.
+ * Swappable content
  */
-function handleClick(href, e) {
-  e.preventDefault();
-  // Swap content
-  href = href.substring(1);
-  var newContent = document.getElementById(href).innerHTML;
-  document.getElementById(styles["dataset-desc"]).innerHTML = newContent;
+let content = {
+  "TDSD": "{} is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.",
+  "ECU": "{} is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).",
+  "Schmugge": "{} is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.",
+  "Pratheepan": "{} is composed of 78 pictures randomly sampled from the web, precisely annotated. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.",
+  "VPU": "{} as for Video Processing & Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.",
+  "SFA": "{} is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.",
+  "HGR": "{} is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).",
+  "abd": "{} is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.",
 }
 
 /**
- * Create a clickable block
+ * Return the formatted content value assigned to the given key
+ * @param key Key to access value
+ * @returns Formatted content value assigned to the given key, wrapped in <p>
  */
-const Item = ({ children, href }) => {
-  return <a href={href} onClick={(e) => handleClick(href, e)} onMouseOver={(e) => handleClick(href, e)} >{children}</a>
-}
+function getContent(key) {
+  let value = content[key];
+  let db_name = <b>{key}</b>;
+  let citation = <Cite name={String(key).toLowerCase()} />;
+  let splits = String(value).split('{}');
 
-export const DatasetOverview = () => {
   return (
-    <div>
+    <p>
+      {splits[0]}{db_name} {citation}{splits[1]}
+    </p>
+  );
+}
+
+/**
+ * Must do a first rendering of the content if it contains Cite blocks
+ * or else they won't appear in the Bibliography
+ * @returns Resulting HTML code
+ */
+function LoadCitations() {
+  let dict_keys = Object.keys(content);
+  let res = [];
+  for (let value of dict_keys) {
+    res.push(getContent(value));
+  }
+  let htmlres;
+  for (let i = 0; i <= res.length; i++) {
+    htmlres = <div style={{display: 'none'}}>{htmlres}<div>{res[i]}</div></div>
+  }
+  return htmlres;
+}
+
+export function DatasetOverview() {
+  // swap content
+  const [selected, setSelected] = useState('VPU');
+  // update height
+  const [height, setHeight] = useState('auto');
+  const ref = useRef(null);
+
+  // At init, set swappable div height to initial div rendered
+  // So use the highest div as default selection
+  useEffect(() => {
+    // if height is not already set (still 'auto')
+    // or is worse than current, set to current
+    if (ref.current.clientHeight > height || height == 'auto'){
+      setHeight(ref.current.clientHeight);
+    }
+  });
+
+  /**
+   * Change selected item
+   */
+  function handleClick(href, e) {
+    e.preventDefault();
+    href = href.substring(1); // remove hash
+    setSelected(href);
+  }
+
+  /**
+   * Item handled by the events
+   */
+  const HandledItem = ({ children, href }) => {
+    return <a href={href} onClick={(e) => handleClick(href, e)} onMouseOver={(e) => handleClick(href, e)} >{children}</a>
+  }
+
+  /**
+   * HTML block that calls the change-state events
+   */
+  const Caller = () => (<div>
       <div className={styles.tableWrapper}>
         <Tooltip id="tip-iskintones">
           Citations from the original papers or eventual labels
@@ -43,56 +107,56 @@ export const DatasetOverview = () => {
           </thead>
           <tbody>
             <tr>
-              <td><Item href="#dataset-abd">abd-skin</Item></td>
+              <td><HandledItem href="#abd">abd-skin</HandledItem></td>
               <td>2019</td>
               <td>1400</td>
               <td>abdomen</td>
               <td>african, indian, hispanic, caucasian, asian</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-hgr">HGR</Item></td>
+              <td><HandledItem href="#HGR">HGR</HandledItem></td>
               <td>2014</td>
               <td>1558</td>
               <td>hand</td>
               <td>-</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-sfa">SFA</Item></td>
+              <td><HandledItem href="#SFA">SFA</HandledItem></td>
               <td>2013</td>
               <td>1118</td>
               <td>face</td>
               <td>asian, caucasian, african</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-vpu">VPU</Item></td>
+              <td><HandledItem href="#VPU">VPU</HandledItem></td>
               <td>2013</td>
               <td>285</td>
               <td>full body</td>
               <td>-</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-pratheepan">Pratheepan</Item></td>
+              <td><HandledItem href="#Pratheepan">Pratheepan</HandledItem></td>
               <td>2012</td>
               <td>78</td>
               <td>full body</td>
               <td>-</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-schmugge" >Schmugge</Item></td>
+              <td><HandledItem href="#Schmugge" >Schmugge</HandledItem></td>
               <td>2007</td>
               <td>845</td>
               <td>face</td>
               <td>labels: light, medium, dark</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-ecu">ECU</Item></td>
+              <td><HandledItem href="#ECU">ECU</HandledItem></td>
               <td>2005</td>
               <td>3998</td>
               <td>full body</td>
               <td>whitish, brownish, yellowish, and darkish</td>
             </tr>
             <tr>
-              <td><Item href="#dataset-tdsd">TDSD</Item></td>
+              <td><HandledItem href="#TDSD">TDSD</HandledItem></td>
               <td>2004</td>
               <td>555</td>
               <td>full body</td>
@@ -101,11 +165,17 @@ export const DatasetOverview = () => {
           </tbody>
         </table>
       </div>
-      <div id={styles["dataset-desc"]} className={clsx('col col--8 col--offset-2')} >
-        <p>
-        <b>TDSD</b> <Cite name='tdsd' /> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
-        </p>
+      <div ref={ref} style={{height: height, maxHeight: '30vh', overflow: 'auto'}} className={clsx('col col--8 col--offset-2')} >
+        {getContent(selected)}
       </div>
     </div>
   );
+
+  return (
+    <div>
+      <LoadCitations />
+      <Caller />
+    </div>
+  );
 }
+

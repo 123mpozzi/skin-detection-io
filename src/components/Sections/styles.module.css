@@ -5,8 +5,15 @@ p {
 
 
 /* Generics */
-.textCenter {
+.centerText {
   text-align: center;
+}
+.dottedUnderline {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 0.23rem;
+  text-underline-position: under;
 }
 
 
@@ -17,4 +24,26 @@ p {
   flex-direction: row;
   align-items: baseline;
   justify-content: space-evenly;
+}
+
+
+/* Applications */
+.wrapList {
+  display: flex;
+  place-content: center;
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 1000px) {
+  .reverseRow {
+    flex-direction: column-reverse;
+  }
+}
+
+
+/* Theming */
+[data-theme='dark'] .invert > img,
+[data-theme='dark'] .invert > * > img {
+  filter: invert(100%);
 }

@@ -4,8 +4,9 @@ description: Skin detection is the process of discriminating skin and non-skin p
 ---
 
 import Taxonomy from '@site/src/components/Taxonomy';
-import { Introduction } from '@site/src/components/Sections';
+import { Introduction, MethodologicalApproach } from '@site/src/components/Sections';
 import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes, Tooltip } from '@site/src/components/Tables';
+import clsx from 'clsx';
 
 
 export const Center = ({children}) => (
@@ -26,109 +27,24 @@ export const section = "margin-bottom--xl"
 
 
 
-<div class="container">
+<div className={clsx("container")}>
 
 ## Introduction 
 
-<Introduction />
+<div className={section} >
+  <Introduction />
+</div>
+
+### Methodological Approach
+
+<div className={section} >
+  <MethodologicalApproach />
+</div>
 
 
 
 <!-- TODO: change page title!! TODO: container better layout -->
 
-
-
-<p>
-Skin detection is the process of <b>discriminating skin and non-skin pixels</b>. It is
-quite a challenging process because of the large color diversity that objects and
-human skin can assume, and scene properties such as lighting and background.
-</p>
-
-
-
-<div class={section} >
-  <div class="row">
-    <div class="col col--4 col--offset-1 margin-top--md">
-      <h3 style={{textAlign: 'center'}} >Applications</h3>
-      <div class="list-wrap" >
-        <ul>
-          <li><b>Facial Analysis</b></li>
-          <li>Gesture Analysis</li>
-          <li><b>Biomedical</b></li>
-          <li>
-          <b class='underline-dots' data-tip="Infer audience demographics" data-for="tip-ads">Advertisement</b>
-          <Tooltip id="tip-ads">
-            Infer audience demographics
-          </Tooltip>
-          </li>
-          <li>Content Filter</li>
-          <li>Video Surveillance</li>
-          <li class='underline-dots' data-tip="Encrypt people identity in smart cities" data-for="tip-privacy">
-          Privacy Protection
-          <Tooltip id="tip-privacy">
-            Encrypt people identity in smart cities
-          </Tooltip>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col col--6">
-      <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}} >
-          <div>
-            <Caption>Ramirez et al. 2014 <a href="#ramirez">[1]</a></Caption>
-            <img src="/img/applications_facial_analysis.png" style={{maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh'}} alt='Skin detection is often an important step to analyze faces.' title='Facial analysis' />
-          </div>
-          <div>
-            <img src="/img/applications_ads.png" style={{maxWidth: '90%', maxHeight: '25vh'}} alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' title='Infer audience demographics in DOOH ads' />
-            <Caption>Low et al. 2020 <a href="#low">[3]</a></Caption>
-          </div>
-        </div>
-        <div style={{display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around'}}>
-          <img src="/img/applications_biomedical.png" style={{maxHeight: '100%'}} alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' title='Skin cancer detection' />
-          <Caption>Do et al. 2014 <a href="#do">[2]</a></Caption>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row margin-top--xl reverse-row" >
-    <div class="col col--4 col--offset-2">
-      <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
-        <img src="/img/clay.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Clay color is really similar to some skin tones.' title='Clay' />
-        <img src="/img/wood.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Wood can assume similar color to some skin tones.' title='Wood' />
-      </div>
-      <div class="row" style={{flexWrap: 'nowrap', justifyContent: 'center'}}>
-        <img src="/img/lighting_1.jpg" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' title='Tricky lighting 1' />
-        <img src="/img/lighting_2.png" style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' title='Tricky lighting 2' />
-      </div>
-    </div>
-    <div class="col col--4">
-      <h3 style={{textAlign: 'center'}}>Limitations</h3>
-      <div class="list-wrap">
-        <ul>
-          <li>Materials with <b>skin-like colors</b></li>
-          <li>Wide range of <b>skin tones</b></li>
-          <li><b>Illumination</b></li>
-          <li>Cameras color science</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class={section} >
-
-  ### Methodological Approach
-
-  <Center>
-    <div class="invert margin-top--lg">
-      <img class="svg" src="/img/methodological-approach-vert.svg" style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}} alt="In this thesis the significance and limitations of skin detection have been addressed. A review of public datasets available in the domain and an analysis of state-of-the-art approaches has been presented, including a new proposed taxonomy. Three different state-of-the-art methods have been thoroughly examined implemented and validated in respect to the original papers, when possible. An evaluation of the chosen approaches in different settings has been presented, alongside a discussion on the metrics used in the domain.Finally, the results have been thoroughly discussed through data and figures." title='Approach taken at exploring the topic' />
-    </div>
-  </Center>
-</div>
 
 
 <!-- TODO: cite thresholding approach ? -->

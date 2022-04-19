@@ -47,5 +47,5 @@ export const Center = ({children}) => (
 )
 
 export const Caption = ({children}) => (
-  <p class="text--center" style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
+  <p className={styles.centerText} style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
 )

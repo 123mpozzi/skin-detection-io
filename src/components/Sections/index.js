@@ -1,1 +1,1 @@
-export { Introduction } from './Introduction'
+export { Introduction, MethodologicalApproach } from './Introduction'

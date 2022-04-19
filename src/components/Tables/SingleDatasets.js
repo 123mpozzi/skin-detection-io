@@ -44,7 +44,7 @@ export const SingleDatasets = () => {
           </thead>
           <tbody>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricUp} style={{ paddingRight: '0.3rem !important' }}>{metrics.f1}</th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricUp} style={{ paddingRight: '0.3rem !important' }}>{metrics.f1}</th>
               <th scope="row">{method_1}</th>
               <td className={ntUnetBest.cls}><b>0.9133 ± 0.08</b></td>
               <td className={ntHgrEasy.cls}><b>0.9848 ± 0.02</b></td>
@@ -63,7 +63,7 @@ export const SingleDatasets = () => {
               <td className={ntSchStd.cls}>0.4280 ± 0.34</td>
             </tr>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
               <th scope="row">{method_1}</th>
               <td className={ntUnetBest.cls}><b>0.8489 ± 0.12</b></td>
               <td className={ntHgrEasy.cls}><b>0.9705 ± 0.03</b></td>
@@ -82,7 +82,7 @@ export const SingleDatasets = () => {
               <td className={ntSchStd.cls}>0.3323 ± 0.28</td>
             </tr>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricDown}>D<sub className={styles.underlineDotted} data-tip="Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}. Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth." data-for="tip-dprs">prs</sub></th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricDown}>D<sub className={styles.underlineDotted} data-tip="Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}. Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth." data-for="tip-dprs">prs</sub></th>
               <th scope="row">{method_1}</th>
               <td className={ntUnetBest.cls}><b>0.1333 ± 0.12</b></td>
               <td className={ntHgrEasy.cls}><b>0.0251 ± 0.03</b></td>

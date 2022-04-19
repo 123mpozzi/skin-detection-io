@@ -38,7 +38,7 @@ export const SingleSkintones = () => {
           </thead>
           <tbody>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricUp} style={{ paddingRight: '0.3rem !important' }}>{metrics.f1}</th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricUp} style={{ paddingRight: '0.3rem !important' }}>{metrics.f1}</th>
               <th scope="row">{method_1}</th>
               <td className={ntNullStd.cls}><b>0.9529 ± 0.00</b></td>
               <td className={ntMedHard.cls}><b>0.9260 ± 0.15</b></td>
@@ -57,7 +57,7 @@ export const SingleSkintones = () => {
               <td>0.6705 ± 0.14</td>
             </tr>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.9100 ± 0.01</b></td>
               <td className={ntMedHard.cls}><b>0.8883 ± 0.18</b></td>
@@ -76,7 +76,7 @@ export const SingleSkintones = () => {
               <td>0.5190 ± 0.14</td>
             </tr>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.0720 ± 0.01</b></td>
               <td className={ntMedHard.cls}><b>0.1078 ± 0.21</b></td>

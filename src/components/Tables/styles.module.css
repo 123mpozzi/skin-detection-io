@@ -52,6 +52,16 @@
   vertical-align: sub;
 }
 
+.noteWrapper {
+  max-height: 40vh;
+  overflow: auto;
+  padding-right: 1rem !important;
+  padding-left: 0 !important;
+}
+
+.noteWrapper > ul {
+  padding-left: 1.2rem !important;
+}
 
 
 /* Styled Table (stable) */

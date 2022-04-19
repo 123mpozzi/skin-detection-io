@@ -32,7 +32,7 @@ function handleClick(id, href, e) {
  * @returns Text with each item joined by <br />
  */
 function innerText() {
-  return Array.from(arguments).map( ( item ) => <> { item } <br /> </>)
+  return Array.from(arguments).map( ( item, i ) => <span key={i}> { item } <br /> </span>)
 }
 
 /**

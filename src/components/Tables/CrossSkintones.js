@@ -30,11 +30,11 @@ export const CrossSkintones = () => {
         <table className={[styles.noBoldHeaders, styles.stable].join(' ')}>
           <thead>
             <tr>
-              <td rowspan="2" scope="rowgroup" />
+              <td rowSpan={2} scope="rowgroup" />
               <th scope="col" className={styles.pointRight}>Training</th>
-              <th colspan="2" scope="colgroup">DARK</th>
-              <th colspan="2" scope="colgroup">MEDIUM</th>
-              <th colspan="2" scope="colgroup">LIGHT</th>
+              <th colSpan={2} scope="colgroup">DARK</th>
+              <th colSpan={2} scope="colgroup">MEDIUM</th>
+              <th colSpan={2} scope="colgroup">LIGHT</th>
             </tr>
             <tr>
               <th scope="col" className={styles.pointRight}>Testing</th>
@@ -48,7 +48,7 @@ export const CrossSkintones = () => {
           </thead>
           <tbody>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.f1}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricUp}>{metrics.f1}</th>
               <th scope="row">{method_1}</th>
               <td className={ntSmallSet.cls}>0.7300 ± 0.25</td>
               <td className={[ntDarkLight.cls, ntSmallSet.cls].join(' ')}>0.7262 ± 0.26</td>
@@ -67,7 +67,7 @@ export const CrossSkintones = () => {
               <td>0.7853 ± 0.11</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
               <th scope="row">{method_1}</th>
               <td className={ntSmallSet.cls}>0.6279 ± 0.27</td>
               <td className={[ntDarkLight.cls, ntSmallSet.cls].join(' ')}><b>0.6276 ± 0.28</b></td>
@@ -86,7 +86,7 @@ export const CrossSkintones = () => {
               <td>0.6574 ± 0.12</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
               <th scope="row">{method_1}</th>
               <td className={ntSmallSet.cls}>0.3805 ± 0.33</td>
               <td className={ntSmallSet.cls}><b>0.3934 ± 0.34</b></td>
@@ -105,7 +105,7 @@ export const CrossSkintones = () => {
               <td>0.3199 ± 0.16</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown}>{metrics.f1iou}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricDown}>{metrics.f1iou}</th>
               <th scope="row">{method_1}</th>
               <td className={ntSmallSet.cls}><b>0.1021</b></td>
               <td className={ntSmallSet.cls}><b>0.0986</b></td>

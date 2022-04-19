@@ -31,11 +31,11 @@ export const CrossDatasets = () => {
         <table className={[styles.noBoldHeaders, styles.stable].join(' ')}>
           <thead>
             <tr>
-              <td rowspan="2" scope="rowgroup" />
+              <td rowSpan={2} scope="rowgroup" />
               <th scope="col" className={styles.pointRight}>Training</th>
-              <th colspan="2" scope="colgroup">ECU</th>
-              <th colspan="2" scope="colgroup">HGR</th>
-              <th colspan="2" scope="colgroup">SCHMUGGE</th>
+              <th colSpan={2} scope="colgroup">ECU</th>
+              <th colSpan={2} scope="colgroup">HGR</th>
+              <th colSpan={2} scope="colgroup">SCHMUGGE</th>
             </tr>
             <tr>
               <th scope="col" className={styles.pointRight}>Testing</th>
@@ -49,7 +49,7 @@ export const CrossDatasets = () => {
           </thead>
           <tbody>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.f1}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricUp}>{metrics.f1}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.9308 ± 0.11</b></td>
               <td><b>0.4625 ± 0.41</b></td>
@@ -68,7 +68,7 @@ export const CrossDatasets = () => {
               <td>0.5060 ± 0.25</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricUp}>{metrics.iou}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.8851 ± 0.15</b></td>
               <td><b>0.3986 ± 0.37</b></td>
@@ -87,7 +87,7 @@ export const CrossDatasets = () => {
               <td>0.3752 ± 0.22</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricDown}>{metrics.dprs}</th>
               <th scope="row">{method_1}</th>
               <td><b>0.1098 ± 0.15</b></td>
               <td><b>0.7570 ± 0.56</b></td>
@@ -106,7 +106,7 @@ export const CrossDatasets = () => {
               <td>0.6523 ± 0.27</td>
             </tr>
             <tr>
-              <th rowspan="2" scope="rowgroup" className={styles.metricDown} ><em>F<sub>1</sub><span className={styles.underlineDotted} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span></em>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricDown} ><em>F<sub>1</sub><span className={styles.underlineDotted} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span></em>
               </th>
               <th scope="row">{method_1}</th>
               <td><b>0.0457</b></td>

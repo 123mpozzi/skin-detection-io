@@ -25,10 +25,10 @@ const Item = ({ children, href }) => {
 export const DatasetOverview = () => {
   return (
     <div className={styles.tableWrapper}>
+      <Tooltip id="tip-iskintones">
+        Citations from the original papers or eventual labels
+      </Tooltip>
       <table className={styles.stable}>
-        <Tooltip id="tip-iskintones">
-          Citations from the original papers or eventual labels
-        </Tooltip>
         <thead>
           <tr>
             <th>Name</th>

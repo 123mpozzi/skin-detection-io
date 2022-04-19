@@ -4,9 +4,8 @@ description: Skin detection is the process of discriminating skin and non-skin p
 ---
 
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
-import ReactTooltip from 'react-tooltip';
 import Taxonomy from '@site/src/components/Taxonomy';
-import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
+import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes, Tooltip } from '@site/src/components/Tables';
 
 
 export const Center = ({children}) => (
@@ -25,14 +24,6 @@ export const Caption = ({children}) => (
 
 export const section = "margin-bottom--xl"
 
-<!-- TODO: try taps/tapping on cell -->
-export const Tooltip = ({children, id}) => (
-  <ReactTooltip id={id} place="top" effect="solid" border borderColor="var(--ifm-color-primary)" >
-    <div style={{maxWidth: 'min(70vw, 500px)'}} >
-      {children}
-    </div>
-  </ReactTooltip>
-)
 
 
 
@@ -42,7 +33,7 @@ export const Tooltip = ({children, id}) => (
 
 ## Introduction 
 
-  <h1 class="text--center">Human Skin Detection in Color Images</h1>
+  <h1 style={{textAlign: 'center'}}>Human Skin Detection in Color Images</h1>
   <div class="msubtitle">
     <p class="hero__subtitle text--center" style={{color: 'var(--ifm-color-gray-600)'}}>Thesis Overview</p>
     <a class="button button--primary" href="/doc/human-skin-detection-in-color-images.pdf"  target="_blank">See full thesis</a>
@@ -188,34 +179,34 @@ human skin can assume, and scene properties such as lighting and background.
   </div>
   <div class="row">
     <div class="col col--8 col--offset-2">
-      <div id="taxonomy-thresholding" class="hide" >
+      <div id="taxonomy-thresholding" class="myhide" >
         <p>
         <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
         A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
         </p>
       </div>
-      <div id="taxonomy-fuzzylogic" class="hide" >
+      <div id="taxonomy-fuzzylogic" class="myhide" >
         <p>
         <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
         </p>
       </div>
-      <div id="taxonomy-deeplearning" class="hide" >
+      <div id="taxonomy-deeplearning" class="myhide" >
         <p>
         <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
         </p>
       </div>
-      <div id="taxonomy-statistical" class="hide" >
+      <div id="taxonomy-statistical" class="myhide" >
         <p>
         <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
         </p>
       </div>
-      <div id="taxonomy-ensemble" class="hide" >
+      <div id="taxonomy-ensemble" class="myhide" >
         <p>
         <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
         classification.
         </p>
       </div>
-      <div id="taxonomy-hybrid" class="hide" >
+      <div id="taxonomy-hybrid" class="myhide" >
         <p>
         <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
         </p>
@@ -403,9 +394,9 @@ human skin can assume, and scene properties such as lighting and background.
   The Skinny network consists of a modified <span class='underline-dots' data-tip='The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction' data-for="tip-unet">U-Net</span> incorporating dense blocks and inception modules to benefit from a wider spatial context.
   </p>
   <Tooltip id="tip-unet">
-    <div style={{textAlign: 'justify'}}>
+    <p style={{maxWidth: 'min(80vw, 500px)'}}>
     The network is called "U-Net" because of its shape: there is a <b>contracting path</b> which tries to extract increasingly complex features as it goes deeper, and an <b>expanding path</b> which tries to retreive the lost spatial information during the feature extraction
-    </div>
+    </p>
   </Tooltip>
   <p>
   An additional deep level is appended to the original U-Net model, to better capture large-scale contextual features in the deepest part of the network.
@@ -471,10 +462,10 @@ human skin can assume, and scene properties such as lighting and background.
   </div>
   <p class='margin-top--md' style={{textAlign: 'center'}} >
   Here are the <b class='underline-dots' data-tip="Only public datasets featuring images and including ground truths are considered" data-for="tip-datasets">common datasets</b> used in Skin Detection.
+  </p>
   <Tooltip id="tip-datasets" >
     Only public datasets featuring images and including ground truths are considered
   </Tooltip>
-  </p>
 
   <div>
     <DatasetOverview />
@@ -487,42 +478,42 @@ human skin can assume, and scene properties such as lighting and background.
 
   <div class="row">
     <div class="col col--8 col--offset-2">
-      <div id="dataset-tdsd" class="hide" >
+      <div id="dataset-tdsd" class="myhide" >
         <p>
         <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
         </p>
       </div>
-      <div id="dataset-ecu" class="hide" >
+      <div id="dataset-ecu" class="myhide" >
         <p>
         <b>ECU</b> <a href="#ecu">[8]</a> is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
         </p>
       </div>
-      <div id="dataset-schmugge" class="hide" >
+      <div id="dataset-schmugge" class="myhide" >
         <p>
         <b>Schmugge</b> <a href="#schmugge">[9]</a> is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
         </p>
       </div>
-      <div id="dataset-pratheepan" class="hide" >
+      <div id="dataset-pratheepan" class="myhide" >
         <p>
         <b>Pratheepan</b> <a href="#pratheepan">[10]</a> is composed of 78 pictures randomly sampled from the web, precisely annotated. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
         </p>
       </div>
-      <div id="dataset-vpu" class="hide" >
+      <div id="dataset-vpu" class="myhide" >
         <p>
         <b>VPU</b> <a href="#vpu">[11]</a>, as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
         </p>
       </div>
-      <div id="dataset-sfa" class="hide" >
+      <div id="dataset-sfa" class="myhide" >
         <p>
         <b>SFA</b> <a href="#sfa">[12]</a> is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
         </p>
       </div>
-      <div id="dataset-hgr" class="hide" >
+      <div id="dataset-hgr" class="myhide" >
         <p>
         <b>HGR</b> <a href="#hgr">[13]</a> is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
         </p>
       </div>
-      <div id="dataset-abd" class="hide" >
+      <div id="dataset-abd" class="myhide" >
         <p>
         <b>abd-skin</b> <a href="#abd">[14]</a> is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
         </p>
@@ -535,23 +526,28 @@ human skin can assume, and scene properties such as lighting and background.
 <!-- (highligts chosen datasets (different color in table? Asterisks?)) -->
 
 
+
 <div class={section} >
 
   ## Results
 
-
+  <Tooltip id="tip-single">
+    <p style={{maxWidth: 'min(80vw, 500px)', zIndex: '99'}}>
+    For example, with ECU as the dataset, it means that the skin detector is eventually trained using the training set of ECU, and then tested on the test set of ECU.
+    </p>
+  </Tooltip>
 
   <p>In <b class='underline-dots' data-tip="For example, with ECU as the dataset, it means that the skin detector is trained using the training set of ECU, and then tested on the test set of ECU" data-for="tip-single">single evaluations</b>
-  <Tooltip id="tip-single">
-    For example, with ECU as the dataset, it means that the skin detector is eventually trained using the training set of ECU, and then tested on the test set of ECU.
-  </Tooltip>
   , methods are eventually trained on the training set (in the case of trainable methods), and then predictions are performed on the test set.
   </p>
 
-  <p>In <b class='underline-dots' data-tip="For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset." data-for="tip-cross">cross evaluations</b>
   <Tooltip id="tip-cross">
+    <p style={{maxWidth: 'min(80vw, 500px)', zIndex: '99'}}>
     For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset.
+    </p>
   </Tooltip>
+
+  <p>In <b class='underline-dots' data-tip="For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset." data-for="tip-cross">cross evaluations</b>
   , only trainable approaches are analyzed.
   Detectors are trained on the training set, and then predictions are performed on all the images of every other datasets.<br />
   The expression <em>HGR on ECU</em> describes the situation in which the evaluation is performed by using HGR as the training set and ECU as the test set.
@@ -561,6 +557,8 @@ human skin can assume, and scene properties such as lighting and background.
   Initially, the metrics are measured for all the instances, then the average and population standard deviation for each metric are computed.
   </p>
 </div>
+
+
 
 
 <div class='margin-bottom--xl' >
@@ -642,3 +640,4 @@ human skin can assume, and scene properties such as lighting and background.
 
 
 </div>
+

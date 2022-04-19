@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.css';
+import clsx from 'clsx';
 
 let prevBg;
 let flag = false;
 
-export const notesWrapperStyle = 'col col--12'
 
+export const notesWrapperStyle = clsx('col col--12 margin-top--sm margin-bottom--lg ').concat(styles.noteWrapper)
 
 export const red = {
   bg: "#c21c1c50",
@@ -14,7 +15,7 @@ export const red = {
 };
 export const green = {
   bg: "#2E855550",
-  text: '#2E8555FF;',
+  text: '#2E8555FF',
 };
 export const blue = {
   bg: "#4853fc50",
@@ -28,11 +29,23 @@ export const metrics = {
   dprs: <em>D<sub>prs</sub></em>,
 };
 
-export const Tooltip = ({children, id}) => (
-  <ReactTooltip id={id} place="top" effect="solid" border borderColor="var(--ifm-color-primary)" >
-    <div style={{maxWidth: 'min(70vw, 400px)'}} >
-      {children}
-    </div>
+export const Tooltip = ({ children, id }) => (
+  <ReactTooltip
+    id={id}
+    place="top"
+    effect="solid"
+    border
+    borderColor="var(--ifm-color-primary)"
+    overridePosition = {({ left, top }, currentEvent, currentTarget, node) => {
+      const d = document.documentElement;
+      left = Math.min(d.clientWidth - node.clientWidth, left);
+      top = Math.min(d.clientHeight - node.clientHeight, top);
+      left = Math.max(0, left);
+      top = Math.max(0, top);
+      return { top, left }
+    }}
+  >
+    {children}
   </ReactTooltip>
 )
 
@@ -45,7 +58,7 @@ function handleOver(matchClass, color, e) {
   // Change background
   for (var i = 0; i < cells.length; i++) {
     // the fist time save the initial background color
-    if (flag == false){
+    if (flag == false) {
       prevBg = cells[i].style.background;
       flag = true;
     }
@@ -67,18 +80,18 @@ function handleOut(matchClass, e) {
   const msDelay = 2500; // delay in milliseconds
   const cells = document.getElementsByClassName(matchClass);
   // Revert back to previous background
-  setTimeout(function() { 
+  setTimeout(function () {
     for (var i = 0; i < cells.length; i++) {
       cells[i].style.setProperty('background', prevBg, 'important');
     }
   }, msDelay);
 }
 
-export const Dashed = ({color, children}) => (
-  <span className={styles.underlineDashed} style={{textDecorationColor: color}}>{children}</span>
+export const Dashed = ({ color, children }) => (
+  <span className={styles.underlineDashed} style={{ textDecorationColor: color }}>{children}</span>
 )
 
-export const HandledItem = ({dict, children}) => (
+export const HandledItem = ({ dict, children }) => (
   <li onMouseOver={(e) => handleOver(dict.cls, dict.col.bg, e)} onMouseOut={(e) => handleOut(dict.cls, e)}>{children}
   </li>
 )

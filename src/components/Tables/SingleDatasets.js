@@ -77,7 +77,7 @@ export const SingleDatasets = () => {
               <td className={ntSchStd.cls}>0.3323 ± 0.28</td>
             </tr>
             <tr>
-              <th rowspan="3" scope="rowgroup" className={styles.metricDown}>D<sub className={styles.underlineDotted} data-tip="Todo" data-for="tip-dprs">prs</sub></th>
+              <th rowspan="3" scope="rowgroup" className={styles.metricDown}>D<sub className={styles.underlineDotted} data-tip="Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}. Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth." data-for="tip-dprs">prs</sub></th>
               <th scope="row">U-Net</th>
               <td><b>0.1333 ± 0.12</b></td>
               <td className={ntHgrEasy.cls}><b>0.0251 ± 0.03</b></td>

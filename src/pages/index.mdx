@@ -3,8 +3,8 @@ title: Human Skin Detection in Color Images
 description: Skin detection is the process of discriminating skin and non-skin pixels in an arbitrary image and represents an intermediate step in several image processing tasks, such as facial analysis and biomedical segmentation. Different approaches have been presented in the literature, but a comparison is diffcult to perform due to multiple datasets and varying performance measurements. In this work, the datasets and the state-of-the-art approaches are reviewed and categorized using a new proposed taxonomy. Three different representative skin detector methods of the state of the art are selected and thoroughly analyzed. This approaches are then evaluated on three different state of the art datasets and skin tones sub-datasets using multiple metrics. The evaluation is performed on single and cross dataset scenario to highlight key differences between methods, reporting also the inference time. Finally, the results are organized into multiple tables, using the related figures as an assistance tool to support the discussion. Experimental results demonstrate the strength and weaknesses of each approach, and the need to involve multiple metrics for a fair assessment of the method’s aspects.
 ---
 
-import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import Taxonomy from '@site/src/components/Taxonomy';
+import { Introduction } from '@site/src/components/Sections';
 import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes, Tooltip } from '@site/src/components/Tables';
 
 
@@ -26,47 +26,16 @@ export const section = "margin-bottom--xl"
 
 
 
-
 <div class="container">
-
-<div class={section} >
 
 ## Introduction 
 
-  <h1 style={{textAlign: 'center'}}>Human Skin Detection in Color Images</h1>
-  <div class="msubtitle">
-    <p class="hero__subtitle text--center" style={{color: 'var(--ifm-color-gray-600)'}}>Thesis Overview</p>
-    <a class="button button--primary" href="/doc/human-skin-detection-in-color-images.pdf"  target="_blank">See full thesis</a>
-  </div>
-  <Center>
-    <p class="col col--8 text--center margin-top--lg">
-    The purpose of the thesis is to present a review of the <b>human
-    skin detection</b> datasets and approaches of the state of the
-    art, and then perform a comparative in-depth analysis of the
-    most relevant methods on different databases.
-    </p>
-  </Center>
-</div>
+<Introduction />
 
 
 
 <!-- TODO: change page title!! TODO: container better layout -->
 
-
-<div class="margin-vert--lg">
-  <Center>
-    <ReactCompareSlider
-      itemOne={<ReactCompareSliderImage src="/img/skin_det_ori3.jpg" alt="The original image: a three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background." title='Girl from Pratheepan dataset' />}
-      itemTwo={<ReactCompareSliderImage src="/img/skin_det_red3.png" alt="Detected skin pixels: the skin regions are now completely red as the ground truth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." title='Skin pixels overlayed onto the original image' />}
-      style={{
-      display: "flex",
-      width: "450px",
-      maxWidth: "90vw",
-      height: "auto"
-      }}
-    />
-  </Center>
-</div>
 
 
 <p>

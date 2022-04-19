@@ -1,1 +1,8 @@
+export { Tooltip } from './utils'
 export { Introduction, MethodologicalApproach } from './Introduction'
+export { Taxonomy } from './Taxonomy'
+export { Approaches, Thresholding, Statistical, UNet } from './Approaches'
+export { Datasets } from './Datasets'
+export { Results } from './Results'
+export { Conclusion } from './Conclusion'
+export { Cite, Bibliography } from './Bibliography_js'

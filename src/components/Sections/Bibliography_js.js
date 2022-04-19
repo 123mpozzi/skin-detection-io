@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-// todo package?
+// todo package? Read .bibtex file
 
 // let tagCount = 1;
 

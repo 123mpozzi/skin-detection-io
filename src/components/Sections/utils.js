@@ -26,7 +26,7 @@ export const Tooltip = ({ children, id }) => (
 
 export const Section = ({children, size}) => {
   if (size == false) {
-    size = 'xl';
+    size = 'xl'; // default size is 'xl'
   }
   let classStr = 'margin-bottom--'.concat(size);
 

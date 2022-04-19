@@ -113,3 +113,18 @@ table.stable tr {
   color: #D4D4D4;
 }
 
+
+/* Swappable Div in Dataset Section */
+#dataset-desc {
+  min-height: 430px;
+}
+@media only screen and (min-width: 350px) {
+  #dataset-desc {
+    min-height: 340px;
+  }
+}
+@media only screen and (min-width: 700px) {
+  #dataset-desc {
+    min-height: 230px;
+  }
+}

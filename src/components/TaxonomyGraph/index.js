@@ -125,7 +125,7 @@ const ClickBlock = ({ id, href, text }) => {
 }
 
 
-export default function Taxonomy() {
+export default function TaxonomyGraph() {
   return (
     <div>
       <ArcherContainer strokeColor='black' >

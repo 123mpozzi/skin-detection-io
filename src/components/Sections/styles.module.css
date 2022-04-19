@@ -15,9 +15,15 @@ p {
   text-decoration-thickness: 0.23rem;
   text-underline-position: under;
 }
+.nobold {
+  font-weight: normal
+}
+.spacedList > li {
+  margin: 10px 0
+}
 
 
-/* Intro */
+/* Introduction > Intro */
 .mySubtitle {
   display: flex;
   flex-wrap: wrap;
@@ -27,18 +33,91 @@ p {
 }
 
 
-/* Applications */
+/* Introduction > Applications */
 .wrapList {
   display: flex;
   place-content: center;
 }
+@media only screen and (max-width: 450px) and (min-width: 375px) {
+  div.wrapList {
+    display: block;
+  }
+
+  div.wrapList > ul {
+    display: flex;
+    flex-flow: column wrap;
+    padding-inline-start: 0px;
+    max-height: 20vh;
+    align-content: space-between;
+    max-width: 300px;
+  }
+}
 
 
-/* Media Queries */
+/* Introduction > Limitations */
 @media only screen and (max-width: 1000px) {
   .reverseRow {
     flex-direction: column-reverse;
   }
+}
+
+
+/* Taxonomy */
+.myhide,
+.myhide > *,
+.myhide > * > *,
+.myhide > * > * > * {
+  opacity: 0;
+  left: -100%;
+  height: 0;
+  margin: 0;
+  display: none;
+}
+
+
+/* Approaches */
+.octocatTitle {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.octocat > a > img {
+  max-height: calc(var(--ifm-h2-font-size) *2);
+}
+
+
+/* Approaches > Statistical*/
+.twoImagesContainer {
+  width: 100%;
+  /*height: 80px; /* height given for illustration */
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  justify-content: center;
+}
+.twoImagesContainer > * {
+  max-width: 50%;
+  padding: 0 0.5rem 0 0.5rem;
+  max-height: 250px;
+}
+
+
+/* Approaches > U-Net */
+.threeImagesContainer {
+  width: 100%;
+  /*height: 80px; /* height given for illustration */
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  justify-content: space-between;
+}
+.threeImagesContainer > * {
+  max-width: 33%;
+}
+.smallPadding * {
+  padding: 0 0.2rem 0.4rem 0.2rem
 }
 
 

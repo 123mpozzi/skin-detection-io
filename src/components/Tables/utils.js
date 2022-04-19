@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 
@@ -29,25 +28,6 @@ export const metrics = {
   dprs: <em>D<sub>prs</sub></em>,
 };
 
-export const Tooltip = ({ children, id }) => (
-  <ReactTooltip
-    id={id}
-    place="top"
-    effect="solid"
-    border
-    borderColor="var(--ifm-color-primary)"
-    overridePosition = {({ left, top }, currentEvent, currentTarget, node) => {
-      const d = document.documentElement;
-      left = Math.min(d.clientWidth - node.clientWidth, left);
-      top = Math.min(d.clientHeight - node.clientHeight, top);
-      left = Math.max(0, left);
-      top = Math.max(0, top);
-      return { top, left }
-    }}
-  >
-    {children}
-  </ReactTooltip>
-)
 
 /**
  * Change background color of the cells matching the given class

@@ -3,25 +3,11 @@ title: Human Skin Detection in Color Images
 description: Skin detection is the process of discriminating skin and non-skin pixels in an arbitrary image and represents an intermediate step in several image processing tasks, such as facial analysis and biomedical segmentation. Different approaches have been presented in the literature, but a comparison is diffcult to perform due to multiple datasets and varying performance measurements. In this work, the datasets and the state-of-the-art approaches are reviewed and categorized using a new proposed taxonomy. Three different representative skin detector methods of the state of the art are selected and thoroughly analyzed. This approaches are then evaluated on three different state of the art datasets and skin tones sub-datasets using multiple metrics. The evaluation is performed on single and cross dataset scenario to highlight key differences between methods, reporting also the inference time. Finally, the results are organized into multiple tables, using the related figures as an assistance tool to support the discussion. Experimental results demonstrate the strength and weaknesses of each approach, and the need to involve multiple metrics for a fair assessment of the method’s aspects.
 ---
 
-import Taxonomy from '@site/src/components/Taxonomy';
-import { Introduction, MethodologicalApproach } from '@site/src/components/Sections';
-import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes, Tooltip } from '@site/src/components/Tables';
+import { Tooltip, Introduction, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
+import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
 import clsx from 'clsx';
 
 
-export const Center = ({children}) => (
-  <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-  }}>
-    {children}
-  </div>
-)
-
-export const Caption = ({children}) => (
-  <p class="text--center" style={{color: 'var(--ifm-color-gray-600)'}}>{children}</p>
-)
 
 export const section = "margin-bottom--xl"
 
@@ -45,408 +31,57 @@ export const section = "margin-bottom--xl"
 
 <!-- TODO: change page title!! TODO: container better layout -->
 
-
+## Taxonomy
 
 <!-- TODO: cite thresholding approach ? -->
 <div class="margin-bottom--md" >
-
-  ## Taxonomy
-
-  <p>
-  Skin detection is a <b>binary classification problem</b>: the pixels of an image must be divided between skin and non-skin classes.
-  </p>
-  <p>
-  One of several ways to categorize methods is to group them according to how the pixel classification is done.
-  </p>
-
-  <div>
-    <Taxonomy />
-  </div>
-  <div class="row">
-    <div class="col col--8 col--offset-2">
-      <div id="taxonomy-thresholding" class="myhide" >
-        <p>
-        <b>Thresholding</b> approaches use <em>plain rules</em> to classify each pixel as either skin or non-skin. An example is the following.<br />
-        A given (Y,Cb,Cr) pixel is a skin pixel if 133&lt;=Cr&lt;=173 and 77&lt;=Cb&lt;=127
-        </p>
-      </div>
-      <div id="taxonomy-fuzzylogic" class="myhide" >
-        <p>
-        <b>Fuzzy logic</b> approaches use a <em>set of rules</em> to calculate a combined truth value between 0 and 1. The truth value drives the classification. 
-        </p>
-      </div>
-      <div id="taxonomy-deeplearning" class="myhide" >
-        <p>
-        <b>Deep learning</b> approaches use training data to create a <em>neural network model</em> which is then used to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-statistical" class="myhide" >
-        <p>
-        <b>Statistical</b> approaches use training data to create a <em>statistical model</em> which is then used alongside probability calculus to perform classification.
-        </p>
-      </div>
-      <div id="taxonomy-ensemble" class="myhide" >
-        <p>
-        <b>Ensemble</b> approaches use the classifications from different <em>independent</em> machine learning <em>models</em> trained on the same data as votes for determining the best
-        classification.
-        </p>
-      </div>
-      <div id="taxonomy-hybrid" class="myhide" >
-        <p>
-        <b>Hybrid</b> approaches make use of different classification techniques that <em>work together</em> to perform the final classification.
-        </p>
-      </div>
-    </div>
-  </div>
+  <Taxonomy />
 </div>
 
+
+## Investigated Methods
 
 <div class={section} >
-
-  ## Methods Selection
-
-  <p>
-  <em>Thresholding</em>, <em>Statistical</em>, and <em>Deep Learning</em> have been the chosen approaches.<br />
-  The first to demonstrate whether <em>simple rules</em> can achieve powerful results; and the latter two to compare how differently the models behave and generalize, and whether the capabilities of a CNN to <em>extract semantic features</em> can give an advantage.
-  </p>
+  <Approaches />
 </div>
 
+### Dynamic Thresholding
 
 <div class={section} >
-
-  ### Dynamic Thresholding
-
-  <div class="octocat-title">
-    <h2>Dynamic Thresholding</h2>
-    <div class="invert octocat">
-      <a href="https://github.com/123mpozzi/nbrancati">
-        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
-      </a>
-    </div>
-  </div>
-
-  <div class="row margin-top--lg">
-    <div class="col col--6">
-      <Center>
-        <div>
-          <h3 class="no-bold margin-left--md">Algorithm Overview</h3>
-          <ol class="spacing">
-            <li>Input image RGB to YCbCr</li>
-            <li>Cr<sub>max</sub> Cb<sub>min</sub> computation</li>
-            <li>Pixel-wise computation of the correlation rules parameters</li>
-            <li>Pixel-wise correlation rules check</li>
-          </ol>
-        </div>
-      </Center>
-    </div>
-    <div class="col col--6">
-      <Center>
-        <div class="invert">
-          <img src="/img/trapezia_params.png" style={{width: "100%", maxWidth: "450px"}} alt='Visualization of how some parameters are computed with the trapezia to provide a better context to the following paragraphs.' title='Computation of the correlation rules parameters' />
-          <Caption>Brancati et al. 2017 <a href="#nbrancati">[4]</a></Caption>
-        </div>
-      </Center>
-    </div>
-  </div>
-  <p>
-  The skin pixels clusters assume a trapezoidal shape in the YCb and YCr color subspaces. Moreover, the shape and size of the trapezium vary according to many factors, such as the illumination conditions. In high illumination conditions, the base of the trapezium results larger.
-  </p>
-  <p>
-  Besides, the chrominance components of a skin pixel P with coordinates (P<sub>Y</sub>, P<sub>Cb</sub>, P<sub>Cr</sub>) in the YCbCr space exhibit the following behavior: the further is the (P<sub>Y</sub>, P<sub>Cr</sub>) point from the longer base of the trapezium in the YCr subspace, the further is the (P<sub>Y</sub>, P<sub>Cb</sub>) point from the longer base of the trapezium in the YCb subspace, and vice versa.
-  </p>
-  <p>
-  The aforementioned observations are the base of the method: it tries to define image-specific trapeziums in the YCb and YCr color subspaces and then verifies that the correlation rules between the two subspaces reflect the inversely proportional behavior of the chrominance components.
-  </p>
+  <Thresholding />
 </div>
 
+### Statistical
 
 <div class={section} >
+  <Statistical />
+</div>
 
-  ### Statistical
+### U-Net
 
-  <div class="octocat-title">
-    <h2>Statistical</h2>
-    <div class="invert octocat">
-      <a href="https://github.com/123mpozzi/skin-statistical">
-        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
-      </a>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col col-12">
-      <div>
-        <div class="im-container50 margin-vert--md">
-          <img src="/img/skin_det_ori3.jpg" alt='A three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background.' title='Girl from Pratheepan dataset' />
-          <img src="/img/3d_hist.png" alt='The resulting 3D histogram from the image featuring the girl with the orange background: each pixel is taken from the original image and stored at the coordinates [R,G,B] of the histogram. The visualization of the resulting three-dimensional histogram features some accumulation points which may indicate some interesting features to extract from the image. For example the plain orange background can easily be identified as it represents lot of pixels with low variance.' title='The accumulation points may indicate a feature to extract' />
-        </div>
-        <Center>
-          <Caption>Example of an image's 3D Histogram</Caption>
-        </Center>
-      </div>
-    </div>
-  </div>
-  <div class="row margin-top--md">
-    <div class="col col--6">
-      <Center>
-        <div>
-          <h3 class="no-bold margin-left--md">Train</h3>
-          <ol class="spacing margin-bottom--lg">
-            <li>Initialize the skin and non-skin 3D histograms</li>
-            <li>Pick (image, mask) from the training set</li>
-            <li>Loop every RGB pixel from image</li>
-            <li>By checking its mask, the pixel its either skin or non-skin. Add +1 to the relative histogram count at coordinates [r,g,b]</li>
-            <li>Return to step 2 until there are images</li>
-          </ol>
-        </div>
-      </Center>
-    </div>
-    <div class="col col--6">
-      <Center>
-        <div>
-          <h3 class="no-bold margin-left--md">Predict</h3>
-          <ol class="spacing margin-bottom--lg">
-            <li>Define classifying threshold Θ</li>
-            <li>Loop every RGB pixel from input image</li>
-            <li>Calculate RGB probability of being skin</li>
-            <li>If skin probability > Θ, it is classified as skin</li>
-          </ol>
-        </div>
-      </Center>
-    </div>
-  </div>
-  <p>
-  The data is modeled with two 3D histograms representing the probabilities of skin and non-skin classes, and classification is performed via probability calculus by measuring the probability <i>P</i> of each <i>rgb</i> pixel to belong to the <i>skin</i> class:
-  </p>
-  <Center>
-    <div class="invert">
-      <img class="svg" src="/img/probability.svg" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} alt="Probability function; The probability of each RGB pixel to belong to the SKIN class is: the pixel count contained in bin RGB of the SKIN histogram divided by parenthesis the pixel count contained in bin RGB of the SKIN histogram plus the equivalent count from the non-skin histogram closed parenthesis." title='Probability of "rgb" to be a skin pixel' />
-    </div>
-  </Center>
-  <p>
-  where <i>s[rgb]</i> is the pixel count contained in bin <i>rgb</i> of the skin histogram and <i>n[rgb]</i> is the equivalent count from the non-skin histogram. <br />
-  A particular <i>rgb</i> value is labeled skin if:
-  </p>
-  <Center>
-    <div class="invert">
-      <img class="svg" src="/img/probability_thresh.svg" style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} alt="Having computed the probability, a threshold (represented by Theta) must be surpassed to be classified as a skin pixel." title='"rgb" is a skin pixel if its probability exceeds the threshold' />
-    </div>
-  </Center>
-  <p>
-  where 0 ≤ Θ ≤ 1 is a threshold value that can be adjusted to trade-off between true positives and false positives.
-  </p>
+<div class={section} >
+  <UNet />
 </div>
 
 
-<!--TODO: srcset with only 3 layers on cell for SVG dense -->
-<div class={section}>
+## Datasets
 
-  ### U-Net
-
-  <div class="octocat-title">
-    <h2>U-Net</h2>
-    <div class="invert octocat">
-      <a href="https://github.com/123mpozzi/skinny">
-        <img src='/img/octocat.svg' alt='GitHub logo.' title='See implementation' />
-      </a>
-    </div>
-  </div>
-
-  <div class="row margin-top--lg">
-    <div class="col col--6">
-      <Center>
-        <div>
-          <h3 class="no-bold margin-left--md">Workflow</h3>
-          <ol class="spacing">
-            <li>Pre-process input image: resize (512×512)px, padding</li>
-            <li><em>Extract features</em> in the <b>contracting pathway</b> via convolutions and down-sampling: the spatial information is lost while advanced features are learnt</li>
-            <li>Try to <em>retrieve spatial information</em> through up-sampling in the <b>expansive pathway</b> and direct concatenations of <em>dense blocks</em> coming from the contracting pathway</li>
-            <li>Provide a final classification map</li>
-          </ol>
-        </div>
-      </Center>
-    </div>
-    <div class="col col--6">
-      <Center>
-        <div>
-          <img src="/img/skinny_arch.png" style={{width: "100%", maxWidth: "450px"}} alt='Context image to the paragraphs describing the architecture of Skinny. The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction.' title='Architecture of the "Skinny" network' />
-          <Caption>Tarasiewicz et al. 2020 <a href="#skinny">[5]</a></Caption>
-        </div>
-      </Center>
-    </div>
-  </div>
-  <p>
-  The Skinny network consists of a modified <span class='underline-dots' data-tip='The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction' data-for="tip-unet">U-Net</span> incorporating dense blocks and inception modules to benefit from a wider spatial context.
-  </p>
-  <Tooltip id="tip-unet">
-    <p style={{maxWidth: 'min(80vw, 500px)'}}>
-    The network is called "U-Net" because of its shape: there is a <b>contracting path</b> which tries to extract increasingly complex features as it goes deeper, and an <b>expanding path</b> which tries to retreive the lost spatial information during the feature extraction
-    </p>
-  </Tooltip>
-  <p>
-  An additional deep level is appended to the original U-Net model, to better capture large-scale contextual features in the deepest part of the network.
-  The features extracted in the contracting path propagate to the corresponding expansive levels through the dense blocks.
-  </p>
-  <p>
-  The original U-Net convolutional layers are replaced with the inception modules: before each max-pooling layer, in the contracting path, and after concatenating features, in the expanding path.
-  Thanks to these architectural choices, Skinny benefits from a wider pixel context.
-  </p>
-  <div class="col col--10 col--offset-1 margin-top--lg">
-    <div>
-      <div class="im-container padding-small" >
-        <img src="/img/inception1.png" class="three-cols" alt='A face shot of a man. The face covers almost all of the image, hence it may need bigger convolution sizes to extract complex features.' title='The saliency content is big' />
-        <img src="/img/inception2.png" class="three-cols" alt='A half body shot of a person. Depending on the dataset, an image like this may be common, hence convolution sizes may be already good for it.' title='The saliency content is medium sized' />
-        <img src="/img/inception3.png" class="three-cols" alt='An image featuring two people fully. The skin pixel regions are small, hence convolution sizes can be reduced.' title='The saliency content is small' />
-      </div>
-      <p>
-      The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
-      </p>
-    </div>
-    <div class="invert">
-      <img src="/img/dense.svg" style={{padding: "0 0 0.4rem 0"}} alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
-    </div>
-    <p>
-    <b>Dense block</b> layers are connected in a way that each one receives feature maps from all preceding layers and passes its feature maps to all subsequent layers.
-    </p>
-  </div>
+<div class={section} >
+  <Datasets />
 </div>
 
-
-<div class='container' >
-
-  ## Datasets
-
-  <p>
-  Image databases are essential for developing skin detectors. Over the years, new databases keep getting published, but there are still some <b>limitations</b> on their reliability:
-  </p>
-  <div style={{display: 'flex', justifyContent: 'center'}}>
-    <ul>
-      <li class="underline-dots" data-tip="May cause some metrics to give overoptimistic estimations [36]" data-for="tip-unbalance" >
-      Unbalanced classes
-      <Tooltip id="tip-unbalance">
-        May cause some metrics to give overoptimistic estimations <a href="#mcc">[6]</a>
-      </Tooltip>
-      </li>
-      <li>Number of images</li>
-      <li>Image quality</li>
-      <li>Ground truth quality</li>
-      <li class="underline-dots" data-tip="The following data may be extremely useful in some applications: lighting conditions, background complexity, number of subjects, featured skin tones, indoor or outdoor scenery" data-for="tip-datalack" >
-      Lack of additional data
-      <Tooltip id="tip-datalack" >
-        This kind of data may be extremely useful in some applications:
-        <ul>
-          <li>Lighting conditions</li>
-          <li>Background complexity</li>
-          <li>Number of subjects</li>
-          <li>Featured skin tones</li>
-          <li>Indoor or outdoor scenery</li>
-        </ul>
-      </Tooltip>
-      </li>
-    </ul>
-  </div>
-  <p class='margin-top--md' style={{textAlign: 'center'}} >
-  Here are the <b class='underline-dots' data-tip="Only public datasets featuring images and including ground truths are considered" data-for="tip-datasets">common datasets</b> used in Skin Detection.
-  </p>
-  <Tooltip id="tip-datasets" >
-    Only public datasets featuring images and including ground truths are considered
-  </Tooltip>
-
-  <div>
-    <DatasetOverview />
-    <div id="dataset-desc" class='col col--8 col--offset-2' >
-      <p>
-      <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col col--8 col--offset-2">
-      <div id="dataset-tdsd" class="myhide" >
-        <p>
-        <b>TDSD</b> <a href="#tdsd">[7]</a> is the acronym of Test Database for Skin Detection, which is a database featuring 555 full-body skin images. Its ground truths are segmentation masks. It is also referred to as IBTD.
-        </p>
-      </div>
-      <div id="dataset-ecu" class="myhide" >
-        <p>
-        <b>ECU</b> <a href="#ecu">[8]</a> is a dataset created at the Edith Cowan University and represents the largest analyzed dataset, consisting of 3998 pictures. It has been categorized as a full-body dataset, but most of its content is half-body shots. It can also be referred to as Face and Skin Detection Database (FSD).
-        </p>
-      </div>
-      <div id="dataset-schmugge" class="myhide" >
-        <p>
-        <b>Schmugge</b> <a href="#schmugge">[9]</a> is a facial dataset that includes 845 images taken from different databases. It provides several labeled information about each image and ternary ground truths.
-        </p>
-      </div>
-      <div id="dataset-pratheepan" class="myhide" >
-        <p>
-        <b>Pratheepan</b> <a href="#pratheepan">[10]</a> is composed of 78 pictures randomly sampled from the web, precisely annotated. It stores the pictures containing a single subject with simple backgrounds and images containing multiple subjects with complex backgrounds in different folders.
-        </p>
-      </div>
-      <div id="dataset-vpu" class="myhide" >
-        <p>
-        <b>VPU</b> <a href="#vpu">[11]</a>, as for Video Processing &amp; Understanding Lab, consists of 285 images taken from five different public datasets for human activity recognition. The size of the pictures is constant between the images of the same origin. The dataset provides native train and test splits. It can also be referred to as VDM.
-        </p>
-      </div>
-      <div id="dataset-sfa" class="myhide" >
-        <p>
-        <b>SFA</b> <a href="#sfa">[12]</a> is the acronym of Skin of FERET and AR Database and consists of 1118 semipassport pictures with a very plain background, and skin and non-skin samples (ignored in this work). Its ground truths are segmentation masks.
-        </p>
-      </div>
-      <div id="dataset-hgr" class="myhide" >
-        <p>
-        <b>HGR</b> <a href="#hgr">[13]</a> is a Hand Gesture Recognition Database that organizes 1558 hand gesture images in three sub-datasets. Two sub-datasets include size-fixed very high-resolution images together with downscaled alternatives (used in this work).
-        </p>
-      </div>
-      <div id="dataset-abd" class="myhide" >
-        <p>
-        <b>abd-skin</b> <a href="#abd">[14]</a> is a database composed of 1400 size-fixed abdominal pictures accurately selected to represent different ethnic groups and body mass indices. It has native test and train splits.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- (highligts chosen datasets (different color in table? Asterisks?)) -->
 
 
+## Results
 
 <div class={section} >
-
-  ## Results
-
-  <Tooltip id="tip-single">
-    <p style={{maxWidth: 'min(80vw, 500px)', zIndex: '99'}}>
-    For example, with ECU as the dataset, it means that the skin detector is eventually trained using the training set of ECU, and then tested on the test set of ECU.
-    </p>
-  </Tooltip>
-
-  <p>In <b class='underline-dots' data-tip="For example, with ECU as the dataset, it means that the skin detector is trained using the training set of ECU, and then tested on the test set of ECU" data-for="tip-single">single evaluations</b>
-  , methods are eventually trained on the training set (in the case of trainable methods), and then predictions are performed on the test set.
-  </p>
-
-  <Tooltip id="tip-cross">
-    <p style={{maxWidth: 'min(80vw, 500px)', zIndex: '99'}}>
-    For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset.
-    </p>
-  </Tooltip>
-
-  <p>In <b class='underline-dots' data-tip="For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset." data-for="tip-cross">cross evaluations</b>
-  , only trainable approaches are analyzed.
-  Detectors are trained on the training set, and then predictions are performed on all the images of every other datasets.<br />
-  The expression <em>HGR on ECU</em> describes the situation in which the evaluation is performed by using HGR as the training set and ECU as the test set.
-  </p>
-
-  <p>
-  Initially, the metrics are measured for all the instances, then the average and population standard deviation for each metric are computed.
-  </p>
+  <Results />
 </div>
 
-
-
-
-<div class='margin-bottom--xl' >
+<div class={section} >
 
   ### Single Dataset
   
@@ -474,53 +109,14 @@ export const section = "margin-bottom--xl"
 
 
 <div class={section} >
-
-  ## Conclusion
-
-  <div class="row">
-    <div class="col col--6">
-      <h2>Conclusion</h2>
-      <ul>
-        <li><em>Semantic features</em> extraction got <b>CNN</b> an edge</li>
-        <li><b>Rule-based</b> method proved to be <em>really fast</em></li>
-        <li><b>Statistical</b> method was prone to <em>false positives</em></li>
-        <li>Involving <b>multiple metrics</b> debunked <em>over-optimistic results</em></li>
-      </ul>
-    </div>
-    <div class="col col--6">
-      <h2>Future Work</h2>
-      <ul>
-        <li>Better datasets</li>
-        <li>Vision transformers</li>
-        <li>U-Nets on mobile devices <a href="#ignatov">[15]</a></li>
-      </ul>
-    </div>
-  </div>
+  <Conclusion />
 </div>
 
 
+## Bibliography
 
 <div class={section} >
-
-  ## Bibliography
-
-  <ol style={{textAlign: 'justify'}}>
-    <li id="ramirez">Ramirez, G. A., Fuentes, O., Crites Jr, S. L., Jimenez, M., &amp; Ordonez, J. (2014). Color analysis of facial skin: Detection of emotional state. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (pp. 468-473).</li>
-    <li id="do">Do, T. T., Zhou, Y., Zheng, H., Cheung, N. M., &amp; Koh, D. (2014, August). Early melanoma diagnosis with mobile imaging. In 2014 36th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (pp. 6752-6757). IEEE.</li>
-    <li id="low">Low, C. C., Ong, L. Y., Koo, V. C., &amp; Leow, M. C. (2020). Multi-audience tracking with RGB-D camera on digital signage. Heliyon, 6(9), e05107.</li>
-    <li id="nbrancati">Brancati, N., De Pietro, G., Frucci, M., &amp; Gallo, L. (2017). Human skin detection through correlation rules between the YCb and YCr subspaces based on dynamic color clustering. Computer Vision and Image Understanding, 155, 33-42.</li>
-    <li id="skinny">Tarasiewicz, T., Nalepa, J., &amp; Kawulok, M. (2020, October). Skinny: A lightweight U-net for skin detection and segmentation. In 2020 IEEE International Conference on Image Processing (ICIP) (pp. 2386-2390). IEEE.</li>
-    <li id="mcc">Chicco, D., &amp; Jurman, G. (2020). The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. BMC genomics, 21(1), 1-13.</li>
-    <li id="tdsd">Zhu, Q., Wu, C. T., Cheng, K. T., &amp; Wu, Y. L. (2004, October). An adaptive skin model and its application to objectionable image filtering. In Proceedings of the 12th annual ACM international conference on Multimedia (pp. 56-63).</li>
-    <li id="ecu">Phung, S. L., Bouzerdoum, A., &amp; Chai, D. (2005). Skin segmentation using color pixel classification: analysis and comparison. IEEE transactions on pattern analysis and machine intelligence, 27(1), 148-154.</li>
-    <li id="schmugge">Schmugge, S. J., Jayaram, S., Shin, M. C., &amp; Tsap, L. V. (2007). Objective evaluation of approaches of skin detection using ROC analysis. Computer vision and image understanding, 108(1-2), 41-51.</li>
-    <li id="pratheepan">Tan, W. R., Chan, C. S., Yogarajah, P., &amp; Condell, J. (2011). A fusion approach for efficient human skin detection. IEEE Transactions on Industrial Informatics, 8(1), 138-147.</li>
-    <li id="vpu">Sanmiguel, J. C., &amp; Suja, S. (2013). Skin detection by dual maximization of detectors agreement for video monitoring. Pattern Recognition Letters, 34(16), 2102-2109.</li>
-    <li id="sfa">Casati, J. P. B., Moraes, D. R., &amp; Rodrigues, E. L. L. (2013, June). SFA: A human skin image database based on FERET and AR facial images. In IX workshop de Visao Computational, Rio de Janeiro.</li>
-    <li id="hgr">Kawulok, M., Kawulok, J., Nalepa, J., &amp; Smolka, B. (2014). Self-adaptive algorithm for segmenting skin regions. EURASIP Journal on Advances in Signal Processing, 2014(1), 1-22.</li>
-    <li id="abd">Topiwala, A., Al-Zogbi, L., Fleiter, T., &amp; Krieger, A. (2019, October). Adaptation and evaluation of deep learning techniques for skin segmentation on novel abdominal dataset. In 2019 IEEE 19th International Conference on Bioinformatics and Bioengineering (BIBE) (pp. 752-759). IEEE.</li>
-    <li id="ignatov">Ignatov, A., Byeoung-Su, K., Timofte, R., &amp; Pouget, A. (2021). Fast camera image denoising on mobile gpus with deep learning, mobile ai 2021 challenge: Report. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 2515-2524).</li>
-  </ol>
+  <Bibliography />
 </div>
 
 

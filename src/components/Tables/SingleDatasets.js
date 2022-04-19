@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tooltip, notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
+import { Tooltip } from '../Sections';
+import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
 
 

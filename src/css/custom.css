@@ -14,7 +14,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
-  /* Easier text color on eyes */
+  /* Easier white on eyes */
   --ifm-color-gray-100: #D4D4D4;
 }
 
@@ -43,111 +43,12 @@
   }
 }
 
-
 /*
 @media (min-resolution: 120dpi) {
   .table-of-contents__link {
     font-size: 0.7rem;
   }
 }*/
-
-
-[data-theme='dark'] .invert > img, [data-theme='dark'] .invert > * > img {
-  filter: invert(100%);
-}
-
-
-ol.spacing > li, ul.spacing > li {
-  margin: 10px 0
-}
-
-p {
-  text-align: justify
-}
-
-.no-bold {
-  font-weight: normal
-}
-
-.padding-small * {
-  padding: 0 0.2rem 0.4rem 0.2rem
-}
-
-.im-container {
-  width: 100%;
-  /*height: 80px; /* height given for illustration */
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  justify-content: space-between;
-}
-
-.im-container > * {
-  max-width: 33%;
-}
-
-.im-container50 {
-  width: 100%;
-  /*height: 80px; /* height given for illustration */
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  justify-content: center;
-}
-
-.im-container50 > * {
-  max-width: 50%;
-  padding: 0 0.5rem 0 0.5rem;
-  max-height: 250px;
-}
-
-.msubtitle {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-evenly;
-}
-
-.octocat-title {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-}
-.octocat > a > img {
-  max-height: calc(var(--ifm-h2-font-size) *2);
-}
-
-.myhide,
-.myhide > *,
-.myhide > * > *,
-.myhide > * > * > * {
-  opacity: 0;
-  left: -100%;
-  height: 0;
-  margin: 0;
-  display: none;
-}
-
-
-.list-wrap {
-  display: flex;
-  place-content: center;
-}
-
-.list-padding {
-  padding-left: var(--ifm-list-left-padding);
-}
-
-.underline-dots {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-color: var(--ifm-color-primary);
-  text-decoration-thickness: 0.23rem;
-  text-underline-position: under;
-}
 
 
 /* MD Chapters Manipulation */
@@ -170,43 +71,3 @@ p {
 #methodological-approach {
   font-size: var(--ifm-h2-font-size);
 }
-
-
-/* Swappable Div in Dataset Section */
-#dataset-desc {
-  min-height: 430px;
-}
-@media only screen and (min-width: 350px) {
-  #dataset-desc {
-    min-height: 340px;
-  }
-}
-@media only screen and (min-width: 700px) {
-  #dataset-desc {
-    min-height: 230px;
-  }
-}
-
-
-/* Media Queries */
-@media only screen and (max-width: 450px) and (min-width: 375px) {
-  div.list-wrap {
-    display: block;
-  }
-
-  div.list-wrap > ul {
-    display: flex;
-    flex-flow: column wrap;
-    padding-inline-start: 0px;
-    max-height: 20vh;
-    align-content: space-between;
-    max-width: 300px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .reverse-row {
-    flex-direction: column-reverse;
-  }
-}
-

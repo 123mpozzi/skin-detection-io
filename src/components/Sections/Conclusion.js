@@ -1,6 +1,4 @@
 import React from 'react';
-import styles from './styles.module.css';
-import { Section, Tooltip } from './utils'
 import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
 

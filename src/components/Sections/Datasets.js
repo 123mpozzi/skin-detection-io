@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Tooltip } from './utils'
 import { Cite } from './Bibliography_js'
-import { DatasetOverview } from '../Tables';
 import clsx from 'clsx';
 
 
@@ -58,7 +57,6 @@ export const Datasets = () => {
   return (
     <div >
       <Intro />
-      <DatasetOverview />
     </div>
   );
 }

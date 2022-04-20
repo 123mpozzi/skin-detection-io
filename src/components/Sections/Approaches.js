@@ -1,75 +1,26 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { Section, Center, Caption, Tooltip } from './utils'
+import { href } from './constants';
+import { Center, Caption, Tooltip } from './utils'
 import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
 
 
-let href = {
-  url: {
-    implementation_thresholding: "https://github.com/123mpozzi/nbrancati",
-    implementation_statistical: "https://github.com/123mpozzi/skin-statistical",
-    implementation_unet: "https://github.com/123mpozzi/skinny",
-  },
-  img: {
-    octocat: "/img/octocat.svg",
-    thresh_trapeziaparams: "/img/trapezia_params.png",
-    stat_histogram_ori: "/img/skin_det_ori3.jpg",
-    stat_histogram_res: "/img/3d_hist.png",
-    stat_math_probability: "/img/probability.svg",
-    stat_math_threshold: "/img/probability_thresh.svg",
-    unet_architecture: "/img/skinny_arch.png",
-    unet_inception1: "/img/inception1.png",
-    unet_inception2: "/img/inception2.png",
-    unet_inception3: "/img/inception3.png",
-    unet_denseblock: "/img/dense.svg",
-  }
-}
-
-/**
- * Clickable Octocat logo pointing to the given string
- */
-const Octocat = ({ repo }) => {
-  return (<div className={[styles.invert, styles.octocat].join(" ")}>
-      <a href={repo}>
-        <img src={href.img.octocat}
-          alt='GitHub logo.'
-          title='Go to implementation' />
-      </a>
-    </div>
-  );
-}
-
-/**
- * Title with Octocat link
- * @param title Title to show in HTML page
- * @param repo Link to the GitHub repository
- */
-const OctocatTitle = ({ title, repo }) => {
-  return (<div className={styles.octocatTitle}>
-      <h2>{title}</h2>
-      <Octocat repo={repo} />
-    </div>
-  );
-}
-
-
 const Intro = () => {
   return (
-    <Section>
+    <div>
       <p>
       <em>Thresholding</em>, <em>Statistical</em>, and <em>Deep Learning</em> have been the chosen approaches.<br />
       The first to demonstrate whether <em>simple rules</em> can achieve powerful results; and the latter two to compare how differently the models behave and generalize, and whether the capabilities of a CNN to <em>extract semantic features</em> can give an advantage.
       </p>
-    </Section>
+    </div>
   );
 }
 
 
 export const Thresholding = () => {
   return (
-    <Section>
-      <OctocatTitle title="Dynamic Thresholding" repo={href.url.implementation_thresholding} />
+    <div>
       <div className={clsx("row margin-top--lg")} >
         <div className={clsx("col col--6")} >
           <Center>
@@ -105,15 +56,14 @@ export const Thresholding = () => {
       <p>
       The aforementioned observations are the base of the method: it tries to define image-specific trapeziums in the YCb and YCr color subspaces and then verifies that the correlation rules between the two subspaces reflect the inversely proportional behavior of the chrominance components.
       </p>
-    </Section>
+    </div>
   );
 }
 
 
 export const Statistical = () => {
   return (
-    <Section>
-      <OctocatTitle title="Statistical" repo={href.url.implementation_statistical} />
+    <div>
       <div className={clsx("row")} >
         <div className={clsx("col col-12")} >
           <div>
@@ -186,15 +136,14 @@ export const Statistical = () => {
       <p>
       where 0 ≤ Θ ≤ 1 is a threshold value that can be adjusted to trade-off between true positives and false positives.
       </p>
-    </Section>
+    </div>
   );
 }
 
 
 export const UNet = () => {
   return (
-    <Section>
-      <OctocatTitle title="U-Net" repo={href.url.implementation_unet} />
+    <div>
     <div className={clsx("row margin-top--lg")} >
       <div className={clsx("col col--6")} >
         <Center>
@@ -265,7 +214,7 @@ export const UNet = () => {
       <b>Dense block</b> layers are connected in a way that each one receives feature maps from all preceding layers and passes its feature maps to all subsequent layers.
       </p>
     </div>
-    </Section>
+    </div>
   );
 }
 

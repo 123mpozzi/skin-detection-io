@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import clsx from 'clsx';
+import { containerClassName } from './utils';
 import { ArcherContainer, ArcherElement } from 'react-archer';
 
 const defaultSelected = 'tx3-thresholding'
@@ -250,7 +251,7 @@ export function Taxonomy() {
         </p>
       </div>
       <Graph />
-      <div ref={ref} style={{ height: height, maxHeight: '30vh', overflow: 'auto' }} className={clsx('col col--8 col--offset-2')}  >
+      <div ref={ref} style={{ height: height, maxHeight: '30vh', overflow: 'auto' }} className={containerClassName}  >
         {getContent(selected)}
       </div>
     </div>

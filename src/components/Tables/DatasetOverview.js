@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
-import { Tooltip } from '../Sections/utils'
+import { Tooltip, containerClassName } from '../Sections/utils'
 import { Cite } from '../Sections/Bibliography_js'
-import clsx from 'clsx';
 
 /**
  * Swappable content
@@ -165,7 +164,7 @@ export function DatasetOverview() {
           </tbody>
         </table>
       </div>
-      <div ref={ref} style={{height: height, maxHeight: '30vh', overflow: 'auto'}} className={clsx('col col--8 col--offset-2')} >
+      <div ref={ref} style={{height: height, maxHeight: '30vh', overflow: 'auto'}} className={containerClassName} >
         {getContent(selected)}
       </div>
     </div>

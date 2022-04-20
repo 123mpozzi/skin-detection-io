@@ -3,116 +3,128 @@ title: Human Skin Detection in Color Images
 description: Skin detection is the process of discriminating skin and non-skin pixels in an arbitrary image and represents an intermediate step in several image processing tasks, such as facial analysis and biomedical segmentation. Different approaches have been presented in the literature, but a comparison is diffcult to perform due to multiple datasets and varying performance measurements. In this work, the datasets and the state-of-the-art approaches are reviewed and categorized using a new proposed taxonomy. Three different representative skin detector methods of the state of the art are selected and thoroughly analyzed. This approaches are then evaluated on three different state of the art datasets and skin tones sub-datasets using multiple metrics. The evaluation is performed on single and cross dataset scenario to highlight key differences between methods, reporting also the inference time. Finally, the results are organized into multiple tables, using the related figures as an assistance tool to support the discussion. Experimental results demonstrate the strength and weaknesses of each approach, and the need to involve multiple metrics for a fair assessment of the method’s aspects.
 ---
 
-import { Section, Introduction, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
-import { SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
+import { href, Section, Introduction, ImageSlider, Applications, Limitations, MethodologicalApproach, Taxonomy, Approaches, Thresholding, Statistical, UNet, Datasets, Results, Conclusion, Bibliography } from '@site/src/components/Sections';
+import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
 import clsx from 'clsx';
+
 
 <!-- TODO: layout: TOC skips approaches subsections -->
 
+<!-- TODO: change page title!! TODO: container better layout -->
 
-<div className={clsx("container")}>
+<!-- TODO: custom ToC to add Headings without hiding them -->
 
-## Introduction 
 
-<Section >
-  <Introduction />
+
+<Section size='lg' title={{context: toc, text: 'Introduction', level: 2}}>
+  <Introduction titleMargin='md' subtitleMargin='lg' />
 </Section>
 
-### Methodological Approach
+<Section >
+  <ImageSlider textMargin='lg' />
+</Section>
+
+<Section>
+  <Applications />
+</Section>
 
 <Section >
+  <Limitations />
+</Section>
+
+
+
+
+<Section width='10' title={{context: toc, text: 'Methodological Approach', level: 3}}>
   <MethodologicalApproach />
 </Section>
 
 
-<!-- TODO: change page title!! TODO: container better layout -->
-
-## Taxonomy
 
 
-<Section size='md' >
+<Section size='lg' width='10' title={{context: toc, text: 'Taxonomy', level: 2}}>
   <Taxonomy />
 </Section>
 
 
-## Investigated Methods
 
-<Section >
+
+<Section width='10' title={{context: toc, text: 'Investigated Methods', level: 2}}>
   <Approaches />
 </Section>
 
-### Dynamic Thresholding
-
-<Section >
+<Section width='10'
+title={{context: toc, text: 'Dynamic Thresholding', level: 3, repo: href.url.implementation_thresholding}}  >
   <Thresholding />
 </Section>
 
-### Statistical
 
-<Section >
+<Section width='10'
+title={{context: toc, text: 'Statistical', level: 3, repo: href.url.implementation_statistical}}  >
   <Statistical />
-</Section>
+</Section >
 
-### U-Net
 
-<Section >
+<Section width='10'
+title={{context: toc, text: 'U-Net', level: 3, repo: href.url.implementation_unet}} >
   <UNet />
 </Section>
 
 
-## Datasets
 
-<Section >
+
+<Section size='none' width='10' title={{context: toc, text: 'Datasets', level: 2}} >
   <Datasets />
 </Section>
 
-
-
-
-## Results
-
 <Section >
+  <DatasetOverview />
+</Section>
+
+
+
+
+<Section width='10' title={{context: toc, text: 'Results', level: 2}}>
   <Results />
 </Section>
 
-<Section >
 
-  ### Single Dataset
-  
+<Section title={{context: toc, text: 'Single Dataset', level: 3}}>
   <SingleDatasets />
+</Section>
 
-  ### Cross Dataset
-  
+
+<Section title={{context: toc, text: 'Cross Dataset', level: 3}}>
   <CrossDatasets />
+</Section>
 
-  ### Single Skin Tones
 
+<Section  title={{context: toc, text: 'Single Skin Tones', level: 3}}>
   <SingleSkintones />
+</Section>
 
-  ### Cross Skin Tones
 
+<Section title={{context: toc, text: 'Cross Skin Tones', level: 3}}>
   <CrossSkintones />
+</Section>
 
-  ### Inference Times
 
-  <p>
-  Inference times were measured on a <em>i7-4770k CPU</em> for each algorithm on the same set of images, with multiple observations performed.
-  </p>
+<Section title={{context: toc, text: 'Inference Times', level: 3}}>
   <InferenceTimes />
 </Section>
 
 
-<Section >
+
+
+<Section title={{context: toc, text: 'Conclusion', level: 2}}>
   <Conclusion />
 </Section>
 
 
-## Bibliography
 
-<Section >
+
+<Section title={{context: toc, text: 'Bibliography', level: 2}}>
   <Bibliography />
 </Section>
 
-
-</div>
 

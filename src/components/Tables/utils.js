@@ -6,7 +6,7 @@ let prevBg;
 let flag = false;
 
 
-export const notesWrapperStyle = clsx('col col--12 margin-top--sm margin-bottom--lg ').concat(styles.noteWrapper)
+export const notesWrapperStyle = clsx('col col--12 ').concat(styles.noteWrapper)
 
 export const red = {
   bg: "#c21c1c50",

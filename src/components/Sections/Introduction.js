@@ -1,73 +1,78 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { Section, Center, Caption, Tooltip } from './utils'
+import { Section, Center, Caption, Tooltip, containerClassName } from './utils'
 import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import { href } from './constants';
 
 
-let href = {
-  doc: {
-    thesis: "/doc/human-skin-detection-in-color-images.pdf"
-  },
-  img: {
-    intro_ori: "/img/skin_det_ori3.jpg",
-    intro_skin: "/img/skin_det_red3.png",
-    applications_facial: "/img/applications_facial_analysis.png",
-    applications_ads: "/img/applications_ads.png",
-    applications_biomedical: "/img/applications_biomedical.png",
-    limitations_clay: "/img/clay.png",
-    limitations_wood: "/img/wood.jpg",
-    limitations_lighting1: "/img/lighting_1.jpg",
-    limitations_lighting2: "/img/lighting_2.png",
-    approach: "/img/methodological-approach-vert.svg",
-    approach_horiz: "/img/methodological-approach.svg",
-  },
-}
 
-
-const Intro = () => {
+const Intro = ({titleMargin, subtitleMargin}) => {
+  if (titleMargin === undefined) {
+    titleMargin = 'md';
+  }
+  if (subtitleMargin === undefined) {
+    subtitleMargin = 'lg';
+  }
   return (
-    <Section>
-      <h1 className={styles.centerText}>Human Skin Detection in Color Images</h1>
-      <div className={styles.mySubtitle}>
-        <p className={clsx("hero__subtitle ").concat(styles.centerText)} style={{ color: 'var(--ifm-color-gray-600)' }}>Thesis Overview</p>
-        <a className={clsx("button button--primary")} href={href.doc.thesis} target="_blank">See full thesis</a>
-      </div>
-      <Center>
-        <p className={clsx("col col--8 text--center margin-top--lg")}>
+    <div>
+      <Section size={titleMargin}>
+        <h1 className={styles.centerText}>Human Skin Detection in Color Images</h1>
+      </Section>
+      <Section size={subtitleMargin}>
+        <div className={containerClassName} >
+          <div className={styles.mySubtitle}>
+            <p className={clsx("hero__subtitle ").concat(styles.centerText)} style={{ color: 'var(--ifm-color-gray-600)' }}>Thesis Overview</p>
+            <a className={clsx("button button--primary")} href={href.doc.thesis} target="_blank">See full thesis</a>
+          </div>
+        </div>
+      </Section>
+      <div>
+        <p className={containerClassName}>
           The purpose of the thesis is to present a review of the <b>human skin detection</b> datasets and approaches of the state of the art, and then perform a comparative in-depth analysis of the most relevant methods on different databases.
-    </p>
-      </Center>
-
-    </Section>
+        </p>
+      </div>
+    </div>
   );
 }
 
-const ImageSlider = () => {
+export const ImageSlider = ({textMargin}) => {
+  if (textMargin === undefined) {
+    textMargin = 'lg';
+  }
   return (
-    <Section size='lg'>
-      <Center>
-        <ReactCompareSlider
-          itemOne={<ReactCompareSliderImage src={href.img.intro_ori} 
-          alt="The original image: a three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background." 
-          title='Girl from Pratheepan dataset' />}
-          itemTwo={<ReactCompareSliderImage src={href.img.intro_skin} 
-          alt="Detected skin pixels: the skin regions are now completely red as the ground truth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." 
-          title='Skin pixels overlayed onto the original image' />}
-          style={{
-            display: "flex",
-            width: "450px",
-            maxWidth: "90vw",
-            height: "auto"
-          }}
-        />
-      </Center>
-    </Section>
+    <div>
+      <Section size={textMargin}>
+        <Center>
+          <ReactCompareSlider
+            itemOne={<ReactCompareSliderImage src={href.img.intro_ori} 
+            alt="The original image: a three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background." 
+            title='Girl from Pratheepan dataset' />}
+            itemTwo={<ReactCompareSliderImage src={href.img.intro_skin} 
+            alt="Detected skin pixels: the skin regions are now completely red as the ground truth mask has been overlayed onto the original image using red pixels. Depending on the dataset, the regions countouring the mouth, ears, eyes, and other facial features may or may not represent pixels of skin and are often content of discussion in the academic world." 
+            title='Skin pixels overlayed onto the original image' />}
+            style={{
+              display: "flex",
+              width: "450px",
+              maxWidth: "90vw",
+              height: "auto"
+            }}
+          />
+        </Center>
+      </Section>
+      <div className={containerClassName}>
+          <p>
+            Skin detection is the process of <b>discriminating skin and non-skin pixels</b>. It is
+            quite a challenging process because of the large color diversity that objects and
+            human skin can assume, and scene properties such as lighting and background.
+          </p>
+      </div>
+    </div>
   );
 }
 
-const Applications = () => {
+export const Applications = () => {
   return (
     <div className={clsx("row")}>
       <div className={clsx("col col--4 col--offset-1 margin-top--md")}>
@@ -129,7 +134,7 @@ const Applications = () => {
   );
 }
 
-const Limitations = () => {
+export const Limitations = () => {
   return (
     <div className={clsx("row margin-top--xl ").concat(styles.reverseRow)} >
       <div className={clsx("col col--4 col--offset-2")}>
@@ -184,20 +189,10 @@ export const MethodologicalApproach = () => {
 }
 
 
-export const Introduction = () => {
+export const Introduction = ({titleMargin, subtitleMargin}) => {
   return (
     <div>
-      <Intro />
-      <ImageSlider />
-      <p>
-        Skin detection is the process of <b>discriminating skin and non-skin pixels</b>. It is
-      quite a challenging process because of the large color diversity that objects and
-      human skin can assume, and scene properties such as lighting and background.
-      </p>
-      <Section>
-        <Applications />
-        <Limitations />
-      </Section>
+      <Intro titleMargin={titleMargin} subtitleMargin={subtitleMargin} />
     </div>
   );
 }

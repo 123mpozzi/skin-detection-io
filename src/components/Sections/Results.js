@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { Section, Tooltip } from './utils'
-import { Cite } from './Bibliography_js'
-import { DatasetOverview } from '../Tables';
-import clsx from 'clsx';
+import { Tooltip } from './utils'
 
 
 const Intro = () => {

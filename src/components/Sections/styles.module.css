@@ -29,7 +29,7 @@ p {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: baseline;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 
@@ -164,7 +164,7 @@ p {
 .octocatTitle {
   display: flex;
   flex-flow: row wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
 }

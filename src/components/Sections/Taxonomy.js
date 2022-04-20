@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
-import clsx from 'clsx';
 import { containerClassName } from './utils';
 import { ArcherContainer, ArcherElement } from 'react-archer';
 

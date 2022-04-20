@@ -1,6 +1,6 @@
 import React from 'react';
-import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
-import { href, Section, Caption } from '../Sections';
+import { notesWrapperStyle, Dashed, red, green, blue, purple, HandledItem, metrics } from './utils'
+import { href, Section } from '../Sections';
 import styles from './styles.module.css';
 
 
@@ -18,6 +18,11 @@ const ntSmallSet = {
   cls: 'note-small-set',
   col: blue,
 };
+
+const ntMediumData = {
+  cls: 'note-medium-data',
+  col: purple,
+}
 
 
 export const CrossSkintones = ({ subsectionMargin }) => {
@@ -56,10 +61,10 @@ export const CrossSkintones = ({ subsectionMargin }) => {
               <th scope="row">{method_1}</th>
               <td className={ntSmallSet.cls}>0.7300 ± 0.25</td>
               <td className={[ntDarkLight.cls, ntSmallSet.cls].join(' ')}>0.7262 ± 0.26</td>
-              <td><b>0.8447 ± 0.13</b></td>
-              <td><b>0.8904 ± 0.14</b></td>
-              <td><b>0.7660 ± 0.17</b></td>
-              <td><b>0.9229 ± 0.11</b></td>
+              <td className={ntMediumData.cls}><b>0.8447 ± 0.13</b></td>
+              <td className={ntMediumData.cls}><b>0.8904 ± 0.14</b></td>
+              <td className={ntMediumData.cls}><b>0.7660 ± 0.17</b></td>
+              <td className={ntMediumData.cls}><b>0.9229 ± 0.11</b></td>
             </tr>
             <tr>
               <th scope="row">{method_2}</th>
@@ -148,9 +153,52 @@ export const CrossSkintones = ({ subsectionMargin }) => {
                 {method_2} outperforms {method_1} a pair of times when using the darker skin tones as the training set: it may indicate that, when using a <Dashed color={ntSmallSet.col.text}>smaller training set</Dashed>, {method_2} performs better, as the dark sub-dataset was the smallest one and therefore had to be data-augmented with light transformations. {method_1} also describes more unstable results as the population standard deviation is higher.
               </p>
             </HandledItem>
+            <HandledItem dict={ntMediumData}>
+              <p>
+                Despite LIGHT being the biggest dataset, {method_1} describes the best average score by training on MEDIUM, as the LIGHT on DARK case is far worse than LIGHT on MEDIUM. Representing the midpoint between the colors of darker and lighter skin tones, MEDIUM data allows {method_1} to get <Dashed color={ntMediumData.col.text}>very good predictions even with a small training size</Dashed>.
+              </p>
+            </HandledItem>
             <li>
               <p>
                 As usual, {method_1} outperforms {method_2} in most situations.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
+      <Section width='10'>
+        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} >Significant Outcomes</h2>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <img src={href.img.results_crosstones} 
+                  alt='Context for the following paragraphs.' 
+                  title='Notable outcomes' />
+            <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
+              <span>(a)</span>
+              <span>(b)</span>
+              <span>(c)</span>
+              <span>(d)</span>
+            </div>
+          </div>
+        </div>
+        <p style={{textAlign: 'center'}}>
+        Skin detection results. (a) input image; (b) ground truth; (c) {method_1}; (d) {method_2}
+        </p>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <li>
+              <p>
+              The first two rows are from models trained on DARK. The results of {method_1} are terrible, with a lot of False Positives and False Negatives. {method_2} depicts a lot of False Positives too, but at least gets the skin pixels. The <b>small size of dataset</b> makes it hard for the CNN model to classify correctly.
+              </p>
+            </li>
+            <li>
+              <p>
+              The third row features a MEDIUM on DARK case, where the hypothesis of {method_2} having <b>very few True Negatives, driving the {metrics.dprs} measure high</b>, seems confirmed. {method_1} on the other hand performs a quite good classification, marking almost correctly most of the skin regions.
+              </p>
+            </li>
+            <li>
+              <p>
+              The last row represents a LIGHT on DARK case on the same original picture of the previous row. In this case, {method_2} does a much better job, especially at predicting non-skin pixels, which may indicate that the light sub-dataset contains <b>more images featuring sky and water labeled as non-skin pixels</b>.
               </p>
             </li>
           </ul>

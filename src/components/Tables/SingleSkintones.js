@@ -1,6 +1,6 @@
 import React from 'react';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
-import { href, Section, Caption } from '../Sections';
+import { href, Section } from '../Sections';
 import styles from './styles.module.css';
 
 
@@ -123,6 +123,45 @@ export const SingleSkintones = ({ subsectionMargin }) => {
             <li>
               <p>
                 {method_1} beats its competitors in all the measurements, while {method_2} comes always second.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
+      <Section width='10'>
+        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} >Significant Outcomes</h2>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <img src={href.img.results_singletones} 
+                  alt='Context for the following paragraphs.' 
+                  title='Notable outcomes' />
+            <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
+              <span>(a)</span>
+              <span>(b)</span>
+              <span>(c)</span>
+              <span>(d)</span>
+              <span>(e)</span>
+            </div>
+          </div>
+        </div>
+        <p style={{textAlign: 'center'}}>
+          Skin detection results. (a) input image; (b) ground truth; (c) {method_1}; (d) {method_2}; (e) {method_3}
+        </p>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <li>
+              <p>
+              The first two rows depict <b>darker skin tones</b>. In both examples, it is possible to notice a pattern in the classification of each approach: {method_1} produces almost ground truth-like predictions; {method_2} tends to <em>exaggerate on classifying skin pixels</em>, but has an excellent number of True Positives; {method_3} seems to fail at classifying the darkest skin tones, but sometimes still manages to mark the inner regions of the face, which <b>are often enough</b> for describing the face shape.
+              </p>
+            </li>
+            <li>
+              <p>
+              The third row represents a tricky background with a clay terrain and medium skin tones. {method_1} produces a very good prediction, while the other approaches include many False Positives. {method_2} reports a tremendous number of False Positives, while {method_3} is <b>deceived by the clay terrain</b> and ruins its otherwise excellent classification.
+              </p>
+            </li>
+            <li>
+              <p>
+              In the last row, {method_1} and {method_3} have very good predictions, with the former incorporating more False Positives, and the latter including more False Negatives. The statistical approach reports once again a huge number of False Positives.
               </p>
             </li>
           </ul>

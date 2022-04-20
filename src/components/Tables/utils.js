@@ -20,6 +20,10 @@ export const blue = {
   bg: "#4853fc50",
   text: '#4853fcFF',
 };
+export const purple = {
+  bg: "#CB71FF50",
+  text: '#CB71FFFF',
+};
 
 export const metrics = {
   f1: <em>F<sub>1</sub></em>,

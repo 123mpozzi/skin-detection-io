@@ -1,8 +1,7 @@
 import React from 'react';
-import { Tooltip, href, Section, Caption } from '../Sections';
+import { Tooltip, href, Section } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
-//import Image from '@docusaurus/plugin-ideal-image';
 
 
 const ntUnetBad = {
@@ -166,9 +165,8 @@ export const CrossDatasets = ({ subsectionMargin }) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'inline-block', flexDirection: 'column'}}>
             <img src={href.img.results_cross} 
-                  alt='.' 
-                  title='' 
-                  style={{maxHeight: '60vh'}} />
+                  alt='Context for the following paragraphs.' 
+                  title='Notable outcomes' />
             <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
               <span>(a)</span>
               <span>(b)</span>
@@ -189,12 +187,12 @@ export const CrossDatasets = ({ subsectionMargin }) => {
             </li>
             <li>
               <p>
-              The third row (HGR as training, Schmugge as testing) is part of the datasets combination in which {method_2} outperforms {method_1}. {method_2} reports a lot of False Positives, but also a lot of True Positives, which {method_1} struggles to identify. This kind of situation is why {metrics.dprs} is better on {method_1} despite {metrics.f1} and {metrics.iou} are worse: {metrics.dprs} formula is partly driven by <b>False Negatives</b> (via Specificity), contrary to the other two metrics.
+              The third row (HGR on Schmugge) is part of the datasets combination in which {method_2} outperforms {method_1}. {method_2} reports a lot of False Positives, but also a lot of True Positives, which {method_1} struggles to identify. This kind of situation is why {metrics.dprs} is better on {method_1} despite {metrics.f1} and {metrics.iou} are worse: {metrics.dprs} formula is partly driven by <b>False Negatives</b> (via Specificity), contrary to the other two metrics.
               </p>
             </li>
             <li>
               <p>
-              The last row (HGR as training, Schmugge as testing) is also part of the same datasets combination and describes a similar situation: {method_1} fails at labeling several skin pixels, especially on very lit regions, while {method_2} overdoes it. This image represents the <b>high complexity and diversity</b> of the Schmugge content.
+              The last row (HGR on Schmugge) is also part of the same datasets combination and describes a similar situation: {method_1} fails at labeling several skin pixels, especially on very lit regions, while {method_2} overdoes it. This image represents the <b>high complexity and diversity</b> of the Schmugge content.
               </p>
             </li>
           </ul>

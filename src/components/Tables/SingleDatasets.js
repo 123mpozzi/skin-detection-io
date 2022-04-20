@@ -148,9 +148,8 @@ export const SingleDatasets = ({ subsectionMargin }) => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'inline-block', flexDirection: 'column'}}>
             <img src={href.img.results_singles} 
-                  alt='.' 
-                  title='' 
-                  style={{maxHeight: '60vh'}} />
+                  alt='Context for the following paragraphs.' 
+                  title='Notable outcomes' />
             <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
               <span>(a)</span>
               <span>(b)</span>

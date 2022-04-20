@@ -30,6 +30,8 @@ export const href = {
     unet_denseblock: "/img/dense.svg",
     results_singles: "/img/results_singles.png",
     results_cross: "/img/results_cross.png",
+    results_singletones: "/img/results_singletones.png",
+    results_crosstones: "/img/results_crosstones.png",
   },
   doc: {
     thesis: "/doc/human-skin-detection-in-color-images.pdf"

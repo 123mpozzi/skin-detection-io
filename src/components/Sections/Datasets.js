@@ -41,6 +41,9 @@ const Intro = () => {
           </li>
         </ul>
       </div>
+      <p>
+        ECU, HGR, and Schmugge are the chosen datasets for this work as they describe a good overall score considering popularity, diversity, size, and the previously mentioned issues.
+      </p>
       <p className={clsx('margin-top--md ').concat(styles.centerText)} >
       Here are the <b className={styles.dottedUnderline} 
       data-tip="Only public datasets featuring images and including ground truths are considered" 

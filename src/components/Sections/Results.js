@@ -42,7 +42,6 @@ const Intro = () => {
 }
 
 
-// todo: check all sections spacing
 export const Results = () => {
   return (
     <div>

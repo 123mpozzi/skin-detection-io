@@ -8,12 +8,7 @@ import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossS
 import clsx from 'clsx';
 
 
-<!-- TODO: layout: TOC skips approaches subsections -->
-
-<!-- TODO: change page title!! TODO: container better layout -->
-
-<!-- TODO: custom ToC to add Headings without hiding them -->
-
+<!-- TODO: change page title!! -->
 
 
 <Section size='lg' title={{context: toc, text: 'Introduction', level: 2}}>
@@ -90,7 +85,7 @@ title={{context: toc, text: 'U-Net', level: 3, repo: href.url.implementation_une
 
 
 <Section title={{context: toc, text: 'Single Dataset', level: 3}}>
-  <SingleDatasets />
+  <SingleDatasets subsectionMargin='lg' />
 </Section>
 
 
@@ -99,12 +94,12 @@ title={{context: toc, text: 'U-Net', level: 3, repo: href.url.implementation_une
 </Section>
 
 
-<Section  title={{context: toc, text: 'Single Skin Tones', level: 3}}>
+<Section  title={{context: toc, text: 'Single Skin Tone', level: 3}}>
   <SingleSkintones />
 </Section>
 
 
-<Section title={{context: toc, text: 'Cross Skin Tones', level: 3}}>
+<Section title={{context: toc, text: 'Cross Skin Tone', level: 3}}>
   <CrossSkintones />
 </Section>
 

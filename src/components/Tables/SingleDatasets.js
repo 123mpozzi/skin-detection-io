@@ -2,6 +2,8 @@ import React from 'react';
 import { Tooltip } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
+import { href } from '../Sections'
+import { Section } from '../Sections';
 
 
 const ntSchStd = {
@@ -19,7 +21,11 @@ const ntUnetBest = {
   col: blue,
 };
 
-export const SingleDatasets = () => {
+export const SingleDatasets = ({ subsectionMargin }) => {
+  if (subsectionMargin === undefined) {
+    subsectionMargin = 'lg';
+  }
+
   const method_1 = 'U-Net'
   const method_2 = 'Statistical'
   const method_3 = 'Thresholding'
@@ -104,29 +110,43 @@ export const SingleDatasets = () => {
           </tbody>
         </table>
       </div>
-      <div className={notesWrapperStyle}>
-        <ul>
-          <HandledItem dict={ntSchStd}>
-            <p>
-              Schmugge appears to be the hardest dataset to classify, also presenting <Dashed color={ntSchStd.col.text}>high standard deviations</Dashed> that can be attribuited to its diverse content, featuring different subjects, backgrounds, and lighting.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntHgrEasy}>
-            <p>
-              HGR seems to be the <Dashed color={ntHgrEasy.col.text}>easier dataset to classify</Dashed>, which can be due to the relatively low diversity of subjects and backgrounds. In fact, learning approaches tend to have very high measurements.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntUnetBest}>
-            <p>
-              In the ECU dataset, the results of {method_2} and {method_3} are relatively close, while <Dashed color={ntUnetBest.col.text}>{method_1} outperforms them by far</Dashed>.
-            </p>
-          </HandledItem>
-          <li>
-            <p>
-              {method_1} beats its competitors in all the measurements, while {method_2} comes always second.
-            </p>
-          </li>
-        </ul>
+      <Section size={subsectionMargin}>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <HandledItem dict={ntSchStd}>
+              <p>
+                Schmugge appears to be the hardest dataset to classify, also presenting <Dashed color={ntSchStd.col.text}>high standard deviations</Dashed> that can be attribuited to its diverse content, featuring different subjects, backgrounds, and lighting.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntHgrEasy}>
+              <p>
+                HGR seems to be the <Dashed color={ntHgrEasy.col.text}>easier dataset to classify</Dashed>, which can be due to the relatively low diversity of subjects and backgrounds. In fact, learning approaches tend to have very high measurements.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntUnetBest}>
+              <p>
+                In the ECU dataset, the results of {method_2} and {method_3} are relatively close, while <Dashed color={ntUnetBest.col.text}>{method_1} outperforms them by far</Dashed>.
+              </p>
+            </HandledItem>
+            <li>
+              <p>
+                {method_1} beats its competitors in all the measurements, while {method_2} comes always second.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
+      <div>
+        <img src={href.img.results_singles} 
+              alt='.' 
+              title='' />
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          <span>(a)</span>
+          <span>(b)</span>
+          <span>(c)</span>
+          <span>(d)</span>
+          <span>(e)</span>
+        </div>
       </div>
     </div>
   );

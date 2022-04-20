@@ -24,7 +24,7 @@ function getTag() {
  */
 let tags: Record<string, string> = {};
 
-// todo: should be 15
+
 let citations: Record<string, string> = {
   'ramirez' : 'Ramirez, G. A., Fuentes, O., Crites Jr, S. L., Jimenez, M., &amp; Ordonez, J. (2014). Color analysis of facial skin: Detection of emotional state. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (pp. 468-473).',
   'do' : 'Do, T. T., Zhou, Y., Zheng, H., Cheung, N. M., &amp; Koh, D. (2014, August). Early melanoma diagnosis with mobile imaging. In 2014 36th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (pp. 6752-6757). IEEE.',

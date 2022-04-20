@@ -2,7 +2,6 @@ import React from 'react';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
 
-// TODO: data-aug - as tooltip?
 
 const ntDarkLight = {
   cls: 'note-dark-on-light',

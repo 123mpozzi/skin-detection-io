@@ -21,9 +21,7 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: false,
-        },
+        docs: false,
         blog: false,
         theme: {
           customCss: [
@@ -39,16 +37,16 @@ const config = {
     ({
       navbar: {
         title: 'Thesis Overview',
+        hideOnScroll: true,
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            to: '/#section_results',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Skip to Results',
           },
           {
             href: 'https://github.com/facebook/docusaurus',

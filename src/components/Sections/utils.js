@@ -100,7 +100,7 @@ export const Section = ({children, size, width, title}) => {
 
   // Setup Headings and add them to Table of Content
   if (title !== undefined) {
-    let section_id = 'section_'.concat(String(title.text).toLowerCase().replace(' ', '_'));
+    let section_id = 'section_'.concat(String(title.text).toLowerCase().replaceAll(' ', '_'));
     let TOCItem = {
       value: title.text,
       id: section_id,

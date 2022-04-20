@@ -28,6 +28,7 @@ export const href = {
     unet_inception2: "/img/inception2.png",
     unet_inception3: "/img/inception3.png",
     unet_denseblock: "/img/dense.svg",
+    results_singles: "/img/results_singles.png",
   },
   doc: {
     thesis: "/doc/human-skin-detection-in-color-images.pdf"

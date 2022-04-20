@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: '123mpozzi',
   tagline: 'Human Skin Detection in Color Images',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://123mpozzi.github.io/',
+  baseUrl: '/skin-detection-io/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: '123mpozzi', // Usually your GitHub org/user name.
+  projectName: 'skin-detection-io', // Usually your repo name.
 
   presets: [
     [
@@ -39,7 +39,7 @@ const config = {
         title: 'Thesis Overview',
         hideOnScroll: true,
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Site Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -49,7 +49,7 @@ const config = {
             label: 'Skip to Results',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/123mpozzi/skin-detection-io',
             label: 'GitHub',
             position: 'right',
           },

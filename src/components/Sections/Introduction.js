@@ -75,10 +75,10 @@ export const ImageSlider = ({textMargin}) => {
 export const Applications = () => {
   return (
     <div className={clsx("row")}>
-      <div className={clsx("col col--4 col--offset-1 margin-top--md")}>
+      <div className={clsx("col col--4 col--offset-1 margin-top--md")} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <h3 className={styles.centerText} >Applications</h3>
-        <div className={styles.wrapList} >
-          <ul>
+        <div >
+          <ul className={styles.wrapList} >
             <li><b>Facial Analysis</b></li>
             <li>Gesture Analysis</li>
             <li><b>Biomedical</b></li>
@@ -159,10 +159,11 @@ export const Limitations = () => {
           title='Tricky lighting 2' />
         </div>
       </div>
-      <div className={clsx("col col--4")}>
-        <h3 style={{textAlign: 'center'}}>Limitations</h3>
-        <div className={styles.wrapList}>
-          <ul>
+      <div className={clsx("col col--4")} style={{display: 'flex', flexDirection: 'column',
+    alignItems: 'center'}} >
+        <h3 className={styles.centerText}>Limitations</h3>
+        <div>
+          <ul className={styles.wrapList} >
             <li>Materials with <b>skin-like colors</b></li>
             <li>Wide range of <b>skin tones</b></li>
             <li><b>Illumination</b></li>

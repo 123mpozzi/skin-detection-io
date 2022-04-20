@@ -3,6 +3,7 @@ import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import { href } from './constants';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 
 export const containerClassName = clsx(" col col--8 col--offset-2 ");
@@ -68,14 +69,24 @@ const OctocatTitle = ({ section_id, title, repo }) => {
  */
 export const Section = ({children, size, width, title}) => {
   let heading = '';
+
+  // window is a Browser only global variable
+  // https://stackoverflow.com/a/59185109
+  const hasWindow = typeof window !== 'undefined';
+  function getWindowWidth() {
+    const windowWidth = hasWindow ? window.innerWidth : null;
+    return windowWidth
+  }
   // Add cols only on desktop
   // https://stackoverflow.com/a/63860125
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+  const [isMobile, setIsMobile] = useState(getWindowWidth() < 1200);
   useEffect(() => {
+    if (hasWindow) {
       window.addEventListener("resize", () => {
           const ismobile = window.innerWidth < 1200;
           if (ismobile !== isMobile) setIsMobile(ismobile);
       }, false);
+    }
   }, [isMobile]);
 
   // Section settings
@@ -126,9 +137,9 @@ export const Section = ({children, size, width, title}) => {
   }
 
   return (<div className={clsx(classStr).concat(width)} >
-    {heading}
-    {children}
-  </div>
+      {heading}
+      {children}
+    </div>
   );
 }
 

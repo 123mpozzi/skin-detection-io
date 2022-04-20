@@ -34,22 +34,9 @@ p {
 
 
 /* Introduction > Applications */
-.wrapList {
-  display: flex;
-  place-content: center;
-}
 @media only screen and (max-width: 450px) and (min-width: 375px) {
-  div.wrapList {
-    display: block;
-  }
-
-  div.wrapList > ul {
-    display: flex;
-    flex-flow: column wrap;
-    padding-inline-start: 0px;
-    max-height: 20vh;
-    align-content: space-between;
-    max-width: 300px;
+  ul.wrapList {
+    columns: 2;
   }
 }
 

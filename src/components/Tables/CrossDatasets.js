@@ -1,7 +1,9 @@
 import React from 'react';
-import { Tooltip } from '../Sections';
+import { Tooltip, href, Section, Caption } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
+//import Image from '@docusaurus/plugin-ideal-image';
+
 
 const ntUnetBad = {
   cls: 'note-unet-bad',
@@ -19,7 +21,11 @@ const ntNiceF1 = {
 };
 
 
-export const CrossDatasets = () => {
+export const CrossDatasets = ({ subsectionMargin }) => {
+  if (subsectionMargin === undefined) {
+    subsectionMargin = 'lg';
+  }
+
   const method_1 = 'U-Net'
   const method_2 = 'Statistical'
 
@@ -129,30 +135,71 @@ export const CrossDatasets = () => {
           </tbody>
         </table>
       </div>
-      <div className={notesWrapperStyle}>
-        <ul>
-          <HandledItem dict={ntUnetBad}>
-            <p>
-              Using HGR as the training set and predicting over Schmugge, <Dashed color={ntUnetBad.col.text}>{method_2} outperforms {method_1}</Dashed>, especially in the {metrics.f1} score. While {method_2} generally performs better than {method_1}, it also includes a lot of False Positives, as the {metrics.f1iou} and the {metrics.dprs} metrics indicate. The latter is particularly bad in both cases, evidencing a big distance between the ideal ground truths and the predictions.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntF1IOU}>
-            <p>
-              Training on Schmugge and predicting on ECU has the {method_1} describing a slightly worse {metrics.f1iou}, suggesting the <Dashed color={ntF1IOU.col.text}>presence of False Positives and False Negatives</Dashed>.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntNiceF1}>
-            <p>
-              {method_1} exceeds an <Dashed color={ntNiceF1.col.text}>{metrics.f1} score of 80</Dashed> in the case of Schmugge as the training set and HGR as the prediction set despite the size of the training set, which is not huge.
-            </p>
-          </HandledItem>
-          <li>
-            <p>
-              Apart from a few expections, {method_1} still dominates.
-            </p>
-          </li>
-        </ul>
-      </div>
+      <Section size={subsectionMargin}>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <HandledItem dict={ntUnetBad}>
+              <p>
+                Using HGR as the training set and predicting over Schmugge, <Dashed color={ntUnetBad.col.text}>{method_2} outperforms {method_1}</Dashed>, especially in the {metrics.f1} score. While {method_2} generally performs better than {method_1}, it also includes a lot of False Positives, as the {metrics.f1iou} and the {metrics.dprs} metrics indicate. The latter is particularly bad in both cases, evidencing a big distance between the ideal ground truths and the predictions.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntF1IOU}>
+              <p>
+                Training on Schmugge and predicting on ECU has the {method_1} describing a slightly worse {metrics.f1iou}, suggesting the <Dashed color={ntF1IOU.col.text}>presence of False Positives and False Negatives</Dashed>.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntNiceF1}>
+              <p>
+                {method_1} exceeds an <Dashed color={ntNiceF1.col.text}>{metrics.f1} score of 80</Dashed> in the case of Schmugge as the training set and HGR as the prediction set despite the size of the training set, which is not huge.
+              </p>
+            </HandledItem>
+            <li>
+              <p>
+                Apart from a few expections, {method_1} still dominates.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
+      <Section width='10'>
+        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} >Significant Outcomes</h2>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <img src={href.img.results_cross} 
+                  alt='.' 
+                  title='' 
+                  style={{maxHeight: '60vh'}} />
+            <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
+              <span>(a)</span>
+              <span>(b)</span>
+              <span>(c)</span>
+              <span>(d)</span>
+            </div>
+          </div>
+        </div>
+        <p style={{textAlign: 'center'}}>
+        Skin detection results. (a) input image; (b) ground truth; (c) {method_1}; (d) {method_2}
+        </p>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <li>
+              <p>
+              It can be noticed how {method_2} tends to exaggerate at classifying skin pixels in some cases, confirming the above intuitions on the statistical method having a <b>lot of False Positives</b>.
+              </p>
+            </li>
+            <li>
+              <p>
+              The third row (HGR as training, Schmugge as testing) is part of the datasets combination in which {method_2} outperforms {method_1}. {method_2} reports a lot of False Positives, but also a lot of True Positives, which {method_1} struggles to identify. This kind of situation is why {metrics.dprs} is better on {method_1} despite {metrics.f1} and {metrics.iou} are worse: {metrics.dprs} formula is partly driven by <b>False Negatives</b> (via Specificity), contrary to the other two metrics.
+              </p>
+            </li>
+            <li>
+              <p>
+              The last row (HGR as training, Schmugge as testing) is also part of the same datasets combination and describes a similar situation: {method_1} fails at labeling several skin pixels, especially on very lit regions, while {method_2} overdoes it. This image represents the <b>high complexity and diversity</b> of the Schmugge content.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
     </div>
   );
 }

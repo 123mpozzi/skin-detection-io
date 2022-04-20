@@ -1,5 +1,6 @@
 import React from 'react';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
+import { href, Section, Caption } from '../Sections';
 import styles from './styles.module.css';
 
 
@@ -18,7 +19,11 @@ const ntDarkThresh = {
   col: blue,
 };
 
-export const SingleSkintones = () => {
+export const SingleSkintones = ({ subsectionMargin }) => {
+  if (subsectionMargin === undefined) {
+    subsectionMargin = 'lg';
+  }
+
   const method_1 = 'U-Net'
   const method_2 = 'Statistical'
   const method_3 = 'Thresholding'
@@ -97,30 +102,32 @@ export const SingleSkintones = () => {
           </tbody>
         </table>
       </div>
-      <div className={notesWrapperStyle}>
-        <ul>
-          <HandledItem dict={ntNullStd}>
-            <p>
-              DARK presents an <Dashed color={ntNullStd.col.text}>almost null standard deviation</Dashed> in learning approaches, indicating that the diversity of the images might not be very high.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntMedHard}>
-            <p>
-              The learning approaches have the highest difficulty at classifying the medium skin tones, which may be caused by the <Dashed color={ntMedHard.col.text}>difficult scenarios</Dashed> featured in the sub-dataset, such as clay terrains, which have a skin-like color.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntDarkThresh}>
-            <p>
-              {method_3} struggles to classify <Dashed color={ntDarkThresh.col.text}>dark skin tones</Dashed>, which may indicate that the skin clustering rules are leaving out the darker skin pixels.
-            </p>
-          </HandledItem>
-          <li>
-            <p>
-              {method_1} beats its competitors in all the measurements, while {method_2} comes always second.
-            </p>
-          </li>
-        </ul>
-      </div>
+      <Section size={subsectionMargin}>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <HandledItem dict={ntNullStd}>
+              <p>
+                DARK presents an <Dashed color={ntNullStd.col.text}>almost null standard deviation</Dashed> in learning approaches, indicating that the diversity of the images might not be very high.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntMedHard}>
+              <p>
+                The learning approaches have the highest difficulty at classifying the medium skin tones, which may be caused by the <Dashed color={ntMedHard.col.text}>difficult scenarios</Dashed> featured in the sub-dataset, such as clay terrains, which have a skin-like color.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntDarkThresh}>
+              <p>
+                {method_3} struggles to classify <Dashed color={ntDarkThresh.col.text}>dark skin tones</Dashed>, which may indicate that the skin clustering rules are leaving out the darker skin pixels.
+              </p>
+            </HandledItem>
+            <li>
+              <p>
+                {method_1} beats its competitors in all the measurements, while {method_2} comes always second.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
+import { href, Section, Caption } from '../Sections';
 import styles from './styles.module.css';
 
 
@@ -19,7 +20,11 @@ const ntSmallSet = {
 };
 
 
-export const CrossSkintones = () => {
+export const CrossSkintones = ({ subsectionMargin }) => {
+  if (subsectionMargin === undefined) {
+    subsectionMargin = 'lg';
+  }
+
   const method_1 = 'U-Net'
   const method_2 = 'Statistical'
 
@@ -125,30 +130,32 @@ export const CrossSkintones = () => {
           </tbody>
         </table>
       </div>
-      <div className={notesWrapperStyle}>
-        <ul>
-          <HandledItem dict={ntDarkLight}>
-            <p>
-              Using DARK as the training set and predicting over LIGHT, {method_2} has better {metrics.f1} but worse {metrics.iou}: {method_2} picks <Dashed color={ntDarkLight.col.text}>more True Positives</Dashed> than {method_1}.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntDprs}>
-            <p>
-              In MEDIUM on DARK case, the {metrics.dprs} score of {method_2} is worse than in the case of LIGHT on DARK, even if the {metrics.f1} and {metrics.iou} are better. <Dashed color={ntDprs.col.text}>Specificity is driving the prediction away from the ideal ground truth</Dashed>, suggesting very few True Negatives.
-            </p>
-          </HandledItem>
-          <HandledItem dict={ntSmallSet}>
-            <p>
-              {method_2} outperforms {method_1} a pair of times when using the darker skin tones as the training set: it may indicate that, when using a <Dashed color={ntSmallSet.col.text}>smaller training set</Dashed>, {method_2} performs better, as the dark sub-dataset was the smallest one and therefore had to be data-augmented with light transformations. {method_1} also describes more unstable results as the population standard deviation is higher.
-            </p>
-          </HandledItem>
-          <li>
-            <p>
-              As usual, {method_1} outperforms {method_2} in most situations.
-            </p>
-          </li>
-        </ul>
-      </div>
+      <Section size={subsectionMargin}>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <HandledItem dict={ntDarkLight}>
+              <p>
+                Using DARK as the training set and predicting over LIGHT, {method_2} has better {metrics.f1} but worse {metrics.iou}: {method_2} picks <Dashed color={ntDarkLight.col.text}>more True Positives</Dashed> than {method_1}.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntDprs}>
+              <p>
+                In MEDIUM on DARK case, the {metrics.dprs} score of {method_2} is worse than in the case of LIGHT on DARK, even if the {metrics.f1} and {metrics.iou} are better. <Dashed color={ntDprs.col.text}>Specificity is driving the prediction away from the ideal ground truth</Dashed>, suggesting very few True Negatives.
+              </p>
+            </HandledItem>
+            <HandledItem dict={ntSmallSet}>
+              <p>
+                {method_2} outperforms {method_1} a pair of times when using the darker skin tones as the training set: it may indicate that, when using a <Dashed color={ntSmallSet.col.text}>smaller training set</Dashed>, {method_2} performs better, as the dark sub-dataset was the smallest one and therefore had to be data-augmented with light transformations. {method_1} also describes more unstable results as the population standard deviation is higher.
+              </p>
+            </HandledItem>
+            <li>
+              <p>
+                As usual, {method_1} outperforms {method_2} in most situations.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
     </div>
   );
 }

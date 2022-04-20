@@ -1,5 +1,5 @@
 export { href } from './constants'
-export { Tooltip, Section } from './utils'
+export { Tooltip, Section, Caption, Center } from './utils'
 export { Introduction, ImageSlider, Applications, Limitations, MethodologicalApproach } from './Introduction'
 export { Taxonomy } from './Taxonomy'
 export { Approaches, Thresholding, Statistical, UNet } from './Approaches'

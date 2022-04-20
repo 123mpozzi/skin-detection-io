@@ -7,7 +7,6 @@ import { href, Section, Introduction, ImageSlider, Applications, Limitations, Me
 import { DatasetOverview, SingleDatasets, CrossDatasets, SingleSkintones, CrossSkintones, InferenceTimes } from '@site/src/components/Tables';
 import clsx from 'clsx';
 
-
 <!-- TODO: change page title!! -->
 
 
@@ -90,17 +89,17 @@ title={{context: toc, text: 'U-Net', level: 3, repo: href.url.implementation_une
 
 
 <Section title={{context: toc, text: 'Cross Dataset', level: 3}}>
-  <CrossDatasets />
+  <CrossDatasets subsectionMargin='lg' />
 </Section>
 
 
 <Section  title={{context: toc, text: 'Single Skin Tone', level: 3}}>
-  <SingleSkintones />
+  <SingleSkintones subsectionMargin='lg' />
 </Section>
 
 
 <Section title={{context: toc, text: 'Cross Skin Tone', level: 3}}>
-  <CrossSkintones />
+  <CrossSkintones subsectionMargin='lg' />
 </Section>
 
 

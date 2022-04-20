@@ -1,9 +1,7 @@
 import React from 'react';
-import { Tooltip } from '../Sections';
+import { Tooltip, href, Section, Caption } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
 import styles from './styles.module.css';
-import { href } from '../Sections'
-import { Section } from '../Sections';
 
 
 const ntSchStd = {
@@ -136,18 +134,53 @@ export const SingleDatasets = ({ subsectionMargin }) => {
           </ul>
         </div>
       </Section>
-      <div>
-        <img src={href.img.results_singles} 
-              alt='.' 
-              title='' />
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <span>(a)</span>
-          <span>(b)</span>
-          <span>(c)</span>
-          <span>(d)</span>
-          <span>(e)</span>
+      <Section width='10'>
+        <Tooltip id="tip-significant">
+          <p>
+          NOT REPRESENTATIVE OF OVERALL PERFORMANCES!!<br />
+          <em>(for the skin detectors performance read the tables)</em>
+          </p>
+          <p>
+            Instead their purpose is trying to <em>highlight the strength and limitations</em> of each skin detector by making a comparison.
+          </p>
+        </Tooltip>
+        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} ><span className={styles.underlineDotted} data-tip="NOT REPRESENTATIVE of performances! (for the skin detectors performance read the tables), instead their purpose is trying to highlight the strength and limitations of each skin detector by making a comparison." data-for="tip-significant">Significant</span> Outcomes</h2>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <img src={href.img.results_singles} 
+                  alt='.' 
+                  title='' 
+                  style={{maxHeight: '60vh'}} />
+            <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
+              <span>(a)</span>
+              <span>(b)</span>
+              <span>(c)</span>
+              <span>(d)</span>
+              <span>(e)</span>
+            </div>
+          </div>
         </div>
-      </div>
+        <Tooltip id="tip-unet-shape">
+          {method_1} predictions may have different shape than other images due to the network preprocessing
+        </Tooltip>
+        <p style={{textAlign: 'center'}}>
+          Skin detection results. (a) input image; (b) ground truth; (c) <span className={styles.underlineDotted} data-tip="U-Net predictions may have different shape than other images due to the network preprocessing." data-for="tip-unet-shape">{method_1}</span>; (d) {method_2}; (e) {method_3}
+        </p>
+        <div className={notesWrapperStyle}>
+          <ul>
+            <li>
+              <p>
+              All approaches struggle on the first image as the <b>lighting is really tricky</b>. Even the {method_1} describes a very bad classification, with a tremendous number of False Positives. {method_3} is the most restrictive on False Positives in this instance.
+              </p>
+            </li>
+            <li>
+              <p>
+              Color-based methods struggle on <b>images without skin pixels</b> and containing materials with skin-like color, with {method_2} having a really high number of False Positives.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </Section>
     </div>
   );
 }

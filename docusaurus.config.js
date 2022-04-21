@@ -15,6 +15,8 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: '123mpozzi', // Usually your GitHub org/user name.
   projectName: 'skin-detection-io', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   presets: [
     [

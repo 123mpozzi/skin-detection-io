@@ -3,6 +3,8 @@ import { Tooltip, href, Section, Caption } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics, dottedStyle } from './utils'
 import styles from './styles.module.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 
 const ntSchStd = {
@@ -148,9 +150,11 @@ export const SingleDatasets = ({ subsectionMargin }) => {
         <h2 style={{textAlign: 'center', fontWeight: 'normal'}} ><span style={dottedStyle} data-tip="NOT REPRESENTATIVE of performances! (for the skin detectors performance read the tables), instead their purpose is trying to highlight the strength and limitations of each skin detector by making a comparison." data-for="tip-significant">Significant</span> Outcomes</h2>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <Zoom>
             <img src={href.img.results_singles} 
                   alt='Context for the following paragraphs.' 
                   title='Notable outcomes' />
+            </Zoom>
             <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
               <span>(a)</span>
               <span>(b)</span>

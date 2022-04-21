@@ -144,7 +144,7 @@ p {
 .octocatTitle {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   flex-wrap: nowrap;
 }
@@ -162,10 +162,15 @@ p {
   position: relative;
   justify-content: center;
 }
-.twoImagesContainer > * {
-  max-width: 50%;
-  padding: 0 0.5rem 0 0.5rem;
-  max-height: 250px;
+.twoImagesContainer > div {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  justify-content: center;
+}
+.twoImagesContainer > div > * {
+  max-height: 100%;
 }
 
 

@@ -6,6 +6,8 @@ import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
 import { dottedStyle } from '../Tables/utils';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 
 const Intro = () => {
@@ -40,10 +42,12 @@ export const Thresholding = () => {
         <div className={clsx("col col--6")}>
           <Center>
             <div className={styles.invert}>
+              <Zoom>
               <img src={href.img.thresh_trapeziaparams}
               style={{width: "100%", maxWidth: "450px"}}
               alt='Visualization of how some parameters are computed with the trapezia to provide a better context to the following paragraphs.'
               title='Computation of the correlation rules parameters' />
+              </Zoom>
               <Caption>Brancati et al. 2017 <Cite name='nbrancati' /></Caption>
             </div>
           </Center>
@@ -66,22 +70,23 @@ export const Thresholding = () => {
 export const Statistical = () => {
   return (
     <div>
-      <div className={clsx("row")} >
-        <div className={clsx("col col-12")} >
-          <div>
-            <div className={clsx("margin-vert--md ").concat(styles.twoImagesContainer)} >
-              <img src={href.img.stat_histogram_ori} 
-              alt='A three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background.' 
-              title='Girl from Pratheepan dataset' />
-              <img src={href.img.stat_histogram_res} 
-              alt='The resulting 3D histogram from the image featuring the girl with the orange background: each pixel is taken from the original image and stored at the coordinates [R,G,B] of the histogram. The visualization of the resulting three-dimensional histogram features some accumulation points which may indicate some interesting features to extract from the image. For example the plain orange background can easily be identified as it represents lot of pixels with low variance.' 
-              title='The accumulation points may indicate a feature to extract' />
-            </div>
-            <Center>
-              <Caption>Example of an image's 3D Histogram</Caption>
-            </Center>
-          </div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div className={clsx("margin-vert--md ")} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+          <Zoom>
+          <img style={{maxHeight: '30vh'}} src={href.img.stat_histogram_ori} 
+          alt='A three-quarter shot featuring a pale-skinned girl with curly brown hair and a plain orange background.' 
+          title='Girl from Pratheepan dataset' />
+          </Zoom>
+          <div style={{width: '1rem'}} />
+          <Zoom>
+          <img style={{maxHeight: '30vh'}} src={href.img.stat_histogram_res} 
+          alt='The resulting 3D histogram from the image featuring the girl with the orange background: each pixel is taken from the original image and stored at the coordinates [R,G,B] of the histogram. The visualization of the resulting three-dimensional histogram features some accumulation points which may indicate some interesting features to extract from the image. For example the plain orange background can easily be identified as it represents lot of pixels with low variance.' 
+          title='The accumulation points may indicate a feature to extract' />
+          </Zoom>
         </div>
+        <Center>
+          <Caption>Example of an image's 3D Histogram</Caption>
+        </Center>
       </div>
       <div className={clsx("row margin-top--md")} >
         <div className={clsx("col col--6")} >
@@ -163,10 +168,12 @@ export const UNet = () => {
       <div className={clsx("col col--6")} >
         <Center>
           <div>
+            <Zoom>
             <img src={href.img.unet_architecture}
             style={{width: "100%", maxWidth: "450px"}} 
             alt='Context image to the paragraphs describing the architecture of Skinny. The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction.' 
             title='Architecture of the "Skinny" network' />
+            </Zoom>
             <Caption>Tarasiewicz et al. 2020 <Cite name='skinny' /></Caption>
           </div>
         </Center>
@@ -193,24 +200,32 @@ export const UNet = () => {
     <div className={clsx("col col--10 col--offset-1 margin-top--lg")}>
       <div>
         <div className={[styles.threeImagesContainer, styles.smallPadding].join(" ")} >
+          <Zoom>
           <img src={href.img.unet_inception1} 
           alt='A face shot of a man. The face covers almost all of the image, hence it may need bigger convolution sizes to extract complex features.' 
           title='The saliency content is big' />
+          </Zoom>
+          <Zoom>
           <img src={href.img.unet_inception2} 
           alt='A half body shot of a person. Depending on the dataset, an image like this may be common, hence convolution sizes may be already good for it.' 
           title='The saliency content is medium sized' />
+          </Zoom>
+          <Zoom>
           <img src={href.img.unet_inception3} 
           alt='An image featuring two people fully. The skin pixel regions are small, hence convolution sizes can be reduced.' 
           title='The saliency content is small' />
+          </Zoom>
         </div>
         <p>
         The salient content size varies between images. <b>Inception module</b> combines multiple kernels with different sizes for content adaptation.
         </p>
       </div>
       <div className={styles.invert} >
+        <Zoom>
         <img src={useBaseUrl(href.img.unet_denseblock_svg)} style={{padding: "0 0 0.4rem 0"}} 
         alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' 
         title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
+        </Zoom>
       </div>
       <p>
       <b>Dense block</b> layers are connected in a way that each one receives feature maps from all preceding layers and passes its feature maps to all subsequent layers.

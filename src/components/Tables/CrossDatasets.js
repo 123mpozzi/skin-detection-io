@@ -2,6 +2,8 @@ import React from 'react';
 import { Tooltip, href, Section } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics, dottedStyle } from './utils'
 import styles from './styles.module.css';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 
 const ntUnetBad = {
@@ -164,9 +166,11 @@ export const CrossDatasets = ({ subsectionMargin }) => {
         <h2 style={{textAlign: 'center', fontWeight: 'normal'}} >Significant Outcomes</h2>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'inline-block', flexDirection: 'column'}}>
+            <Zoom>
             <img src={href.img.results_cross} 
                   alt='Context for the following paragraphs.' 
                   title='Notable outcomes' />
+            </Zoom>
             <div style={{display: 'flex', justifyContent: 'space-around', maxWidth: 'inherit'}}>
               <span>(a)</span>
               <span>(b)</span>

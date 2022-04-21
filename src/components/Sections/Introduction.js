@@ -7,6 +7,8 @@ import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slide
 import { href } from './constants';
 import { dottedStyle } from '../Tables/utils';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 
 const Intro = ({titleMargin, subtitleMargin}) => {
@@ -109,24 +111,32 @@ export const Applications = () => {
           <div style={{ display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around' }} >
             <div>
               <Caption>Ramirez et al. 2014 <Cite name='ramirez' /></Caption>
+              <Zoom>
               <img src={href.img.applications_facial} 
               style={{ maxWidth: '90%', paddingBottom: '1.5rem', maxHeight: '25vh' }} 
               alt='Skin detection is often an important step to analyze faces.' 
               title='Facial analysis' />
+              </Zoom>
             </div>
             <div>
+              <Zoom>
               <img src={href.img.applications_ads} 
               style={{ maxWidth: '90%', maxHeight: '25vh' }} 
               alt='In Digital Out-of-Home advertising, skin detection can be used to infer properties of the audience.' 
               title='Infer audience demographics in DOOH ads' />
+              </Zoom>
               <Caption>Low et al. 2020 <Cite name='low' /></Caption>
             </div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-around' }}>
-            <img src={href.img.applications_biomedical} 
-            style={{ maxHeight: '100%' }} 
-            alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' 
-            title='Skin cancer detection' />
+            <div style={{margin: '1rem'}}>
+              <Zoom>
+              <img src={href.img.applications_biomedical} 
+              style={{ maxHeight: '50vh' }} 
+              alt='Biomedical applications include the early detection of skin cancers, such as melanoma.' 
+              title='Skin cancer detection' />
+              </Zoom>
+            </div>
             <Caption>Do et al. 2014 <Cite name='do' /></Caption>
           </div>
         </div>
@@ -140,24 +150,32 @@ export const Limitations = () => {
     <div className={clsx("row margin-top--xl ").concat(styles.reverseRow)} >
       <div className={clsx("col col--4 col--offset-2")}>
         <div className={clsx("row")} style={{flexWrap: 'nowrap', justifyContent: 'center'}} >
+          <Zoom>
           <img src={href.img.limitations_clay} 
           style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} 
           alt='Clay color is really similar to some skin tones.' 
           title='Clay' />
+          </Zoom>
+          <Zoom>
           <img src={href.img.limitations_wood} 
           style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} 
           alt='Wood can assume similar color to some skin tones.' 
           title='Wood' />
+          </Zoom>
         </div>
         <div className={clsx("row")} style={{flexWrap: 'nowrap', justifyContent: 'center'}}>
+          <Zoom>
           <img src={href.img.limitations_lighting1} 
           style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} 
           alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' 
           title='Tricky lighting 1' />
+          </Zoom>
+          <Zoom>
           <img src={href.img.limitations_lighting2} 
           style={{maxHeight: '20vh', padding: '0.5rem', minWidth: '0'}} 
           alt='Lighting can modify the image properties a lot. We, as humans do not perceive that much difference because our eyes are trained on these kinds of color transitions, but computers have trouble.' 
           title='Tricky lighting 2' />
+          </Zoom>
         </div>
       </div>
       <div className={clsx("col col--4")} style={{display: 'flex', flexDirection: 'column',
@@ -181,10 +199,12 @@ export const MethodologicalApproach = () => {
   return (
     <Center>
       <div className={clsx("margin-top--lg ").concat(styles.invert)} >
+        <Zoom>
         <img src={useBaseUrl(href.img.approach_svg)}
         style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}}
         alt="In this thesis the significance and limitations of skin detection have been addressed. A review of public datasets available in the domain and an analysis of state-of-the-art approaches has been presented, including a new proposed taxonomy. Three different state-of-the-art methods have been thoroughly examined implemented and validated in respect to the original papers, when possible. An evaluation of the chosen approaches in different settings has been presented, alongside a discussion on the metrics used in the domain.Finally, the results have been thoroughly discussed through data and figures."
         title='Approach taken at exploring the topic' />
+        </Zoom>
       </div>
     </Center>
   );

@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import { href } from './constants';
 import { dottedStyle } from '../Tables/utils';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 const Intro = ({titleMargin, subtitleMargin}) => {
@@ -76,7 +77,7 @@ export const Applications = () => {
   return (
     <div className={clsx("row")}>
       <div className={clsx("col col--4 col--offset-1 margin-top--md")} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h3 className={styles.centerText} >Applications</h3>
+        <h2 className={[styles.centerText, styles.nobold].join(" ")} >Applications</h2>
         <div >
           <ul className={styles.wrapList} >
             <li><b>Facial Analysis</b></li>
@@ -161,7 +162,7 @@ export const Limitations = () => {
       </div>
       <div className={clsx("col col--4")} style={{display: 'flex', flexDirection: 'column',
     alignItems: 'center'}} >
-        <h3 className={styles.centerText}>Limitations</h3>
+        <h2 className={[styles.centerText, styles.nobold].join(" ")} >Limitations</h2>
         <div>
           <ul className={styles.wrapList} >
             <li>Materials with <b>skin-like colors</b></li>
@@ -180,7 +181,7 @@ export const MethodologicalApproach = () => {
   return (
     <Center>
       <div className={clsx("margin-top--lg ").concat(styles.invert)} >
-        <img src={href.img.approach}
+        <img src={useBaseUrl(href.img.approach_svg)}
         style={{margin: "1rem 0 var(--ifm-paragraph-margin-bottom)"}}
         alt="In this thesis the significance and limitations of skin detection have been addressed. A review of public datasets available in the domain and an analysis of state-of-the-art approaches has been presented, including a new proposed taxonomy. Three different state-of-the-art methods have been thoroughly examined implemented and validated in respect to the original papers, when possible. An evaluation of the chosen approaches in different settings has been presented, alongside a discussion on the metrics used in the domain.Finally, the results have been thoroughly discussed through data and figures."
         title='Approach taken at exploring the topic' />

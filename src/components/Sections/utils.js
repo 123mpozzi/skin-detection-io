@@ -3,6 +3,7 @@ import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import { href } from './constants';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 export const containerClassName = clsx(" col col--8 col--offset-2 ");
@@ -51,7 +52,7 @@ export const Tooltip = ({ children, id }) => {
  const Octocat = ({ repo }) => {
   return (<div className={[styles.invert, styles.octocat].join(" ")}>
       <a href={repo}>
-        <img src={href.img.octocat}
+        <img src={useBaseUrl(href.img.octocat_svg)}
           alt='GitHub logo.'
           title='Go to implementation' />
       </a>

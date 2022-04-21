@@ -4,6 +4,8 @@ import { href } from './constants';
 import { Center, Caption, Tooltip } from './utils'
 import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
+import { dottedStyle } from '../Tables/utils';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 const Intro = () => {
@@ -99,8 +101,8 @@ export const Statistical = () => {
         <div className={clsx("col col--6")}>
           <Center>
             <div>
-              <h3 className={clsx("margin-left--md").concat(styles.nobold)} >Predict</h3>
-              <ol className={clsx("margin-bottom--lg").concat(styles.spacedList)} >
+              <h3 className={clsx("margin-left--md ").concat(styles.nobold)} >Predict</h3>
+              <ol className={clsx("margin-bottom--lg ").concat(styles.spacedList)} >
                 <li>Define classifying threshold Θ</li>
                 <li>Loop every RGB pixel from input image</li>
                 <li>Calculate RGB probability of being skin</li>
@@ -115,7 +117,7 @@ export const Statistical = () => {
       </p>
       <Center>
         <div className={clsx("invert")} >
-          <img src={href.img.stat_math_probability} 
+          <img src={useBaseUrl(href.img.stat_math_probability_svg)} 
           style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} 
           alt="Probability function; The probability of each RGB pixel to belong to the SKIN class is: the pixel count contained in bin RGB of the SKIN histogram divided by parenthesis the pixel count contained in bin RGB of the SKIN histogram plus the equivalent count from the non-skin histogram closed parenthesis." 
           title='Probability of "rgb" to be a skin pixel' />
@@ -127,7 +129,7 @@ export const Statistical = () => {
       </p>
       <Center>
         <div className={clsx("invert")} >
-          <img src={href.img.stat_math_threshold} 
+          <img src={useBaseUrl(href.img.stat_math_threshold_svg)} 
           style={{margin: "0 0 var(--ifm-paragraph-margin-bottom)"}} 
           alt="Having computed the probability, a threshold (represented by Theta) must be surpassed to be classified as a skin pixel." 
           title='"rgb" is a skin pixel if its probability exceeds the threshold' />
@@ -171,7 +173,7 @@ export const UNet = () => {
       </div>
     </div>
     <p>
-    The Skinny network consists of a modified <span className={styles.dottedUnderline} 
+    The Skinny network consists of a modified <span style={dottedStyle} 
     data-tip='The network is called "U-Net" because of its shape: there is a contracting path which tries to extract increasingly complex features as it goes deeper, and an expanding path which tries to retreive the lost spatial information during the feature extraction' 
     data-for="tip-unet">U-Net</span> incorporating dense blocks and inception modules to benefit from a wider spatial context.
     </p>
@@ -206,7 +208,7 @@ export const UNet = () => {
         </p>
       </div>
       <div className={styles.invert} >
-        <img src={href.img.unet_denseblock} style={{padding: "0 0 0.4rem 0"}} 
+        <img src={useBaseUrl(href.img.unet_denseblock_svg)} style={{padding: "0 0 0.4rem 0"}} 
         alt='Visualization of the layers in a dense block to provide context to the following paragraph. Lot of information is lost by going deeper in a CNN; so much that there is the problem of vanishing before reaching the other side. Dense blocks enhance feature reuse by simplifying the connectivity pattern between the network paths.' 
         title='Skinny uses dense blocks to strengthen feature propagation and reuse' />
       </div>

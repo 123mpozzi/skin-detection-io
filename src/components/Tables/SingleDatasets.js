@@ -2,6 +2,7 @@ import React from 'react';
 import { Tooltip, href, Section, Caption } from '../Sections';
 import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics, dottedStyle } from './utils'
 import styles from './styles.module.css';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 const ntSchStd = {
@@ -32,7 +33,7 @@ export const SingleDatasets = ({ subsectionMargin }) => {
     <div>
       <div className={styles.tableWrapper}>
         <Tooltip id="tip-dprs">
-          <img src="/img/dprs.svg" alt='Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}' title='Facial analysis' style={{ filter: 'invert(100%)', minWidth: '100%' }} />
+          <img src={useBaseUrl("/img/dprs.svg")} alt='Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}' title='Facial analysis' style={{ filter: 'invert(100%)', minWidth: '100%' }} />
           <p>
             Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth.
           </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip, href, Section } from '../Sections';
-import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
+import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics, dottedStyle } from './utils'
 import styles from './styles.module.css';
 
 
@@ -112,7 +112,7 @@ export const CrossDatasets = ({ subsectionMargin }) => {
               <td>0.6523 ± 0.27</td>
             </tr>
             <tr>
-              <th rowSpan={2} scope="rowgroup" className={styles.metricDown} ><em>F<sub>1</sub><span className={styles.underlineDotted} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span></em>
+              <th rowSpan={2} scope="rowgroup" className={styles.metricDown} ><em>F<sub>1</sub><span style={dottedStyle} data-tip="Taken into consideration to get a better idea of the number of True Positives compared to False Positives and False Negatives" data-for="tip-f1iou"> - IoU</span></em>
               </th>
               <th scope="row">{method_1}</th>
               <td><b>0.0457</b></td>

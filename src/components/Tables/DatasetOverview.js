@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import { Tooltip, containerClassName } from '../Sections/utils'
 import { Cite } from '../Sections/Bibliography_js'
+import { dottedStyle } from './utils';
 
 /**
  * Swappable content
@@ -101,7 +102,7 @@ export function DatasetOverview() {
               <th>Year</th>
               <th>Images</th>
               <th>Shot Type</th>
-              <th className={styles.underlineDotted} data-tip="Citations from the original papers or eventual labels" data-for="tip-iskintones">Skin Tones</th>
+              <th style={dottedStyle} data-tip="Citations from the original papers or eventual labels" data-for="tip-iskintones">Skin Tones</th>
             </tr>
           </thead>
           <tbody>

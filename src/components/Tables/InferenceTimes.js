@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tooltip } from '../Sections';
 import styles from './styles.module.css';
+import { dottedStyle } from './utils';
 
 
 export const InferenceTimes = () => {
@@ -27,7 +28,7 @@ export const InferenceTimes = () => {
               <th />
               <th>Inference time<br />(seconds)</th>
               <th>
-              <span className={styles.underlineDotted} data-tip="Deep learning: assume one prediction is already performed before starting the observations. Statistical: create the prediction image looping on a sequence object instead of every pixel." data-for="tip-infer">Improved</span> inference time<br />(seconds)
+              <span style={dottedStyle} data-tip="Deep learning: assume one prediction is already performed before starting the observations. Statistical: create the prediction image looping on a sequence object instead of every pixel." data-for="tip-infer">Improved</span> inference time<br />(seconds)
               </th>
             </tr>
           </thead>
@@ -44,7 +45,7 @@ export const InferenceTimes = () => {
             </tr>
             <tr>
               <td>Thresholding</td>
-              <td><b>0.007717 <span className={styles.underlineDotted} data-tip="Inference times independent of image content" data-for="tip-inferthresh">± 0.000</span></b></td>
+              <td><b>0.007717 <span style={dottedStyle} data-tip="Inference times independent of image content" data-for="tip-inferthresh">± 0.000</span></b></td>
               <td><b>0.007717 ± 0.000</b></td>
             </tr>
           </tbody>

@@ -8,13 +8,6 @@ p {
 .centerText {
   text-align: center;
 }
-.dottedUnderline {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-color: var(--ifm-color-primary);
-  text-decoration-thickness: 0.23rem;
-  text-underline-position: under;
-}
 .nobold {
   font-weight: normal
 }

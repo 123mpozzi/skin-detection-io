@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip, href, Section, Caption } from '../Sections';
-import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics } from './utils'
+import { notesWrapperStyle, Dashed, red, green, blue, HandledItem, metrics, dottedStyle } from './utils'
 import styles from './styles.module.css';
 
 
@@ -87,7 +87,7 @@ export const SingleDatasets = ({ subsectionMargin }) => {
               <td className={ntSchStd.cls}>0.3323 ± 0.28</td>
             </tr>
             <tr>
-              <th rowSpan={3} scope="rowgroup" className={styles.metricDown}>D<sub className={styles.underlineDotted} data-tip="Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}. Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth." data-for="tip-dprs">prs</sub></th>
+              <th rowSpan={3} scope="rowgroup" className={styles.metricDown}>D<sub style={dottedStyle} data-tip="Dprs = sqrt{(1-PR)^2 + (1-RE)^2 + (1-SP)^2}. Where PR is Precision, RE is Recall, and SP is Specificity; and (1,1,1) the ideal ground truth." data-for="tip-dprs">prs</sub></th>
               <th scope="row">{method_1}</th>
               <td className={ntUnetBest.cls}><b>0.1333 ± 0.12</b></td>
               <td className={ntHgrEasy.cls}><b>0.0251 ± 0.03</b></td>
@@ -144,7 +144,7 @@ export const SingleDatasets = ({ subsectionMargin }) => {
             Instead their purpose is trying to <em>highlight the strength and limitations</em> of each skin detector by making a comparison.
           </p>
         </Tooltip>
-        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} ><span className={styles.underlineDotted} data-tip="NOT REPRESENTATIVE of performances! (for the skin detectors performance read the tables), instead their purpose is trying to highlight the strength and limitations of each skin detector by making a comparison." data-for="tip-significant">Significant</span> Outcomes</h2>
+        <h2 style={{textAlign: 'center', fontWeight: 'normal'}} ><span style={dottedStyle} data-tip="NOT REPRESENTATIVE of performances! (for the skin detectors performance read the tables), instead their purpose is trying to highlight the strength and limitations of each skin detector by making a comparison." data-for="tip-significant">Significant</span> Outcomes</h2>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <div style={{display: 'inline-block', flexDirection: 'column'}}>
             <img src={href.img.results_singles} 
@@ -163,7 +163,7 @@ export const SingleDatasets = ({ subsectionMargin }) => {
           {method_1} predictions may have different shape than other images due to the network preprocessing
         </Tooltip>
         <p style={{textAlign: 'center'}}>
-          Skin detection results. (a) input image; (b) ground truth; (c) <span className={styles.underlineDotted} data-tip="U-Net predictions may have different shape than other images due to the network preprocessing." data-for="tip-unet-shape">{method_1}</span>; (d) {method_2}; (e) {method_3}
+          Skin detection results. (a) input image; (b) ground truth; (c) <span style={dottedStyle} data-tip="U-Net predictions may have different shape than other images due to the network preprocessing." data-for="tip-unet-shape">{method_1}</span>; (d) {method_2}; (e) {method_3}
         </p>
         <div className={notesWrapperStyle}>
           <ul>

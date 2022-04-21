@@ -3,7 +3,6 @@ import ReactTooltip from 'react-tooltip';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import { href } from './constants';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 
 
 export const containerClassName = clsx(" col col--8 col--offset-2 ");
@@ -11,25 +10,40 @@ export const containerClassName = clsx(" col col--8 col--offset-2 ");
 const hrefAfterNavbar = {scrollMarginTop: 'calc(var(--ifm-navbar-height) + 0.5rem)'};
 const tocActiveClass = clsx('anchor');
 
-export const Tooltip = ({ children, id }) => (
-  <ReactTooltip
-    id={id}
-    place="top"
-    effect="solid"
-    border
-    borderColor="var(--ifm-color-primary)"
-    overridePosition = {({ left, top }, currentEvent, currentTarget, node) => {
-      const d = document.documentElement;
-      left = Math.min(d.clientWidth - node.clientWidth, left);
-      top = Math.min(d.clientHeight - node.clientHeight, top);
-      left = Math.max(0, left);
-      top = Math.max(0, top);
-      return { top, left }
-    }}
-  >
-    {children}
-  </ReactTooltip>
-)
+
+export const Tooltip = ({ children, id }) => {
+  const hasDocument = typeof document !== 'undefined';
+  if (hasDocument) {
+    return (<ReactTooltip
+        id={id}
+        place="top"
+        effect="solid"
+        border
+        borderColor="var(--ifm-color-primary)"
+        overridePosition = {({ left, top }, currentEvent, currentTarget, node) => {
+          const d = document.documentElement;
+          left = Math.min(d.clientWidth - node.clientWidth, left);
+          top = Math.min(d.clientHeight - node.clientHeight, top);
+          left = Math.max(0, left);
+          top = Math.max(0, top);
+          return { top, left }
+        }}
+      >
+        {children}
+      </ReactTooltip>
+    );
+  }
+  return (<ReactTooltip
+      id={id}
+      place="top"
+      effect="solid"
+      border
+      borderColor="var(--ifm-color-primary)"
+    >
+      {children}
+    </ReactTooltip>
+  );
+}
 
 /**
  * Clickable Octocat logo pointing to the given string
@@ -59,6 +73,39 @@ const OctocatTitle = ({ section_id, title, repo }) => {
   );
 }
 
+// Credits to https://usehooks.com/useWindowSize/
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
+}
+
 
 /**
  * Section of the page document
@@ -73,21 +120,13 @@ export const Section = ({children, size, width, title}) => {
   // window is a Browser only global variable
   // https://stackoverflow.com/a/59185109
   const hasWindow = typeof window !== 'undefined';
-  function getWindowWidth() {
-    const windowWidth = hasWindow ? window.innerWidth : null;
-    return windowWidth
+
+  var isMobile;
+  if (hasWindow)
+  {
+    const size = useWindowSize();
+    isMobile = size.width < 1200;
   }
-  // Add cols only on desktop
-  // https://stackoverflow.com/a/63860125
-  const [isMobile, setIsMobile] = useState(getWindowWidth() < 1200);
-  useEffect(() => {
-    if (hasWindow) {
-      window.addEventListener("resize", () => {
-          const ismobile = window.innerWidth < 1200;
-          if (ismobile !== isMobile) setIsMobile(ismobile);
-      }, false);
-    }
-  }, [isMobile]);
 
   // Section settings
   if (size === undefined) {

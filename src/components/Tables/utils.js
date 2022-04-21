@@ -8,6 +8,27 @@ let flag = false;
 
 export const notesWrapperStyle = clsx('col col--12 ').concat(styles.noteWrapper)
 
+export const dottedStyle = {
+  textDecoration: 'underline',
+  textDecorationStyle: 'dotted',
+  textDecorationColor: 'var(--ifm-color-primary)',
+  textDecorationThickness: '0.23rem',
+  textUnderlinePosition: 'under',
+};
+
+function getDashedStyle( color ) {
+  if (color === undefined)
+  {
+    color = 'var(--ifm-color-primary)';
+  }
+  return {
+    textDecoration: 'underline',
+    textDecorationStyle: 'dashed',
+    textDecorationColor: color,
+    textDecorationThickness: '0.23rem',
+    textUnderlinePosition: 'under'};
+}
+
 export const red = {
   bg: "#c21c1c50",
   text: '#c21c1cFF',
@@ -38,22 +59,19 @@ export const metrics = {
  */
 function handleOver(matchClass, color, e) {
   e.preventDefault();
-  const cells = document.getElementsByClassName(matchClass);
-  // Change background
-  for (var i = 0; i < cells.length; i++) {
-    // the fist time save the initial background color
-    if (flag == false) {
-      prevBg = cells[i].style.background;
-      flag = true;
-    }
-    cells[i].style.setProperty('background', color, 'important');
-  }
-  // Revert back to previous background
-  /*setTimeout(function() { 
+  const hasDocument = typeof document !== 'undefined';
+  if (hasDocument) {
+    const cells = document.getElementsByClassName(matchClass);
+    // Change background
     for (var i = 0; i < cells.length; i++) {
-      cells[i].style.setProperty('background', prevBg, 'important');
+      // the fist time save the initial background color
+      if (flag == false) {
+        prevBg = cells[i].style.background;
+        flag = true;
+      }
+      cells[i].style.setProperty('background', color, 'important');
     }
-  }, 5000);*/
+  }
 }
 
 /**
@@ -61,18 +79,21 @@ function handleOver(matchClass, color, e) {
  */
 function handleOut(matchClass, e) {
   e.preventDefault();
-  const msDelay = 2500; // delay in milliseconds
-  const cells = document.getElementsByClassName(matchClass);
-  // Revert back to previous background
-  setTimeout(function () {
-    for (var i = 0; i < cells.length; i++) {
-      cells[i].style.setProperty('background', prevBg, 'important');
-    }
-  }, msDelay);
+  const hasDocument = typeof document !== 'undefined';
+  if (hasDocument) {
+    const msDelay = 2500; // delay in milliseconds
+    const cells = document.getElementsByClassName(matchClass);
+    // Revert back to previous background
+    setTimeout(function () {
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].style.setProperty('background', prevBg, 'important');
+      }
+    }, msDelay);
+  }
 }
 
 export const Dashed = ({ color, children }) => (
-  <span className={styles.underlineDashed} style={{ textDecorationColor: color }}>{children}</span>
+  <span style={getDashedStyle(color)}>{children}</span>
 )
 
 export const HandledItem = ({ dict, children }) => (

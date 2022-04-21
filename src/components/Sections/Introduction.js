@@ -5,7 +5,7 @@ import { Cite } from './Bibliography_js'
 import clsx from 'clsx';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import { href } from './constants';
-
+import { dottedStyle } from '../Tables/utils';
 
 
 const Intro = ({titleMargin, subtitleMargin}) => {
@@ -83,7 +83,7 @@ export const Applications = () => {
             <li>Gesture Analysis</li>
             <li><b>Biomedical</b></li>
             <li>
-              <b className={styles.dottedUnderline} 
+              <b style={dottedStyle} 
               data-tip="Infer audience demographics" 
               data-for="tip-ads">Advertisement</b>
               <Tooltip id="tip-ads">
@@ -92,7 +92,7 @@ export const Applications = () => {
             </li>
             <li>Content Filter</li>
             <li>Video Surveillance</li>
-            <li className={styles.dottedUnderline} 
+            <li style={dottedStyle} 
             data-tip="Encrypt people identity in smart cities" 
             data-for="tip-privacy">
               Privacy Protection

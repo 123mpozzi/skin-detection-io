@@ -45,22 +45,31 @@ function innerText() {
  * @returns list to pass to 'relations' param
  */
 function link() {
-  var color = document.documentElement.getAttribute('data-theme');
-  if (color == 'dark') {
-    color = '#D9D9D9';
-  }
-  else {
-    color = 'black';
+  var color = 'black';
+  const hasDocument = typeof document !== 'undefined';
+  if (hasDocument) {
+    color = document.documentElement.getAttribute('data-theme');
+    if (color == 'dark') {
+      color = '#D9D9D9';
+    }
+    else {
+      color = 'black';
+    }
   }
 
-  var width = screen.width;
-  if (width <= 600) {
-    var sWidth = 1;
-    var curves = false;
-  }
-  else {
-    var sWidth = 2
-    var curves = true;
+  var sWidth = 2
+  var curves = true;
+  const hasScreen = typeof screen !== 'undefined';
+  if (hasScreen) {
+    var width = screen.width;
+    if (width <= 600) {
+      var sWidth = 1;
+      var curves = false;
+    }
+    else {
+      var sWidth = 2
+      var curves = true;
+    }
   }
 
   var res = []
@@ -127,12 +136,15 @@ export function Taxonomy() {
     href = href.substring(1); // remove hash
     setSelected(href);
 
-    // Change selected item borders
-    var old_selection = document.getElementsByClassName(styles.taxonomyOn);
-    for (var i = 0; i < old_selection.length; i++) {
-      old_selection[i].classList.remove(styles.taxonomyOn);
+    const hasDocument = typeof document !== 'undefined';
+    if (hasDocument) {
+      // Change selected item borders
+      var old_selection = document.getElementsByClassName(styles.taxonomyOn);
+      for (var i = 0; i < old_selection.length; i++) {
+        old_selection[i].classList.remove(styles.taxonomyOn);
+      }
+      document.getElementById(id).classList.add(styles.taxonomyOn);
     }
-    document.getElementById(id).classList.add(styles.taxonomyOn);
   }
 
   /**

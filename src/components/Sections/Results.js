@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './styles.module.css';
 import { Tooltip } from './utils'
+import { dottedStyle } from '../Tables/utils';
 
 
 const Intro = () => {
@@ -14,7 +14,7 @@ const Intro = () => {
       </p>
     </Tooltip>
 
-    <p>In <b className={styles.dottedUnderline} 
+    <p>In <b style={dottedStyle} 
     data-tip="For example, with ECU as the dataset, it means that the skin detector is trained using the training set of ECU, and then tested on the test set of ECU" 
     data-for="tip-single">single evaluations</b>
     , methods are eventually trained on the training set (in the case of trainable methods), and then predictions are performed on the test set.
@@ -26,7 +26,7 @@ const Intro = () => {
       </p>
     </Tooltip>
 
-    <p>In <b className={styles.dottedUnderline} 
+    <p>In <b style={dottedStyle} 
     data-tip="For example, with ECU as the training dataset and HGR as the testing dataset, it means that the skin detector is trained using the training set of ECU, and then tested on all the HGR dataset." 
     data-for="tip-cross">cross evaluations</b>
     , only trainable approaches are analyzed.

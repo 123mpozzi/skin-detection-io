@@ -144,12 +144,20 @@ p {
 .octocatTitle {
   display: flex;
   flex-flow: row wrap;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 .octocat > a > img {
   max-height: calc(var(--ifm-h2-font-size) *2);
+}
+.methodLinksContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 100%;
 }
 
 

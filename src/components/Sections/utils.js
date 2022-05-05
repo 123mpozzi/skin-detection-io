@@ -65,11 +65,14 @@ export const Tooltip = ({ children, id }) => {
  * @param title Title to show in HTML page
  * @param repo Link to the GitHub repository
  */
-const OctocatTitle = ({ section_id, title, repo }) => {
+const OctocatTitle = ({ section_id, title, repo, demo }) => {
   let hash_link = <a className={clsx("hash-link")} href={"#".concat(section_id)} title="Direct link to heading">​</a>;
   return (<div className={styles.octocatTitle}>
       <h2 id={section_id} className={tocActiveClass} style={hrefAfterNavbar}>{title}{hash_link}</h2>
-      <Octocat repo={repo} />
+      <div className={styles.methodLinksContainer}>
+        <a className={clsx("button button--primary")} href={demo} target="_blank">Live Demo</a>
+        <Octocat repo={repo} />
+      </div>
     </div>
   );
 }
@@ -160,7 +163,7 @@ export const Section = ({children, size, width, title}) => {
     title.context.push(TOCItem);
 
     if (title.repo !== undefined) {
-      heading = <OctocatTitle section_id={section_id} title={title.text} repo={title.repo} />
+      heading = <OctocatTitle section_id={section_id} title={title.text} repo={title.repo} demo={title.demo} />
     }
     else {
       let hash_link = <a className={clsx("hash-link")} href={"#".concat(section_id)} title="Direct link to heading">​</a>;

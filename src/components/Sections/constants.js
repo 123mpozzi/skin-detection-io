@@ -4,6 +4,9 @@ export const href = {
     implementation_thresholding: "https://github.com/123mpozzi/nbrancati",
     implementation_statistical: "https://github.com/123mpozzi/skin-statistical",
     implementation_unet: "https://github.com/123mpozzi/skinny",
+    demo_thresholding: "https://123mpozzi.github.io/skin-detect-live/",
+    demo_statistical: "https://123mpozzi.github.io/skin-detect-live/probability.html",
+    demo_unet: "https://123mpozzi.github.io/skin-detect-live/unet.html",
   },
   img: {
     intro_ori: require('@site/static/img/skin_det_ori3.webp').default,
@@ -35,6 +38,6 @@ export const href = {
     tooltip_dprs_svg: '/img/dprs.svg',
   },
   doc: {
-    thesis: require('@site/static/doc/human-skin-detection-in-color-images.pdf').default,
+    thesis: require('@site/static/doc/human-skin-detection-in-color-images_min.pdf').default,
   },
 }
